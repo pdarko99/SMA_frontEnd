@@ -1,0 +1,44 @@
+<form [formGroup] = "registerForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="firstname" name="firstname" formControlName="firstname">
+    <span *ngIf="registerForm.get('firstname').errors?.required && registerForm.get('firstname').touched">firstname is required</span>
+    <span *ngIf="registerForm.get('firstname').errors?.minlength && registerForm.get('firstname').touched">firstname must be more than three characters</span>
+    <div>
+        <input type="text" placeholder="lastname" name="lastname" formControlName="lastname">
+        <span *ngIf="registerForm.get('lastname').errors?.required && registerForm.get('lastname').touched">lastname is required</span>
+        <span *ngIf="registerForm.get('lastname').errors?.minlength && registerForm.get('lastname').touched">lastname must be more than three characters</span>
+    </div>
+    <div>
+        <input type="text" placeholder="email" name="email" formControlName="email">
+        <span *ngIf="registerForm.get('email').errors?.required && registerForm.get('email').touched">email is required</span>
+        <span *ngIf="registerForm.get('email').errors?.email && registerForm.get('email').touched">must be an email</span>
+    </div>
+    <div  formGroupName="passwordGroup">
+        <div>
+            <input type="password" placeholder="password" name="password" formControlName="password">
+            <span *ngIf="registerForm.get('passwordGroup.password').errors?.required && registerForm.get('passwordGroup.password').touched">password is required</span>
+            <span *ngIf="registerForm.get('passwordGroup.password').errors?.minlength && registerForm.get('passwordGroup.password').touched">password must be more than six characters</span>      
+        </div>
+        <div>
+            <input type="password" placeholder="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+            <span *ngIf="registerForm.get('passwordGroup.confirmPassword').errors?.required && registerForm.get('passwordGroup.confirmPassword').touched">password is required</span>
+            <span *ngIf="registerForm.get('passwordGroup.confirmPassword').errors?.minlength && registerForm.get('passwordGroup.confirmPassword').touched">password must be more than six characters</span>      
+            <span *ngIf="registerForm.get('passwordGroup').errors?.match">Passwords do not match</span>      
+        </div>
+    </div>
+
+    <div>
+        <label for="teacher">
+            <input type="radio" id="teacher" name="position" value="teacher" formControlName="position"> Teacher
+        </label>
+        <label for="head">
+            <input type="radio" id="head" name="position" value="head" formControlName="position">Headmaster
+        </label>
+        <label for="account">
+            <input type="radio" id="account" name="position" value="account" formControlName="position">Account
+        </label>
+        <span *ngIf="registerForm.get('position').errors?.required && registerForm.get('position').touched">required</span>
+    </div>
+    <button [disabled]="registerForm.invalid">submit</button>
+</form>
+
+

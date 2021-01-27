@@ -1,0 +1,9 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <input type="test" placeholder="username" required name="username" #usernameField='ngModel' [(ngModel)]="loginData.username">
+    <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span>
+    <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="loginData.password">
+    <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span>
+    <button [disabled]="form.invalid">submit</button>
+
+</form>
+
