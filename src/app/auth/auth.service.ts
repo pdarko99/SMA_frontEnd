@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { login } from '../shared/loginClass';
 import { register } from '../shared/registerClass';
+import { User } from '../shared/userClass';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
+  UserObject: User = new User
   url = "http://localhost:3000"
   constructor(private http: HttpClient) { }
 

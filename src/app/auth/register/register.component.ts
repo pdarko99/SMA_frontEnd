@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/shared/userClass';
 import { AuthService } from '../auth.service';
 
 function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
@@ -21,8 +23,9 @@ function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  UserObject: User = null
   registerForm: FormGroup
-  constructor(private fb: FormBuilder, private authservice: AuthService) { }
+  constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm =  this.fb.group({
@@ -41,7 +44,15 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void{
     if(this.registerForm.valid){
         this.authservice.registerService(this.registerForm.value)
-            .subscribe(res => console.log(res),
+            .subscribe(res => {
+              this.UserObject = res;
+              this.authservice.UserObject = res;
+              console.log(res)
+              // this.router.navigate([`user/ ${res.position}`])
+              this.router.navigate([`user/${res.position}`])
+
+              // console.log(this.UserObject.auth)
+            },
             err => console.log(err))
     }
   }
