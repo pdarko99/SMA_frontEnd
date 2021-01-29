@@ -1,0 +1,33 @@
+<form [formGroup] = "teacherRegisterForm">
+    <div>
+        <select name="state" formControlName="status" id="">
+            <option value="" disabled selected hidden> select status</option>
+            <option value="Subject Teacher only"> Subject Teacher only</option>
+            <option value="Class Teacher and subject teacher"> Class Teacher and subject teacher</option>
+        </select>
+    </div>
+    <div>
+        <select name="classTeacher" formControlName="classTeacher" id="">
+            <option value="" disabled selected hidden>select Class</option>
+            <option value="JHS 1" > JHS 1</option>
+            <option value="JHS 2" > JHS 2</option>
+        </select>
+    </div>
+    <div formGroupName="subjectGroup">
+        <div>
+            <select name="class" formControlName="class" id="">
+                <option value="" disabled selected hidden>select Class</option>
+                <option value="JHS 1"> JHS 1</option>
+                <option value="JHS 2"> JHS 2</option>
+            </select>
+        </div>
+        <div>
+            <select name="subjects" formControlName="subjects" id="">
+                <option value="" disabled selected hidden>select Class</option>
+                <option value="JHS 1" > JHS 1</option>
+                <option value="JHS 2" > JHS 2</option>
+            </select>
+        </div>
+    </div>
+    <button>submit</button>
+</form>

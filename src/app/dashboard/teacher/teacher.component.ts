@@ -11,5 +11,6 @@ export class TeacherComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
 }

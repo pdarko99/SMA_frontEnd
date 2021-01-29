@@ -7,13 +7,17 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TeacherComponent } from './dashboard/teacher/teacher.component';
+import { HeadmasterComponent } from './headmaster/headmaster.component';
+import { TeacherRegistrationComponent } from './dashboard/teacher-registration/teacher-registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    TeacherComponent
+    TeacherComponent,
+    HeadmasterComponent,
+    TeacherRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +27,7 @@ import { TeacherComponent } from './dashboard/teacher/teacher.component';
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent},
       { path: 'user/teacher',  component: TeacherComponent},
+      { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
       { path: 'register', component: RegisterComponent}
     ])
   ],
