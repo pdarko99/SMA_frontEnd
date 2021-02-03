@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TeacherComponent } from './dashboard/teacher/teacher.component';
 import { HeadmasterComponent } from './headmaster/headmaster.component';
 import { TeacherRegistrationComponent } from './dashboard/teacher-registration/teacher-registration.component';
+import { HeadRegistrationComponent } from './head_dashboard/head-registration/head-registration.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TeacherRegistrationComponent } from './dashboard/teacher-registration/t
     LoginComponent,
     TeacherComponent,
     HeadmasterComponent,
-    TeacherRegistrationComponent
+    TeacherRegistrationComponent,
+    HeadRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { TeacherRegistrationComponent } from './dashboard/teacher-registration/t
       { path: 'login', component: LoginComponent},
       { path: 'user/teacher',  component: TeacherComponent},
       { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
+      { path: 'user/head/registration',  component: HeadRegistrationComponent},
       { path: 'register', component: RegisterComponent}
     ])
   ],

@@ -1,0 +1,20 @@
+<form [formGroup]="headRegistrationForm" (ngSubmit)='onSubmit()'>
+<div>
+    <label for=""><input type="number" formControlName="teachers">teachers</label>
+    <label for=""><input type="number" formControlName="headmasters">headmasters</label>
+    <label for=""><input type="number" formControlName="accounts">accounts</label>
+</div>
+<div formArrayName="classGroup" *ngFor="let class of classes.controls; let i=index">
+    <div [formGroupName]="i">
+        <label for=""><input type="text" formControlName="class">enter class</label>
+            <div formArrayName="subjects" *ngFor="let subjects of class.get('subjects').controls; let i=index">
+                <div [formGroupName]="i">
+                    <label for=""><input type="text" formControlName="subject">enter subject</label>
+                </div>
+            </div>
+            <button (click)="addIndividualSubjects(class)">add another subject</button>
+        </div>
+    </div>
+    <button (click)="addClasses()">add another class</button>
+<button [disabled]="headRegistrationForm.invalid">submit</button>
+</form>

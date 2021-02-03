@@ -1,33 +1,54 @@
-<form [formGroup] = "teacherRegisterForm">
+<form [formGroup] = "teacherRegisterForm" (ngSubmit)="onSubmit()">
     <div>
-        <select name="state" formControlName="status" id="">
+        <select name="state" formControlName="status" id="" >
             <option value="" disabled selected hidden> select status</option>
-            <option value="Subject Teacher only"> Subject Teacher only</option>
+            <option value="Subject Teacher only" > Subject Teacher only</option>
             <option value="Class Teacher and subject teacher"> Class Teacher and subject teacher</option>
         </select>
     </div>
     <div>
-        <select name="classTeacher" formControlName="classTeacher" id="">
+        <select name="classTeacher" formControlName="classTeacher" id="" *ngIf="teachersData$ | async as teacherData">
             <option value="" disabled selected hidden>select Class</option>
-            <option value="JHS 1" > JHS 1</option>
-            <option value="JHS 2" > JHS 2</option>
+            <option  *ngFor="let item of teacherData" [value]="item.class">{{item.class}}</option>
+            <!-- <option value="JHS 2" > JHS 2</option> -->
         </select>
     </div>
-    <div formGroupName="subjectGroup">
-        <div>
+    <!-- <div formArrayName="subjectGroup"  *ngFor="let class of classes.controls; let i=index">
+        <div [formGroupName] = "i">
             <select name="class" formControlName="class" id="">
-                <option value="" disabled selected hidden>select Class</option>
+                <option value="" disabled selected hidden>select Class</option> 
                 <option value="JHS 1"> JHS 1</option>
                 <option value="JHS 2"> JHS 2</option>
             </select>
-        </div>
-        <div>
             <select name="subjects" formControlName="subjects" id="">
                 <option value="" disabled selected hidden>select Class</option>
                 <option value="JHS 1" > JHS 1</option>
                 <option value="JHS 2" > JHS 2</option>
             </select>
         </div>
+    </div> -->
+
+    <div formArrayName="subjectGroup" *ngFor="let classes of subjects.controls; let i=index">
+        <div [formGroupName] = "i">
+            <select name="class" formControlName="class" id="" *ngIf="teachersData$ | async as teacherData">
+                <option value="" disabled selected hidden>select Class</option> 
+                <option *ngFor="let item of teacherData" [value]="item.class"> {{item.class}}</option>
+                <!-- <option value="JHS 2"> JHS 2</option> -->
+            </select>
+          
+            <div  formArrayName="subjects"   *ngFor="let class of classes.get('subjects').controls; let i=index" >
+                <div  [formGroupName] = "i">
+                    <select name="subject" formControlName="subject" id="">
+                        <option value="" disabled selected hidden>select Class</option>
+                        <option value="maths" > maths</option>
+                        <option value="english" > english</option>
+                        <option value="social" > social</option>cd
+                    </select>
+                </div>
+            </div>
+            <button (click)="addIndividualSubs(classes)">add individyla subjs</button>
+        </div>
     </div>
-    <button>submit</button>
+    <button (click)="addSubjects()">add address</button>
+    <button [disabled]="teacherRegisterForm.invalid">submit</button>
 </form>
