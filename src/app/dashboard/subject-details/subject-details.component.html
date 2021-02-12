@@ -1,0 +1,21 @@
+<p>subject-details works!</p>
+<div>
+    <!-- <h2>{{std.firstname}}</h2> -->
+</div>
+
+<table>
+    <tr>
+        <th></th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>marks</th>
+        <th>grade</th>
+    </tr>
+    <tr *ngFor = "let std of studentsData">
+        <td></td>
+        <td>{{std.firstname}}</td>
+        <td>{{std.lastname}}</td>
+        <td>{{std.marks}}</td>
+        <td>{{std.grade}}</td>
+    </tr>
+</table>

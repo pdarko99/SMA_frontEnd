@@ -1,0 +1,30 @@
+<a [routerLink]="['studentsData']">students data</a>
+<a href="">exams</a>
+<a href="">class performance</a>
+
+
+<router-outlet></router-outlet>
+<button  [routerLink]="['addStudents']">add student</button>
+
+<!-- <p *ngIf ="classData$ | async as classData">class-details works!</p> -->
+<!-- <div *ngIf ="classData$ | async as classData">
+
+</div> -->
+
+<!-- <form #form="ngForm" (ngSubmit)="addStudent()">
+    <input type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">
+    <input type="text" placeholder="lastname" required name="lastname" #lastnameField='ngModel' [(ngModel)]="studentsData.lastname">
+    <input type="number" placeholder="age" required name="age" #ageField='ngModel' [(ngModel)]="studentsData.age">
+    <input type="number" placeholder="tel number" required name="guardians_tel" #guardians_telField='ngModel' [(ngModel)]="studentsData.guardians_tel">
+    <select name="gender"  genderField='ngModel' [(ngModel)]="studentsData.gender">
+        <option value="" disabled selected hidden>select your Gender</option> 
+        <option  value="M"> Male</option>
+        <option  value="F"> Female</option>
+    </select> -->
+    <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
+    <!-- <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="studentsData.password"> -->
+    <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
+    <!-- <button [disabled]="form.invalid">submit</button>
+
+</form> -->
+

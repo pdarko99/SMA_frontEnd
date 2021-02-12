@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-teacher',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherComponent implements OnInit {
 
-  constructor() { }
+  teachersData = this.authservice.UserObject
+  constructor(private authservice:AuthService) { }
 
   ngOnInit(): void {
+    console.log(this.teachersData)
+  }
+
+  onSelected(data: string){
+    console.log(data)
   }
   
 

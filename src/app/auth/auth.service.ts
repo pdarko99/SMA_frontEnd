@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { login } from '../shared/loginClass';
 import { register } from '../shared/registerClass';
+import { updateRegister } from '../shared/updateRegisterClass';
 import { User } from '../shared/userClass';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -21,6 +22,14 @@ export class AuthService {
   registerService(data: register): Observable<any>{
     return this.http.post<register>(this.url + '/register', data).pipe(catchError(this.handleError))
   }
+
+  updateRegisterService(data: updateRegister): Observable<any>{
+    return this.http.put<updateRegister>(this.url + '/register', data).pipe(
+      catchError(this.handleError),
+      
+      )
+  }
+
 
   handleError(err:HttpErrorResponse){
     let message = '';

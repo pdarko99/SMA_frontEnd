@@ -1,1 +1,26 @@
-<p>teacher works!</p>
+<p *ngIf="teachersData.data">teacher works!</p>
+<div>
+    <h2>class Teacher</h2>
+    <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
+</div>
+
+<div *ngIf="teachersData.data">
+    <h2>Subjects You teach</h2>
+    <div *ngFor="let classes of teachersData.data.subjectGroup">
+            <p>
+                {{classes.class}}
+            </p>
+            <div *ngFor= "let subjects of classes.subjects">
+                {{classes.class}}
+                <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+            </div>
+    </div>
+</div>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
+
+<div>
+    hello world
+</div>

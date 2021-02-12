@@ -2,15 +2,15 @@ export interface admin {
     teachers: number;
     headmasters: number;
     accounts: number;
-    classGroup: classes
+    classGroup: classes[]
     
 }
 
 interface classes {
     class: string;
-    subjects:subject
+    subjects:subject[]
 }
 
-interface subject {
+export interface subject {
     subject: string
 }
