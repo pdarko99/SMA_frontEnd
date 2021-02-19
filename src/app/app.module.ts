@@ -15,6 +15,8 @@ import { SubjectDetailsComponent } from './dashboard/subject-details/subject-det
 import { Subject } from 'rxjs';
 import { StudentsDataComponent } from './dashboard/students-data/students-data.component';
 import { AddStudentsComponent } from './dashboard/add-students/add-students.component';
+import { SubjectMarksComponent } from './dashboard/subject-marks/subject-marks.component';
+import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AddStudentsComponent } from './dashboard/add-students/add-students.comp
     ClassDetailsComponent,
     SubjectDetailsComponent,
     StudentsDataComponent,
-    AddStudentsComponent
+    AddStudentsComponent,
+    SubjectMarksComponent,
+    AddMarksComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,10 @@ import { AddStudentsComponent } from './dashboard/add-students/add-students.comp
           ]
         },
         {
-          path: 'subjectDetails/:subject', component: SubjectDetailsComponent
+          path: 'subjectDetails/:subject', children: [
+            {path: '', component: SubjectMarksComponent},
+            {path: 'add', component: AddMarksComponent},
+          ]
         }
       ]},
       { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},

@@ -1,21 +1,19 @@
 <p>students-data works!</p>
 
-<table >
+<table *ngFor = "let sub of subjects$ | async; " >
     <tr>
         <th></th>
         <th>firsname</th>
-        <th>lastname</th>
-        <th>age</th>
+        <th>lastname</th>     
+        <th *ngFor ="let i of sub">{{i.subject + " CS"}} {{i.subject + " ES"}}</th>
         <th>gender</th>
-        <th>tel</th>
+        <th>tel</th> 
     </tr>
     <tr *ngFor="let student of classData$ | async">
         <td></td>
         <td>{{student.firstname}}</td>
         <td>{{student.lastname}}</td>
-        <td>{{student.age}}</td>
-        <td>{{student.gender}}</td>
-        <td>{{student.guardians_tel}}</td>
+        <td *ngFor ="let i of sub">{{student[i.subject]?.classScore}} {{student[i.subject]?.examScore}}</td>
     </tr>
 </table>
 

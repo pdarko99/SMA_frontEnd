@@ -1,0 +1,16 @@
+<p>add-marks works!</p>
+<div *ngIf = "currentStudent">
+    {{currentStudent.firstname}}
+
+</div>
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <input type="number" placeholder="enter class score" required name="class_score" #class_scoreField='ngModel' [(ngModel)]="marks.classScore">
+    <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
+    <input type="number" placeholder="enter exam score" required name="exam_score" #class_scoreField='ngModel' [(ngModel)]="marks.examScore">
+    <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
+    <button [disabled]="form.invalid">submit</button>
+
+</form>
+
+<button (click)="nextStudent()">next</button>
+<button (click)="previousStudent()">previous</button>

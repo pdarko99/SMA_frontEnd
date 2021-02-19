@@ -19,7 +19,6 @@ export class TeacherRegistrationComponent implements OnInit {
   insertedSubjects$ = this.classSubjects.asObservable();
 
     teachersData$ = this.adminservice.schoolData$.pipe(
-    // tap(data => console.log(data[0].classGroup)),
     map(data => data[0].classGroup),
     catchError(err => {
       this.errMsg = err;
@@ -28,20 +27,13 @@ export class TeacherRegistrationComponent implements OnInit {
  )
 
   classWithSubjects$ = combineLatest([
-    this.adminservice.schoolData$
-      .pipe(
-        tap(data => console.log('logiing', data))
-      ),
+    this.adminservice.schoolData$,
     this.insertedSubjects$
-      .pipe(
-        // debounceTime(1000),
-        tap(data => console.log('logiing from class',data))
-      )
-]).pipe(
-  
-  map(([data, individualClass]) => data.map(item => item.classGroup.find(items => items.class === individualClass).subjects)),
-  map(info => info[0]) ,
-  tap(final => console.log(final))
+])
+.pipe(
+      map(([data, individualClass]) => data.map(item => item.classGroup.find(items => items.class === individualClass).subjects)),
+      map(info => info[0]) ,
+      tap(finalinfo => console.log(finalinfo))
 )
 
   constructor(private fb: FormBuilder, private adminservice: AdminService, private authservice: AuthService) { }

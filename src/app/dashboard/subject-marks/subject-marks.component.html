@@ -1,0 +1,33 @@
+<p>subject-marks works!</p>
+
+<table>
+    <tr>
+        <th></th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <div>
+            <th>marks</th>
+            <th>marks</th>
+        </div>
+        <th>grade</th>
+    </tr>
+    <tr *ngFor = "let std of studentsData">
+        <td></td>
+        <td>{{std.firstname}}</td>
+        <td>{{std.lastname}}</td>
+        <td>{{std[subject]?.classScore}}</td>
+        <td>{{std[subject]?.examScore}}</td>
+        <!-- <td>grade</td> -->
+    </tr>
+</table>
+
+<!-- data:
+ENGLISH: {classScore: 200, examsScore: 200, totalScore: null}
+ENGLISHclassScore: 0
+ENGLISHexamsScore: 0
+ENGLISHtotalScore: 0
+SCIENCE: {classScore: 100, examsScore: 100, totalScore: null}
+prince: {ENGLISH: {…}} -->
+
+<button [routerLink]="['add']" [queryParams]="{class:currentClass}">enter marks</button>
+
