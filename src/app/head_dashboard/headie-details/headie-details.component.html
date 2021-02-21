@@ -1,0 +1,10 @@
+<p>headie-details works!</p>
+<div *ngIf="schoolData$ | async as schoolData">
+    <ul *ngFor="let classes of schoolData">
+        <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>
+    </ul>
+</div>
+
+
+
+<router-outlet></router-outlet>

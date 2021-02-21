@@ -15,7 +15,7 @@ export class ClassDetailsService {
   id: string;
   constructor(private http: HttpClient) { }
 
-  getClassData(data:string): Observable<students[]>{
+  getClassData(data: string): Observable<students[]>{
     return this.http.get<students[]>(this.url + '?class=' + data)
   }
 

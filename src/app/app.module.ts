@@ -17,6 +17,7 @@ import { StudentsDataComponent } from './dashboard/students-data/students-data.c
 import { AddStudentsComponent } from './dashboard/add-students/add-students.component';
 import { SubjectMarksComponent } from './dashboard/subject-marks/subject-marks.component';
 import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
+import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
     StudentsDataComponent,
     AddStudentsComponent,
     SubjectMarksComponent,
-    AddMarksComponent
+    AddMarksComponent,
+    HeadieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,11 @@ import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent},
+      { path: 'user/head', component: HeadieDetailsComponent, children: [
+        {
+          path: 'class', component: StudentsDataComponent
+        }
+      ]},
       { path: 'user/teacher',  component: TeacherComponent, children:[
         {
           path: 'classDetails', component: ClassDetailsComponent, children: [
