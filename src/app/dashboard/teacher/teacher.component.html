@@ -1,4 +1,6 @@
-<p *ngIf="teachersData.data">teacher works!</p>
+<mat-drawer-container class="example-container">
+    <mat-drawer #sidenav class="mat-elevation-z10" [mode]="isScreenSmall ? 'over' : 'side'" [opened] = "!isScreenSmall" >
+        <p *ngIf="teachersData.data">teacher works!</p>
 <div>
     <h2>class Teacher</h2>
     <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
@@ -16,10 +18,42 @@
             </div>
     </div>
 </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div>
+        <router-outlet></router-outlet>
+        <button type="button" mat-button (click) ="sidenav.toggle()" >Open sidenav</button>
+        </div>
+    
+        <div>
+            hello world
+        </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  
+
+<!-- <p *ngIf="teachersData.data">teacher works!</p>
 <div>
+    <h2>class Teacher</h2>
+    <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
+</div>
+
+<div *ngIf="teachersData.data">
+    <h2>Subjects You teach</h2>
+    <div *ngFor="let classes of teachersData.data.subjectGroup">
+            <p>
+                {{classes.class}}
+            </p>
+            <div *ngFor= "let subjects of classes.subjects">
+                {{classes.class}}
+                <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+            </div>
+    </div>
+</div> -->
+<!-- <div>
     <router-outlet></router-outlet>
 </div>
 
 <div>
     hello world
-</div>
+</div> -->

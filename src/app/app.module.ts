@@ -18,6 +18,10 @@ import { AddStudentsComponent } from './dashboard/add-students/add-students.comp
 import { SubjectMarksComponent } from './dashboard/subject-marks/subject-marks.component';
 import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
 import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-details.component';
+import { AccountComponent } from './account_dashboard/account/account.component';
+import { AccountDetailsComponent } from './account_dashboard/account-details/account-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-d
     AddStudentsComponent,
     SubjectMarksComponent,
     AddMarksComponent,
-    HeadieDetailsComponent
+    HeadieDetailsComponent,
+    AccountComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,11 @@ import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-d
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent},
+      { path: 'user/account', component: AccountComponent, children: [
+        {
+          path: 'class', component: AccountDetailsComponent
+        }
+      ]},
       { path: 'user/head', component: HeadieDetailsComponent, children: [
         {
           path: 'class', component: StudentsDataComponent
@@ -66,7 +77,9 @@ import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-d
       { path: 'user/head/registration',  component: HeadRegistrationComponent},
       // { path: 'classDetails',  component: ClassDetailsComponent},
       { path: 'register', component: RegisterComponent}
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

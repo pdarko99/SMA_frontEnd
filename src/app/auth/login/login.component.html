@@ -1,9 +1,70 @@
-<form #form="ngForm" (ngSubmit)="onSubmit()">
-    <input type="email" placeholder="email" required name="email" #usernameField='ngModel' [(ngModel)]="loginData.email">
-    <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span>
-    <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="loginData.password">
-    <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span>
-    <button [disabled]="form.invalid">submit</button>
+<div class="main">
+    <section class="section1">
+        <mat-toolbar color="primary">
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"> -->
+           
+        <!-- </button> -->
+        <span>My App</span>
+        <span class="example-spacer"></span>
 
-</form>
+        <div class="example-button-row">
+            <button mat-raised-button [routerLink]="['/register']">REGISTER</button>
+            <!-- <button mat-raised-button >Primary</button>
+            <button mat-raised-button>Accent</button> -->
+        </div>
+        </mat-toolbar>
+    </section>
+    
+    <section class="section2">
+    
+
+        <mat-card class="card">
+            <h2>Login Form</h2>
+            <img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
+         
+            <mat-card-content>
+                <form #form="ngForm" (ngSubmit)="onSubmit()">
+                    <!-- <input type="email" placeholder="email" required name="email" #usernameField='ngModel' [(ngModel)]="loginData.email"> -->
+                    
+                    <!-- <mat-label>Enter your email</mat-label> -->
+                    <div>
+                        <input matInput placeholder="pat@example.com" [(ngModel)]="loginData.email" required name="email" #usernameField='ngModel' type="email">
+                        <small [hidden] = "usernameField.valid || usernameField.untouched">username is required</small>
+                    </div>
+                    <div>
+                        <input matInput type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="loginData.password">
+                        <small [hidden] = "passwordField.valid || passwordField.untouched">password is required</small>
+                    </div>
+                   
+        
+                    <!-- <button [disabled]="form.invalid">submit</button> -->
+                    <mat-card-actions>
+                        <button   [disabled]="form.invalid">submit</button>
+                    </mat-card-actions>
+                </form>
+            </mat-card-content>
+           
+          </mat-card>
+          
+    </section>
+
+    <section class="section3">
+        <mat-toolbar color="primary">
+            <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            </button> -->
+            <span>My App</span>
+            <span class="example-spacer"></span>
+        <div class="example-button-row">
+            <!-- <button mat-raised-button>Basic</button>
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button> -->
+        </div>
+        </mat-toolbar>
+
+    </section>
+ 
+</div>
+  
+
+
 

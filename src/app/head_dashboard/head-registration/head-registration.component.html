@@ -1,20 +1,74 @@
-<form [formGroup]="headRegistrationForm" (ngSubmit)='onSubmit()'>
-<div>
-    <label for=""><input type="number" formControlName="teachers">teachers</label>
-    <label for=""><input type="number" formControlName="headmasters">headmasters</label>
-    <label for=""><input type="number" formControlName="accounts">accounts</label>
-</div>
-<div formArrayName="classGroup" *ngFor="let class of classes.controls; let i=index">
-    <div [formGroupName]="i">
-        <label for=""><input type="text" formControlName="class">enter class</label>
-            <div formArrayName="subjects" *ngFor="let subjects of class.get('subjects').controls; let i=index">
-                <div [formGroupName]="i">
-                    <label for=""><input type="text" formControlName="subject">enter subject</label>
-                </div>
+<div class="main">
+    <section class="section1">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              
+            </button>
+            <span>My App</span>
+            <span class="example-spacer"></span>
+          
+            <div class="example-button-row">
+                <button mat-raised-button>Basic</button>
             </div>
-            <button (click)="addIndividualSubjects(class)">add another subject</button>
-        </div>
-    </div>
-    <button (click)="addClasses()">add another class</button>
-<button [disabled]="headRegistrationForm.invalid">submit</button>
-</form>
+            </mat-toolbar>
+    </section>
+    <section class="section2">
+        <mat-card class="card">
+            <h2>Login Form</h2>
+         
+            <mat-card-content>
+                <form [formGroup]="headRegistrationForm" (ngSubmit)='onSubmit()'>
+                    <div>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="teachers"  type="number" formControlName="teachers">
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="headmasters"  type="number" formControlName="headmasters">
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="accounts" type="number" formControlName="accounts">
+                          </mat-form-field>
+                        <!-- <label for=""><input type="number" formControlName="teachers">teachers</label>
+                        <label for=""><input type="number" formControlName="headmasters">headmasters</label>
+                        <label for=""><input type="number" formControlName="accounts">accounts</label> -->
+                    </div>
+                    <div formArrayName="classGroup" *ngFor="let class of classes.controls; let i=index">
+                        <div [formGroupName]="i">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="enter class" type="text" formControlName="class">
+                              </mat-form-field>
+                            <!-- <label for=""><input type="text" formControlName="class">enter class</label> -->
+                                <div formArrayName="subjects" *ngFor="let subjects of class.get('subjects').controls; let i=index">
+                                    <div [formGroupName]="i">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="enter subject" type="text" formControlName="subject">
+                                          </mat-form-field>
+                                        <!-- <label for=""><input type="text" formControlName="subject">enter subject</label> -->
+                                    </div>
+                                </div>
+                                <button (click)="addIndividualSubjects(class)">add another subject</button>
+                            </div>
+                        </div>
+                        <button (click)="addClasses()">add another class</button>
+                        <mat-card-actions>
+                            <button [disabled]="headRegistrationForm.invalid">submit</button>
+                          </mat-card-actions>
+                    <!-- <button [disabled]="headRegistrationForm.invalid">submit</button> -->
+                    </form>
+            </mat-card-content>
+           
+          </mat-card>
+      
+    </section>
+    <section class="section3">
+        <mat-toolbar color="primary">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              
+            </button>
+            <span>My App</span>
+            <span class="example-spacer"></span>
+    
+            </mat-toolbar>
+    </section>
+
+</div>

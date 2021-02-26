@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
 import { students } from 'src/app/shared/studentsClass';
 import { ClassDetailsService } from '../class-details.service';
+import {MatTableDataSource} from '@angular/material/table'
 
 
 //  THIS COMPONENT IS USED BY TWO DIFFERENT MODULES (for teacher and head)
@@ -33,6 +34,7 @@ set queryClass(value: string){
   this.classdetails.getClassData(this.queryClass).subscribe(
     res => {
       this.headClass = res;
+      this.dataSource = new MatTableDataSource<students>(this.headClass)
       // console.log(this.displayClass)
     },
     err => console.log(err)
@@ -45,11 +47,15 @@ set queryClass(value: string){
     map(data=> data.map(item => item.classGroup.find(items => items.class === this.teachersData.data?.classTeacher || this.queryClass)?.subjects)),
     tap(info => console.log(info, 'consoleo from current info'))
   )
+
+  displayedColumns: string[] = ['firstname', 'lastname', 'gender'];
+  dataSource : MatTableDataSource<students>
   constructor(private route: ActivatedRoute, private authservice: AuthService, private adminservice: AdminService,  private classdetails: ClassDetailsService) { }
 
   ngOnInit(): void {
      this.route.queryParams.subscribe(params => {
        this.queryClass = params.class
     })
+    
   }
 }

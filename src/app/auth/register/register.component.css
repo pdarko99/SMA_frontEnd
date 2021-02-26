@@ -1,0 +1,42 @@
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .main {
+    display: grid;
+    grid-template-columns: repeat(1fr, 12);
+    grid-template-rows: auto 700px auto
+    /* grid-auto-rows: min-content; */
+  }
+
+  .section2{
+    width: 80%;
+    height: 80%;
+    margin: auto
+  }
+
+
+  .card {
+    margin : auto;
+    width: 80%;
+    /* height: 50%; */
+    text-align: center
+  }
+
+  input:not([type = 'radio']) {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  mat-card-actions > button {
+    width: 40%;
+    padding: 10px;
+    background-color: #4285F4;
+    color: #fff;
+    margin: 10px;
+}
+section3{
+  margin-top: 5px;
+}

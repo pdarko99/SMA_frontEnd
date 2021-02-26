@@ -1,0 +1,68 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.main {
+    min-height: 100%;
+    display: grid;
+    /* grid-template-columns: repeat(1fr, 12); */
+    grid-template-rows: auto 1fr auto;
+}
+
+/* .example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+} */
+
+.card{
+    max-width: 400px;
+    height: 90%;
+    /* width: 100%; */
+    margin:auto;
+    /* text-align: center;
+     */
+    /* width: 100%;
+    margin: auto; */
+    /* align-items: center; */
+    text-align: center;
+  }
+
+ .image{
+     width:100px;
+     height: 100px;
+ }
+  
+  .example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+div > input{
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+}
+mat-card-actions > button {
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+     background-color: #4285F4;
+  
+}
+.section2{
+    width: 80%;
+    height: 70%;
+    margin: auto;
+    
+}
+
+button {
+ 
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 10px;
+  width: 100px;
+}
+/* 
+form {
+   
+} */
+
