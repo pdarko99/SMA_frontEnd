@@ -21,11 +21,11 @@ import { MaterialModule } from '../shared/material.module';
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild([
-      { path: 'user/account', component: AccountComponent, children: [
+      // { path: 'user/account', component: AccountComponent, children: [
         {
           path: 'class', component: AccountDetailsComponent
         }
-      ]},
+      // ]},
     ])
   ]
 })

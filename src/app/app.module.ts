@@ -22,16 +22,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { AccountModule } from './account_dashboard/account.module';
 import { HttpInterceptorModule } from './auth/http-interceptor';
+import { AuthModule } from './auth/auth.module';
+import { AccountComponent } from './account_dashboard/account/account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
+    // RegisterComponent,
+    // LoginComponent,
     TeacherComponent,
     HeadmasterComponent,
-    TeacherRegistrationComponent,
-    HeadRegistrationComponent,
+    // TeacherRegistrationComponent,
+    // HeadRegistrationComponent,
     ClassDetailsComponent,
     SubjectDetailsComponent,
     StudentsDataComponent,
@@ -49,7 +51,13 @@ import { HttpInterceptorModule } from './auth/http-interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'login', component: LoginComponent},
+      {
+        path: 'user/account', component: AccountComponent,
+          loadChildren: () => 
+            import ('./account_dashboard/account.module').then(m => m.AccountModule)
+      },
+      
+      // { path: 'login', component: LoginComponent},
       // { path: 'user/account', component: AccountComponent, children: [
       //   {
       //     path: 'class', component: AccountDetailsComponent
@@ -74,15 +82,15 @@ import { HttpInterceptorModule } from './auth/http-interceptor';
           ]
         }
       ]},
-      { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
-      { path: 'user/head/registration',  component: HeadRegistrationComponent},
-      // { path: 'classDetails',  component: ClassDetailsComponent},
-      { path: 'register', component: RegisterComponent}
+      // { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
+      // { path: 'user/head/registration',  component: HeadRegistrationComponent},
+      // { path: 'register', component: RegisterComponent}
     ]),
     BrowserAnimationsModule,
     MaterialModule,
     AccountModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    AuthModule
 
   ],
   providers: [],

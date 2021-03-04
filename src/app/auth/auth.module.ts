@@ -1,29 +1,34 @@
-// import { NgModule } from '@angular/core';
-// import { RegisterComponent } from './register/register.component';
-// import { LoginComponent } from './login/login.component';
-// import { HeadRegistrationComponent } from '../head_dashboard/head-registration/head-registration.component';
-// import { TeacherRegistrationComponent } from '../dashboard/teacher-registration/teacher-registration.component';
-// import { RouterModule } from '@angular/router';
-// import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { TeacherRegistrationComponent } from '../dashboard/teacher-registration/teacher-registration.component';
+import { HeadRegistrationComponent } from '../head_dashboard/head-registration/head-registration.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from '../shared/material.module';
 
 
 
-// @NgModule({
-//   declarations: [
-//     RegisterComponent,
-//     LoginComponent,
-//     TeacherRegistrationComponent,
-//     HeadRegistrationComponent,
-//   ],
-//   imports: [
-//     RouterModule.forChild([
-//       { path: 'login', component: LoginComponent},
-//       { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
-//       { path: 'user/head/registration',  component: HeadRegistrationComponent},
-//       // { path: 'classDetails',  component: ClassDetailsComponent},
-//       { path: 'register', component: RegisterComponent}
-//     ]),
-//     SharedModule
-//   ]
-// })
-// export class AuthModule { }
+
+@NgModule({
+  declarations: [
+    LoginComponent,
+    TeacherRegistrationComponent,
+    HeadRegistrationComponent,
+    RegisterComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule.forChild([
+      { path: 'login', component: LoginComponent},
+      { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
+      { path: 'user/head/registration',  component: HeadRegistrationComponent},
+      { path: 'register', component: RegisterComponent}
+    ])
+  ]
+})
+export class AuthModule { }
