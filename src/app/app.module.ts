@@ -24,6 +24,7 @@ import { AccountModule } from './account_dashboard/account.module';
 import { HttpInterceptorModule } from './auth/http-interceptor';
 import { AuthModule } from './auth/auth.module';
 import { AccountComponent } from './account_dashboard/account/account.component';
+import { HeadModule } from './head_dashboard/head.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AccountComponent } from './account_dashboard/account/account.component'
     // RegisterComponent,
     // LoginComponent,
     TeacherComponent,
-    HeadmasterComponent,
+    // HeadmasterComponent,
     // TeacherRegistrationComponent,
     // HeadRegistrationComponent,
     ClassDetailsComponent,
@@ -40,7 +41,9 @@ import { AccountComponent } from './account_dashboard/account/account.component'
     AddStudentsComponent,
     SubjectMarksComponent,
     AddMarksComponent,
-    HeadieDetailsComponent,
+    // HeadmasterComponent,
+
+    // HeadieDetailsComponent,
     // AccountComponent,
     // AccountDetailsComponent,
     // PaymentComponent
@@ -56,6 +59,11 @@ import { AccountComponent } from './account_dashboard/account/account.component'
           loadChildren: () => 
             import ('./account_dashboard/account.module').then(m => m.AccountModule)
       },
+      {
+        path: 'user/head', component: HeadieDetailsComponent,
+          loadChildren: () => 
+            import('./head_dashboard/head.module').then(m => m.HeadModule)
+      },
       
       // { path: 'login', component: LoginComponent},
       // { path: 'user/account', component: AccountComponent, children: [
@@ -63,11 +71,11 @@ import { AccountComponent } from './account_dashboard/account/account.component'
       //     path: 'class', component: AccountDetailsComponent
       //   }
       // ]},
-      { path: 'user/head', component: HeadieDetailsComponent, children: [
-        {
-          path: 'class', component: StudentsDataComponent
-        }
-      ]},
+      // { path: 'user/head', component: HeadieDetailsComponent, children: [
+      //   {
+      //     path: 'class', component: StudentsDataComponent
+      //   }
+      // ]},
       { path: 'user/teacher',  component: TeacherComponent, children:[
         {
           path: 'classDetails', component: ClassDetailsComponent, children: [
@@ -90,7 +98,8 @@ import { AccountComponent } from './account_dashboard/account/account.component'
     MaterialModule,
     AccountModule,
     HttpInterceptorModule,
-    AuthModule
+    AuthModule,
+    HeadModule
 
   ],
   providers: [],
