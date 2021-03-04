@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { students } from '../shared/studentsClass';
+import { Observable, of } from 'rxjs';
+import { account, students } from '../shared/studentsClass';
 import { marks } from '../shared/marksClass';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,9 @@ export class ClassDetailsService {
   sendMarks(data: marks): Observable<marks> {
     return this.http.post<marks>(this.url + '/marks' + '?subject=' + this.subject + '&' + 'class=' + this.class+ '&' + 'id=' + this.id, data)
   }
+
+  sendFees(data: account): Observable<any> {
+    return this.http.post<account>(this.url + '/fees' + '?class=' + this.class + '&' + 'id=' + this.id, data)
+  }
+
 }

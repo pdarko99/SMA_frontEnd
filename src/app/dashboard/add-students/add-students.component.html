@@ -1,18 +1,43 @@
-<p>add-students works!</p>
+<div class="main">
+    <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="accounts" type="number" formControlName="accounts">
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="fill">
+    
+        <mat-select name="subject"  formControlName="subject" id="" >
+            <mat-option value="" disabled selected hidden>select subject</mat-option>
+            <mat-option *ngFor="let subjects of classWithSubjects" [value]="subjects.subject" > {{subjects.subject }}</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <form #form="ngForm" (ngSubmit)="addStudent()">
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="lastname" required name="lastname" #lastnameField='ngModel' [(ngModel)]="studentsData.lastname">   
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="age" required name="age" #ageField='ngModel' [(ngModel)]="studentsData.age">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="tel number" required name="guardians_tel" #guardians_telField='ngModel' [(ngModel)]="studentsData.guardians_tel">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-select name="gender"  genderField='ngModel' [(ngModel)]="studentsData.gender">
+                <mat-option value="" disabled selected hidden>select  Gender</mat-option> 
+                <mat-option  value="M"> Male</mat-option>
+                <mat-option  value="F"> Female</mat-option>
+            </mat-select>
+        </mat-form-field>
+       
+        <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
+        <!-- <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="studentsData.password"> -->
+        <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
+        <div>
+            <button [disabled]="form.invalid">submit</button>
+        </div>
+    
+    </form>
+</div>
 
-<form #form="ngForm" (ngSubmit)="addStudent()">
-    <input type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">
-    <input type="text" placeholder="lastname" required name="lastname" #lastnameField='ngModel' [(ngModel)]="studentsData.lastname">
-    <input type="number" placeholder="age" required name="age" #ageField='ngModel' [(ngModel)]="studentsData.age">
-    <input type="number" placeholder="tel number" required name="guardians_tel" #guardians_telField='ngModel' [(ngModel)]="studentsData.guardians_tel">
-    <select name="gender"  genderField='ngModel' [(ngModel)]="studentsData.gender">
-        <option value="" disabled selected hidden>select your Gender</option> 
-        <option  value="M"> Male</option>
-        <option  value="F"> Female</option>
-    </select>
-    <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
-    <!-- <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="studentsData.password"> -->
-    <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
-    <button [disabled]="form.invalid">submit</button>
 
-</form>

@@ -12,16 +12,16 @@ import { TeacherRegistrationComponent } from './dashboard/teacher-registration/t
 import { HeadRegistrationComponent } from './head_dashboard/head-registration/head-registration.component';
 import { ClassDetailsComponent } from './dashboard/class-details/class-details.component';
 import { SubjectDetailsComponent } from './dashboard/subject-details/subject-details.component';
-import { Subject } from 'rxjs';
 import { StudentsDataComponent } from './dashboard/students-data/students-data.component';
 import { AddStudentsComponent } from './dashboard/add-students/add-students.component';
 import { SubjectMarksComponent } from './dashboard/subject-marks/subject-marks.component';
 import { AddMarksComponent } from './dashboard/add-marks/add-marks.component';
 import { HeadieDetailsComponent } from './head_dashboard/headie-details/headie-details.component';
-import { AccountComponent } from './account_dashboard/account/account.component';
-import { AccountDetailsComponent } from './account_dashboard/account-details/account-details.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
+import { AccountModule } from './account_dashboard/account.module';
+import { HttpInterceptorModule } from './auth/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,9 @@ import { MaterialModule } from './shared/material.module';
     SubjectMarksComponent,
     AddMarksComponent,
     HeadieDetailsComponent,
-    AccountComponent,
-    AccountDetailsComponent
+    // AccountComponent,
+    // AccountDetailsComponent,
+    // PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +50,11 @@ import { MaterialModule } from './shared/material.module';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent},
-      { path: 'user/account', component: AccountComponent, children: [
-        {
-          path: 'class', component: AccountDetailsComponent
-        }
-      ]},
+      // { path: 'user/account', component: AccountComponent, children: [
+      //   {
+      //     path: 'class', component: AccountDetailsComponent
+      //   }
+      // ]},
       { path: 'user/head', component: HeadieDetailsComponent, children: [
         {
           path: 'class', component: StudentsDataComponent
@@ -79,7 +80,10 @@ import { MaterialModule } from './shared/material.module';
       { path: 'register', component: RegisterComponent}
     ]),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AccountModule,
+    HttpInterceptorModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { marks } from 'src/app/shared/marksClass';
 import { students } from 'src/app/shared/studentsClass';
 import { ClassDetailsService } from '../class-details.service';
 
@@ -37,15 +37,22 @@ export class AddMarksComponent implements OnInit {
     totalScore: 0
   }
 
-  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService) { }
+  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, @Inject(MAT_DIALOG_DATA) public data: string) { }
+  // this.route.params.subscribe(subject => {
+  //   this.subject = subject.subject
+  // })
 
+  // this.route.queryParams.subscribe(params => {
+  //   this.currentClass = params.class
+  // })
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.currentClass = params.class
+      console.log(this.currentClass)
     })
-    this.route.params.subscribe(subject => {
-      this.subject = subject.subject
-    })
+
+    this.subject = this.data;
+    console.log(this.data, 'from this.data heyaaaa')
   }
 
   nextStudent(): void{
@@ -62,14 +69,9 @@ export class AddMarksComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // this.classdetails.subject = this.subject;
-    // this.classdetails.class = this.currentClass;
-    // this.classdetails.id = this.currentStudent._id
-    // console.log(this.marks)
     this.preSubmit();
     this.classdetails.sendMarks(this.marks).subscribe(
-      res => console.log(res)
-      // err => console.log(err)
+      res => {console.log(res); console.log(this.subject, 'logiing thtis.subject')}
     )
     this.nextStudent()
   }

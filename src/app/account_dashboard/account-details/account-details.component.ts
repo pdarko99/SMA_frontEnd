@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
 import { students } from 'src/app/shared/studentsClass';
+import { PaymentComponent } from '../payment/payment.component';
 
 @Component({
   selector: 'app-account-details',
@@ -19,18 +22,34 @@ set queryClass(value: string){
   this.classdetails.getClassData(this.queryClass).subscribe(
     res => {
       this.students = res;
-      // console.log(this.displayClass)
+      this.dataSource = new MatTableDataSource<students>(this.students)
     },
     err => console.log(err)
   )
 }
 
-  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService) { }
+
+displayColumns = ['firstname', 'lastname', 'amount paid', 'arrears']
+dataSource : MatTableDataSource<students>
+
+  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.queryClass = params.class
    })
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      width: '50%',
+      height: '40%',
+      data: this.students
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

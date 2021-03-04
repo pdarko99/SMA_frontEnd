@@ -1,0 +1,37 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  
+mat-form-field {
+    width: 80%;
+    margin: 10px;
+}
+
+.main {
+    text-align: center;
+    width:80%;
+    height: 80%;
+    margin: auto;
+}
+
+form {
+    width:80%;
+    margin: auto;
+    text-align: center;
+}
+form button {
+    width: 50%;
+    padding: 6px;
+    background-color: #4285F4;
+    color: #fff;
+    margin: 10px;
+}
+
+
+.heading > div {
+    display: flex;
+    justify-content: space-evenly;
+}

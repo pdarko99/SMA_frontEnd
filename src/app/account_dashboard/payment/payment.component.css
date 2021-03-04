@@ -4,7 +4,7 @@ mat-form-field {
 }
 
 form {
-    width: 80%;
+    width: 90%;
     margin: auto;
     text-align: center;
 }
@@ -16,5 +16,3 @@ form button {
     color: #fff;
     margin: 10px;
 }
-
-

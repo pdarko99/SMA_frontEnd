@@ -22,6 +22,7 @@ export class TeacherComponent implements OnInit {
         this.isScreenSmall = state.matches
       }
     )
+    console.log(localStorage.getItem('userInfo') )
   }
 
   onSelected(data: string){

@@ -13,3 +13,7 @@ export interface scores {
     classScore: string;
     examsScore: string;
 }
+
+export interface account {
+    paid: number
+}

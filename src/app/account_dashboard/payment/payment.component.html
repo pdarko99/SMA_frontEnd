@@ -1,0 +1,14 @@
+<p>{{currentStudent.firstname}}</p>
+<div class="main">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+            <input matInput  type="number" placeholder="enter amount paid" required name="paid" #amountPaidField='ngModel' [(ngModel)]="amount.paid">
+        </mat-form-field>
+        <div>
+            <button mat-button [disabled]="form.invalid">submit</button>
+        </div>
+    </form>
+    <button (click) = "nextStudent()">Next</button>
+    <button (click) ="previousStudent()">Previous</button>
+</div>
+

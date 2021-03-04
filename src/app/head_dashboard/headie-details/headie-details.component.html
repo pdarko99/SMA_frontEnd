@@ -1,10 +1,42 @@
-<p>headie-details works!</p>
-<div *ngIf="schoolData$ | async as schoolData">
-    <ul *ngFor="let classes of schoolData">
-        <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>
-    </ul>
-</div>
+
+<mat-drawer-container class="example-container">
+    <mat-drawer #sidenav class="mat-elevation-z10" [mode]="isScreenSmall ? 'over' : 'side'" [opened] = "!isScreenSmall" >
+  
+        <p>headie-details works!</p>
+        <div *ngIf="schoolData$ | async as schoolData">
+            <ul *ngFor="let classes of schoolData">
+                    <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>           
+            </ul>
+        </div>
+
+    </mat-drawer>   
+    <mat-drawer-content>
+        <div class="main">
+            <div class="section1">   <mat-toolbar color="primary">
+                <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                  
+                </button> -->
+                <button type="button" mat-button (click) ="sidenav.toggle()" >Open sidenav</button>
+                <span>My App</span>
+                <span class="example-spacer"></span>
+              
+                </mat-toolbar>
+                
+            </div>
+            <div class="section2">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="section3"></div>
+        
+       
+        </div>
+    
+        
+    </mat-drawer-content>
+  </mat-drawer-container>
 
 
 
-<router-outlet></router-outlet>
+
+
+

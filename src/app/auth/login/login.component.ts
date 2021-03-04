@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         // this.UserObject = res;
         console.log(res)
         this.authService.UserObject = res;
+        localStorage.setItem('userInfo', JSON.stringify(res))
         this.router.navigate([`user/${res.position}`])
         // console.log(res)
       },

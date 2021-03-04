@@ -1,0 +1,22 @@
+.main {
+    display: grid;
+    grid-template-columns: repeat(1fr, 12);
+    grid-template-rows: auto minmax(700px, auto) auto;
+
+}
+
+
+.section1{
+    margin-bottom: 10px;
+}
+
+.section2{
+    width: 90%;
+    /* height: 80%; */
+    margin: 0 auto;
+}
+
+
+.section3{
+    margin-top: 10px;
+}

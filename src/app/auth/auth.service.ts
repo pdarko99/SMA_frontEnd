@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 })
 
 export class AuthService {
-  UserObject: User = new User
+  UserObject: User = JSON.parse(localStorage.getItem('userInfo'))
   url = "http://localhost:3000"
   constructor(private http: HttpClient) { }
 

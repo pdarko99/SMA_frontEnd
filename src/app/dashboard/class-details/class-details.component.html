@@ -1,11 +1,27 @@
-<a [routerLink]="['studentsData']">students data</a>
-<a href="">exams</a>
-<a href="">class performance</a>
+<div class="main">
+    <section class="section1">
+     
+        
+        <a [routerLink]="['studentsData']">students data</a>
+        <a href="">exams</a>
+        <a href="">class performance</a>
+        
+        <!-- <button  [routerLink]="['addStudents']">add student</button> -->
+        <button mat-button (click)="openDialog()">Add students</button>
+
+        <button  [routerLink]="['studentsData']">view Students data</button>
+    </section>
+    <section class="section2">
+        <router-outlet></router-outlet>
+    </section>
+    <section class="section3">
+ 
+    </section>
+</div>
 
 
-<router-outlet></router-outlet>
-<button  [routerLink]="['addStudents']">add student</button>
-<button  [routerLink]="['studentsData']">view Students data</button>
+
+
 
 <!-- <p *ngIf ="classData$ | async as classData">class-details works!</p> -->
 <!-- <div *ngIf ="classData$ | async as classData">

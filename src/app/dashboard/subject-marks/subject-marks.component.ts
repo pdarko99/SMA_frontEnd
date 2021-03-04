@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { marks } from 'src/app/shared/marksClass';
 import { students } from 'src/app/shared/studentsClass';
 import { subjectMarks } from 'src/app/shared/subjectMarks';
 import { ClassDetailsService } from '../class-details.service';
+import {MatDialog} from '@angular/material/dialog';
+import { AddMarksComponent } from '../add-marks/add-marks.component';
+
 
 @Component({
   selector: 'app-subject-marks',
@@ -12,6 +16,7 @@ import { ClassDetailsService } from '../class-details.service';
   styleUrls: ['./subject-marks.component.css']
 })
 export class SubjectMarksComponent implements OnInit {
+  
   studentsData: students[]
   get currentClass(): string{
     return this._currentClass
@@ -23,6 +28,7 @@ export class SubjectMarksComponent implements OnInit {
     .subscribe(
       res => {
         this.studentsData = res;
+        this.dataSource = new MatTableDataSource<students>(this.studentsData)
         console.log(this.studentsData)
       },
       err => console.log(err)
@@ -38,23 +44,22 @@ export class SubjectMarksComponent implements OnInit {
   }
   set subject(value: string){
     this._subject = value
-    // this.marks = this.studentsData.filter(x => x.tamale.filter(y => y.subjects === this._subject))
-    // this.marks = this.studentsData[0].academy.filter(x => x.subjects === this._subject )
-    
-
+    this.columnData = ['firstname', 'lastname'];
+    this.columnData.push(this.subject + ' classScore', this.subject + ' examsScore')
   }
   _subject: string;
   _index: number;
 
-  get index(): number{
-    return  this._index
-  }
-  set(value: number){
-    this._index = value
-  }
-  
-  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService) { }
+  // get index(): number{
+  //   return  this._index
+  // }
+  // set(value: number){
+  //   this._index = value
+  // }
 
+  dataSource : MatTableDataSource<students>
+ columnData: string[];
+  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, public dialog: MatDialog) { }
   ngOnInit(): void {
     this.route.params.subscribe(subject => {
       this.subject = subject.subject
@@ -63,25 +68,22 @@ export class SubjectMarksComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.currentClass = params.class
     })
+
+    // this.columnData.push(this.subject + ' classScore', this.subject + ' examsScore')
+   
   }
 
-  // myFunc(): void{
-  //   this.studentsData.forEach(element => {
-  //       element.academy.forEach((ele, index) => {
-  //         if (ele.subjects = this._subject){
-  //            this.marks[index].classScore = ele.classScore
-  //            this.marks[index].examScore = ele.examsScore
-  //         }
-  //       })
-  //   });
-  // }
+  openDialog() {
+    const dialogRef = this.dialog.open(AddMarksComponent, {
+      width: '60%',
+      height: '60%',
+      data: this.subject
+    });
 
-  // myFunc(item, index): void{
-  //         this.studentsData[index].firstname = item.firstname
-  //         this.studentsData[index].lastname = item.lastname
-  //         this.studentsData[index].classScore = item.classScore
-  //         this.studentsData[index].examsScore = item.examsScore
-  //         this.studentsData[index].totalScore = item.totalScore
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 
 }

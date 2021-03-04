@@ -9,7 +9,9 @@ import { admin } from '../shared/adminClass';
 })
 export class AdminService {
   Url  = 'http://localhost:3000'
-  schoolData$ = this.http.get<admin[]>(this.Url + '/admin')
+  schoolData$ = this.http.get<admin[]>(this.Url + '/admin').pipe(
+    tap(data => console.log(data))
+  )
   
 
 
