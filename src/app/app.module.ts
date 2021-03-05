@@ -25,22 +25,25 @@ import { HttpInterceptorModule } from './auth/http-interceptor';
 import { AuthModule } from './auth/auth.module';
 import { AccountComponent } from './account_dashboard/account/account.component';
 import { HeadModule } from './head_dashboard/head.module';
+import { TeacherModule } from './dashboard/teacher.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     // RegisterComponent,
     // LoginComponent,
-    TeacherComponent,
+    // TeacherComponent,
     // HeadmasterComponent,
     // TeacherRegistrationComponent,
     // HeadRegistrationComponent,
-    ClassDetailsComponent,
-    SubjectDetailsComponent,
-    StudentsDataComponent,
-    AddStudentsComponent,
-    SubjectMarksComponent,
-    AddMarksComponent,
+    // TeacherComponent,
+
+    // ClassDetailsComponent,
+    // SubjectDetailsComponent,
+    // StudentsDataComponent,
+    // AddStudentsComponent,
+    // SubjectMarksComponent,
+    // AddMarksComponent,
     // HeadmasterComponent,
 
     // HeadieDetailsComponent,
@@ -64,6 +67,11 @@ import { HeadModule } from './head_dashboard/head.module';
           loadChildren: () => 
             import('./head_dashboard/head.module').then(m => m.HeadModule)
       },
+      {
+        path: 'user/teacher', component: TeacherComponent,
+          loadChildren: () => 
+            import('./dashboard/teacher.module').then(m => m.TeacherModule)
+      }
       
       // { path: 'login', component: LoginComponent},
       // { path: 'user/account', component: AccountComponent, children: [
@@ -76,20 +84,20 @@ import { HeadModule } from './head_dashboard/head.module';
       //     path: 'class', component: StudentsDataComponent
       //   }
       // ]},
-      { path: 'user/teacher',  component: TeacherComponent, children:[
-        {
-          path: 'classDetails', component: ClassDetailsComponent, children: [
-            {path: 'studentsData', component: StudentsDataComponent},
-            {path: 'addStudents', component: AddStudentsComponent}
-          ]
-        },
-        {
-          path: 'subjectDetails/:subject', children: [
-            {path: '', component: SubjectMarksComponent},
-            {path: 'add', component: AddMarksComponent},
-          ]
-        }
-      ]},
+      // { path: 'user/teacher',  component: TeacherComponent, children:[
+      //   {
+      //     path: 'classDetails', component: ClassDetailsComponent, children: [
+      //       {path: 'studentsData', component: StudentsDataComponent},
+      //       {path: 'addStudents', component: AddStudentsComponent}
+      //     ]
+      //   },
+      //   {
+      //     path: 'subjectDetails/:subject', children: [
+      //       {path: '', component: SubjectMarksComponent},
+      //       {path: 'add', component: AddMarksComponent},
+      //     ]
+      //   }
+      // ]},
       // { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
       // { path: 'user/head/registration',  component: HeadRegistrationComponent},
       // { path: 'register', component: RegisterComponent}
@@ -99,7 +107,8 @@ import { HeadModule } from './head_dashboard/head.module';
     AccountModule,
     HttpInterceptorModule,
     AuthModule,
-    HeadModule
+    HeadModule,
+    TeacherModule
 
   ],
   providers: [],
