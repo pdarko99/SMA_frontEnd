@@ -40,7 +40,7 @@ import { TeacherModule } from './dashboard/teacher.module';
 
     // ClassDetailsComponent,
     // SubjectDetailsComponent,
-    // StudentsDataComponent,
+    StudentsDataComponent,
     // AddStudentsComponent,
     // SubjectMarksComponent,
     // AddMarksComponent,

@@ -10,6 +10,7 @@ import { AddMarksComponent } from './add-marks/add-marks.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { AddStudentsComponent } from './add-students/add-students.component';
 import { MaterialModule } from '../shared/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -20,16 +21,15 @@ import { MaterialModule } from '../shared/material.module';
 
     ClassDetailsComponent,
     SubjectDetailsComponent,
-    StudentsDataComponent,
     SubjectMarksComponent,
     AddMarksComponent,
     AddStudentsComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
+    // CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // MaterialModule,
     RouterModule.forChild([
       // { path: 'user/teacher',  component: TeacherComponent, children:[
         {
@@ -45,7 +45,8 @@ import { MaterialModule } from '../shared/material.module';
           ]
         }
       // ]},
-    ])
+    ]),
+    SharedModule
     
   ]
 })
