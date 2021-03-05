@@ -16,6 +16,7 @@ export class AuthService {
   url = "http://localhost:3000"
   constructor(private http: HttpClient) { }
 
+
   loginService(data:login): Observable<any>{
     return this.http.post<login>(this.url + '/login', data).pipe(catchError(this.handleError))
   }

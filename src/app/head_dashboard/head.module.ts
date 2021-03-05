@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HeadieDetailsComponent } from './headie-details/headie-details.component';
-import { StudentsDataComponent } from '../dashboard/students-data/students-data.component';
 import { HeadmasterComponent } from '../headmaster/headmaster.component';
-import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
+import { HeadStudentsDataComponent } from './head-students-data/head-students-data.component';
 
 
 
@@ -14,17 +11,14 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     HeadmasterComponent,
-    HeadieDetailsComponent
+    HeadieDetailsComponent,
+    HeadStudentsDataComponent
   ],
   imports: [
-    // CommonModule,
-    // FormsModule,
-    // ReactiveFormsModule,
-    // MaterialModule,
     RouterModule.forChild([
       // { path: 'user/head', component: HeadieDetailsComponent, children: [
         {
-          path: 'class', component: StudentsDataComponent
+          path: 'class', component: HeadStudentsDataComponent
         }
       // ]},
     ]),
