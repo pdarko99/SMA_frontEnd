@@ -1,0 +1,43 @@
+<div class="main">
+    <div class="heading" *ngIf = "currentStudent">
+        <div >
+            <p>Student's Name</p>
+            <p>{{currentStudent.firstname}}</p>
+            
+        </div>
+    </div>
+   
+    <form #form="ngForm" (ngSubmit)="OnEdit()">
+        <mat-form-field appearance="fill">
+            <input matInput  type="number" placeholder="enter class score" required name="class_score" #class_scoreField='ngModel' [(ngModel)]="marks.classScore">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <input matInput  type="number" placeholder="enter exam score" required name="exam_score" #class_scoreField='ngModel' [(ngModel)]="marks.examScore">
+        </mat-form-field>
+
+        <div>
+            <button mat-button [disabled]="form.invalid">submit</button>
+        </div>
+    </form>
+    
+
+
+
+
+    <!-- <form #form="ngForm" (ngSubmit)="onSubmit()"> -->
+        <!-- <input type="number" placeholder="enter class score" required name="class_score" #class_scoreField='ngModel' [(ngModel)]="marks.classScore"> -->
+        <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
+        <!-- <input type="number" placeholder="enter exam score" required name="exam_score" #class_scoreField='ngModel' [(ngModel)]="marks.examScore"> -->
+        <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
+        <!-- <button [disabled]="form.invalid">submit</button> -->
+
+    <!-- </form> -->
+    <!-- <div class="buttons">
+        <button (click)="nextStudent()">next</button>
+        <button (click)="previousStudent()">previous</button>
+    </div> -->
+
+</div>
+
+

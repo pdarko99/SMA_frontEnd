@@ -1,6 +1,6 @@
 <div class="main">
 
-    <form #form="ngForm" (ngSubmit)="addStudent()">
+    <form #form="ngForm" (ngSubmit)="editStudent()">
         <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">
         </mat-form-field>
@@ -30,5 +30,6 @@
     
     </form>
 </div>
+
 
 

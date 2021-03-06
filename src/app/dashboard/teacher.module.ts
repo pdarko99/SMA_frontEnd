@@ -8,6 +8,9 @@ import { AddMarksComponent } from './add-marks/add-marks.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { AddStudentsComponent } from './add-students/add-students.component';
 import { SharedModule } from '../shared/shared.module';
+import { StudentsInfoComponent } from './students-info/students-info.component';
+import { StudentsInfoEditComponent } from './students-info-edit/students-info-edit.component';
+import { StudentsMarksEditComponent } from './students-marks-edit/students-marks-edit.component';
 
 
 
@@ -20,7 +23,10 @@ import { SharedModule } from '../shared/shared.module';
     SubjectDetailsComponent,
     SubjectMarksComponent,
     AddMarksComponent,
-    AddStudentsComponent
+    AddStudentsComponent,
+    StudentsInfoComponent,
+    StudentsInfoEditComponent,
+    StudentsMarksEditComponent
   ],
   imports: [
     RouterModule.forChild([
@@ -28,6 +34,7 @@ import { SharedModule } from '../shared/shared.module';
         {
           path: 'classDetails', component: ClassDetailsComponent, children: [
             {path: 'studentsData', component: StudentsDataComponent},
+            {path: 'studentsInfo', component: StudentsInfoComponent},
             // {path: 'addStudents', component: StudentsDataComponent}
           ]
         },

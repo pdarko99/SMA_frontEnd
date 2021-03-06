@@ -4,6 +4,7 @@ import { AccountComponent } from './account/account.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SharedModule } from '../shared/shared.module';
+import { AccountDetailsEditComponent } from './account-details-edit/account-details-edit.component';
 
 
 
@@ -11,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AccountComponent,
     AccountDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    AccountDetailsEditComponent
   ],
   imports: [
     RouterModule.forChild([

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
 import { students } from 'src/app/shared/studentsClass';
+import { AccountDetailsEditComponent } from '../account-details-edit/account-details-edit.component';
 import { PaymentComponent } from '../payment/payment.component';
 
 @Component({
@@ -29,7 +30,7 @@ set queryClass(value: string){
 }
 
 
-displayColumns = ['firstname', 'lastname', 'amount paid', 'arrears']
+displayColumns = ['firstname', 'lastname', 'paid', 'arrears', 'edit']
 dataSource : MatTableDataSource<students>
 
   constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, public dialog: MatDialog) { }
@@ -45,6 +46,18 @@ dataSource : MatTableDataSource<students>
       width: '50%',
       height: '40%',
       data: this.students
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openEditDialog(element: students) {
+    const dialogRef = this.dialog.open(AccountDetailsEditComponent, {
+      width: '50%',
+      height: '40%',
+      data: element
     });
 
     dialogRef.afterClosed().subscribe(result => {

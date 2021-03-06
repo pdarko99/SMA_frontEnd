@@ -8,6 +8,7 @@ import { subjectMarks } from 'src/app/shared/subjectMarks';
 import { ClassDetailsService } from '../class-details.service';
 import {MatDialog} from '@angular/material/dialog';
 import { AddMarksComponent } from '../add-marks/add-marks.component';
+import { StudentsMarksEditComponent } from '../students-marks-edit/students-marks-edit.component';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class SubjectMarksComponent implements OnInit {
   set subject(value: string){
     this._subject = value
     this.columnData = ['firstname', 'lastname'];
-    this.columnData.push(this.subject + ' classScore', this.subject + ' examsScore')
+    this.columnData.push(this.subject + ' CLASS_SCORE', this.subject + ' EXAMS_SCORE', 'edit')
   }
   _subject: string;
   _index: number;
@@ -78,6 +79,21 @@ export class SubjectMarksComponent implements OnInit {
       width: '60%',
       height: '60%',
       data: this.subject
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openEditDialog(element: students) {
+    const dialogRef = this.dialog.open(StudentsMarksEditComponent, {
+      width: '60%',
+      height: '60%',
+      data: {
+        element,
+        subject: this.subject
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

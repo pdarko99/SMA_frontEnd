@@ -25,13 +25,17 @@
         <td mat-cell *matCellDef="let element">{{element.lastname}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="amount paid">
+      <ng-container matColumnDef="paid">
         <th mat-header-cell *matHeaderCellDef> AMOUNT PAID </th>
         <td mat-cell *matCellDef="let element">{{element.fees?.paid}} </td>
       </ng-container>
       <ng-container matColumnDef="arrears">
         <th mat-header-cell *matHeaderCellDef> ARREARS </th>
         <td mat-cell *matCellDef="let element">{{3000}} </td>
+      </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"><button  (click)="openEditDialog(element)" *ngIf="element.fees?.paid">edit</button></td>
       </ng-container>
 
 
