@@ -1,0 +1,101 @@
+<!-- <div *ngIf = "teachersInfo$ | async as teacher">
+    <h2>Firstname</h2>
+    <p>{{teacher.firstname}}</p>
+
+    <h2>Lastname</h2>
+    <p>{{teacher.lastname}}</p>
+
+    <h2>email</h2>
+    <p>{{teacher.email}}</p>
+
+    <h2>password</h2>
+    <p>*********</p>
+    <h2>position</h2>
+    <p>{{teacher.position}}</p>
+
+    <h2>status</h2>
+    <p>{{teacher.data.status}}</p>
+
+    <div *ngIf="teacher.data.classTeacher">
+        <h2>classTeacher</h2>
+        <p>{{teacher.data.classTeacher}}</p>
+    </div>
+
+
+    <h2>Classes and Subjects You Teach</h2>
+    <div *ngFor="let classes of teacher.data.subjectGroup">
+        <p>
+            {{classes.class}}
+        </p>
+        <div *ngFor= "let subjects of classes.subjects">
+           
+            <a >{{subjects.subject}}</a>
+        </div>
+</div>
+   
+</div> -->
+
+<mat-card class="card">
+    <h2>teacherRegisterForm</h2>         
+    <mat-card-content>
+        <form [formGroup] = "teacherUpdateForm" (ngSubmit)="onSubmit()">
+  
+            <div>
+                <mat-form-field appearance="fill">
+               
+                    <mat-select  name="state" formControlName="status" id="">
+                    <mat-option value="" disabled selected hidden> select status
+                    </mat-option>
+                    <mat-option  value="Subject Teacher only" > Subject Teacher only</mat-option >
+                    <mat-option  value="Class Teacher and subject teacher"> Class Teacher and subject teacher</mat-option >
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+             
+                    <mat-select  name="classTeacher" formControlName="classTeacher" id="" >
+                        <mat-option  *ngFor="let item of teachersData" [value]="item.class">{{item.class}}</mat-option>
+                        <!-- <option value="JHS 2" > JHS 2</option> -->
+                    </mat-select >
+                </mat-form-field>
+            </div>
+            <!-- {{value?.subjectGroup | json}} -->
+            <div formArrayName="subjectGroup" *ngFor="let classes of subjects.controls; let i=index">
+                <div [formGroupName] = "i" >
+                    <mat-form-field appearance="fill">
+                
+                    <mat-select name="class" formControlName="class" id="" >
+                        <mat-option value="" disabled selected hidden>select Class you lecture</mat-option> 
+                        <mat-option *ngFor="let item of teachersData" [value]="item.class"> {{item.class}}</mat-option>
+                    </mat-select >
+                </mat-form-field>
+                
+                    <div  formArrayName="subjects"   *ngFor="let class of classes.get('subjects').controls; let i=index" >
+                        <div  [formGroupName] = "i" >
+                            <mat-form-field appearance="fill">
+
+                            <mat-select name="subject"  formControlName="subject" id="" >
+                                <mat-option value="" disabled selected hidden>select subject</mat-option>
+                                <mat-option *ngFor="let subjects of classWithSubjects" [value]="subjects.subject" > {{subjects.subject }}</mat-option>
+                            </mat-select>
+                            
+                        </mat-form-field>
+                        </div>
+                    </div>
+                    <button mat-raised-button (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects">add another subject</button>
+                </div>
+            </div>
+            <div>
+                <button mat-raised-button (click)="addSubjects()">add another class you lecture</button>
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button  [disabled]="teacherUpdateForm.invalid">submit</button>
+            </mat-card-actions>
+            <!-- <button (click)="addSubjects()">add another class you lecture</button> -->
+            <!-- <button [disabled]="teacherRegisterForm.invalid">submit</button> -->
+        </form>
+        
+    </mat-card-content>
+   
+  </mat-card>

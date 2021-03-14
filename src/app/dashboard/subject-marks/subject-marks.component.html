@@ -1,28 +1,9 @@
 <p>subject-marks works!</p>
 
-<!-- <table>
-    <tr>
-        <th></th>
-        <th>firstname</th>
-        <th>lastname</th>
-        <div>
-            <th>marks</th>
-            <th>marks</th>
-        </div>
-        <th>grade</th>
-    </tr>
-    <tr *ngFor = "let std of studentsData">
-        <td></td>
-        <td>{{std.firstname}}</td>
-        <td>{{std.lastname}}</td>
-        <td>{{std[subject]?.classScore}}</td>
-        <td>{{std[subject]?.examScore}}</td> -->
-        <!-- <td>grade</td> -->
-    <!-- </tr>
-</table> -->
 <div>
   <!-- <button [routerLink]="['add']" [queryParams]="{class:currentClass, dialog: true}">enter marks</button> -->
-  <button mat-button (click)="openDialog()">Enter marks</button>
+  <button mat-button (click)="enterMarks()">Enter marks</button>
+  <button mat-button (click)="performance()">class Performnce</button>
 
 </div>
 

@@ -1,0 +1,26 @@
+.section1{
+    display: flex;
+    justify-content: center;
+}
+
+.about{
+    text-align: center;
+}
+
+.section2{
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-around
+}
+
+
+
+table {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

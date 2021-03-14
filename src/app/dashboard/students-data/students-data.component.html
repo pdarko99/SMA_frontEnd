@@ -12,23 +12,29 @@
     <!-- Name Column -->
     <ng-container matColumnDef="FIRSTNAME">
       <th mat-header-cell *matHeaderCellDef> FIRSTNAME </th>
-      <td mat-cell *matCellDef="let element">{{element.firstname}} </td>
+      <td mat-cell *matCellDef="let element; let i = index" (click)="openReport(element, i)">{{element.firstname}} </td>
     </ng-container>
   
     <ng-container matColumnDef="LASTNAME">
       <th mat-header-cell *matHeaderCellDef> LASTNAME </th>
       <td mat-cell *matCellDef="let element">{{element.lastname}} </td>
     </ng-container>
-    <div   *ngFor = "let sub of p | slice:2" >
+    <div   *ngFor = "let sub of p | slice:2: [p.length -1]" >
       <ng-container  matColumnDef="{{sub}}">
   
           <th mat-header-cell *matHeaderCellDef> {{sub}} </th>
           <!-- <th mat-header-cell *matHeaderCellDef> {{sub}} </th> -->
-          <td mat-cell *matCellDef="let element"> {{element[sub]?.classScore}} {{element[sub]?.examScore}} </td>
+          <td mat-cell *matCellDef="let element"> {{element[sub]?.classScore | convertToGrades}}</td>
+          <!-- <td mat-cell *matCellDef="let element"> {{element[sub]?.examScore}}  </td> -->
           <!-- <td mat-cell *matCellDef="let element"> </td> -->
   
       </ng-container>
   </div>
+
+  <ng-container matColumnDef="TOTALSCORE">
+    <th mat-header-cell *matHeaderCellDef> TOTALSCORE </th>
+    <td mat-cell *matCellDef="let element">{{element.grandScore}} </td>
+  </ng-container>
   
       
   

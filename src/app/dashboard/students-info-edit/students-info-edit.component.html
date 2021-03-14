@@ -1,4 +1,6 @@
 <div class="main">
+    <button (click) = "delete()">close</button>
+  
 
     <form #form="ngForm" (ngSubmit)="editStudent()">
         <mat-form-field class="example-full-width">
@@ -25,8 +27,14 @@
         <!-- <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="studentsData.password"> -->
         <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
         <div>
-            <button [disabled]="form.invalid">submit</button>
+            <button [disabled]="form.invalid">Update</button>
+            
         </div>
+
+        <div class="delete">
+            <button (click)="delete()" >delete</button>
+        </div>
+      
     
     </form>
 </div>

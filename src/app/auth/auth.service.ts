@@ -6,6 +6,7 @@ import { updateRegister } from '../shared/updateRegisterClass';
 import { User } from '../shared/userClass';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { students } from '../shared/studentsClass';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,18 @@ export class AuthService {
   }
   registerService(data: register): Observable<any>{
     return this.http.post<register>(this.url + '/register', data).pipe(catchError(this.handleError))
+  }
+
+  getTeachersData(): Observable<any>{
+    return this.http.get<any>(this.url + '/register').pipe(catchError(this.handleError))
+  }
+
+  getAllStaff(): Observable<students[]>{
+    return this.http.get<any>(this.url + '/register' + '/staff').pipe(catchError(this.handleError))
+  }
+
+  deleteStaff(id: string): Observable<any>{
+    return this.http.delete<any>(this.url + '/register' + '/staff'+ '?staffId=' + id ).pipe(catchError(this.handleError))
   }
 
   updateRegisterService(data: updateRegister): Observable<any>{

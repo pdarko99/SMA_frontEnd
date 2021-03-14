@@ -19,14 +19,16 @@
     margin: auto;
 }
 
+
+
+.section3{
+    margin-top: 10px;
+}
+
 .card {
     width: 60%;
     margin: auto;
     text-align: center
-}
-
-.section3{
-    margin-top: 10px;
 }
 
 mat-form-field {
@@ -37,4 +39,6 @@ mat-card-actions > button {
     padding: 10px;
     margin: 10px;
     width: 50%;
+    background-color: #4285F4;
+
 }

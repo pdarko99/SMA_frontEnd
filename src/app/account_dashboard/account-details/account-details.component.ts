@@ -50,6 +50,12 @@ dataSource : MatTableDataSource<students>
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      let index: number = this.students.findIndex(student => student._id === result.data.id)
+      this.students[index].fees = {}
+      this.students[index].fees.paid = result.data.data.paid
+      console.log(this.students[index].fees, 'from .fees')
+      // this.students[index].fees = result.data.data.paid
+      
     });
   }
 
@@ -62,6 +68,18 @@ dataSource : MatTableDataSource<students>
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if(!result.data.delete){
+        let index: number = this.students.findIndex(student => student._id === result.data.id)
+        this.students[index].fees.paid = result.data.data.paid
+        return
+      }
+      let index: number = this.students.findIndex(student => student._id === result.data.id)
+      this.students.splice(index, 1)
+      this.dataSource = new MatTableDataSource<students>(this.students)
+
+
+
+      
     });
   }
 

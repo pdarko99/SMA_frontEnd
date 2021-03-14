@@ -11,6 +11,11 @@ import { SharedModule } from '../shared/shared.module';
 import { StudentsInfoComponent } from './students-info/students-info.component';
 import { StudentsInfoEditComponent } from './students-info-edit/students-info-edit.component';
 import { StudentsMarksEditComponent } from './students-marks-edit/students-marks-edit.component';
+import { AboutTeacherComponent } from './about-teacher/about-teacher.component';
+import { AboutComponent } from './about/about.component';
+import { AboutInfoComponent } from './about-info/about-info.component';
+import { ClassPerformanceComponent } from './class-performance/class-performance.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 
@@ -26,10 +31,28 @@ import { StudentsMarksEditComponent } from './students-marks-edit/students-marks
     AddStudentsComponent,
     StudentsInfoComponent,
     StudentsInfoEditComponent,
-    StudentsMarksEditComponent
+    StudentsMarksEditComponent,
+    AboutTeacherComponent,
+    AboutComponent,
+    AboutInfoComponent,
+    ClassPerformanceComponent,
+    ReportsComponent
   ],
   imports: [
     RouterModule.forChild([
+      {
+        path: 'aboutTeacher', component: AboutComponent, children: [
+          {
+            path: '', redirectTo: 'info', pathMatch: 'full'
+          },
+          {
+            path: 'info', component: AboutInfoComponent
+          },
+          {
+            path: 'class', component: AboutTeacherComponent
+          }
+        ]
+      },
       // { path: 'user/teacher',  component: TeacherComponent, children:[
         {
           path: 'classDetails', component: ClassDetailsComponent, children: [

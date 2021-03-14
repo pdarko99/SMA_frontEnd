@@ -27,7 +27,6 @@ initial_column = of(['FIRSTNAME', 'LASTNAME'])
       res => {
         this.headClass = res;
         this.dataSource = new MatTableDataSource<students>(this.headClass)
-        // console.log(this.displayClass)
       },
       err => console.log(err)
     )
@@ -35,9 +34,11 @@ initial_column = of(['FIRSTNAME', 'LASTNAME'])
 
   subjects$ = this.adminservice.schoolData$
   .pipe(
-    map(data=> data.map(item => item.classGroup.find(items => items.class ===  this.queryClass)?.subjects)),
-    map(data => data.map(x => x.map(y => y.subject))),
-    map(data => data[0]),
+    map(data=> data.map(item => 
+      item.classGroup.find(items => 
+      items.class === this.queryClass).subjects.map(data => 
+      data.subject
+      ))[0]),
   
     tap(info => console.log(info, 'logiing in from heroro'))
 
@@ -48,7 +49,6 @@ initial_column = of(['FIRSTNAME', 'LASTNAME'])
     this.subjects$
     ).pipe(
       scan((column, subject) => [...column, ...subject]),
-      tap(x => console.log(x, 'lgoo from dsaklfjapeoejfaeo'))
     )
 
  dataSource : MatTableDataSource<students>

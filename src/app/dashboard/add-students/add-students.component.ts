@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth/auth.service';
 import { students } from 'src/app/shared/studentsClass';
 import { ClassDetailsService } from '../class-details.service';
@@ -17,15 +18,21 @@ export class AddStudentsComponent implements OnInit {
     gender: '',
     guardians_tel:0
   }
-  constructor(private authservice: AuthService, private classdetails: ClassDetailsService) { }
+  constructor(public dialogRef: MatDialogRef<AddStudentsComponent>, private authservice: AuthService, private classdetails: ClassDetailsService) { }
 
   ngOnInit(): void {
   }
 
   addStudent(): void{
     this.classdetails.addStudent(this.teachersData.data.classTeacher, this.studentsData).subscribe(
-      res => console.log(res)
+      res =>this.closeDialog()
     )
+  }
+
+  closeDialog() {
+    this.dialogRef.close({
+      event: 'close', data : this.studentsData
+    })
   }
   
 

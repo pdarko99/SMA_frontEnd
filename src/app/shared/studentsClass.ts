@@ -5,7 +5,8 @@ export interface students {
     age: number;
     gender: string;
     guardians_tel: number;
-    academy?: scores[]
+    fees?: any;
+    grandScore?: number
 }
 
 export interface scores {

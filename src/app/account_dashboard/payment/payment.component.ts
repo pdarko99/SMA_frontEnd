@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
 import { account, students } from 'src/app/shared/studentsClass';
@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit {
   }
   
   count = 0;
-  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: students[], private classdetails: ClassDetailsService) { }
+  constructor(public dialogRef: MatDialogRef<PaymentComponent>, private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: students[], private classdetails: ClassDetailsService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -36,9 +36,9 @@ export class PaymentComponent implements OnInit {
     console.log(this.amount)
     this.preSubmit();
     this.classdetails.sendFees(this.amount).subscribe(
-      res => console.log(res)
+      res =>{ console.log(res); this.closeDialog()}
     )
-    this.nextStudent();
+    // this.nextStudent();
   }
 
   nextStudent(): void{
@@ -57,6 +57,13 @@ export class PaymentComponent implements OnInit {
     preSubmit(): void {
     this.classdetails.class = this.currentClass;
     this.classdetails.id = this.currentStudent._id
+  }
+
+  closeDialog() {
+    
+    this.dialogRef.close({
+      event: 'close', data : {data: this.amount, id: this.currentStudent._id}
+    })
   }
 
 

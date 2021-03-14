@@ -5,6 +5,7 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
 import { PaymentComponent } from './payment/payment.component';
 import { SharedModule } from '../shared/shared.module';
 import { AccountDetailsEditComponent } from './account-details-edit/account-details-edit.component';
+import { AboutAccountComponent } from './about-account/about-account.component';
 
 
 
@@ -13,13 +14,17 @@ import { AccountDetailsEditComponent } from './account-details-edit/account-deta
     AccountComponent,
     AccountDetailsComponent,
     PaymentComponent,
-    AccountDetailsEditComponent
+    AccountDetailsEditComponent,
+    AboutAccountComponent
   ],
   imports: [
     RouterModule.forChild([
       // { path: 'user/account', component: AccountComponent, children: [
         {
           path: 'class', component: AccountDetailsComponent
+        },
+        {
+          path: 'aboutAccount', component: AboutAccountComponent
         }
       // ]},
     ]),

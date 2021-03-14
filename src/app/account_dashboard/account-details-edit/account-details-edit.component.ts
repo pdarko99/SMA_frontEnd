@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { account, students } from 'src/app/shared/studentsClass';
 
 @Component({
@@ -12,7 +12,8 @@ export class AccountDetailsEditComponent implements OnInit {
   amount: account = {
     paid: 0
   }
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  delete = false
+  constructor(public dialogRef: MatDialogRef<AccountDetailsEditComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.currentStudent = this.data
@@ -21,6 +22,19 @@ export class AccountDetailsEditComponent implements OnInit {
 
   onSubmit(): void {
     console.log('hey')
+    this.closeDialog();
   }
+
+  onDelete(): void {
+    this.delete = true
+    this.closeDialog()
+  }
+
+  closeDialog() {
+    this.dialogRef.close({
+      event: 'close', data : {data: this.amount, id: this.currentStudent._id, delete: this.delete}
+    })
+  }
+
 
 }

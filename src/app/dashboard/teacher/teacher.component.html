@@ -8,15 +8,18 @@
 
 <div *ngIf="teachersData.data">
     <h2>Subjects You teach</h2>
-    <div *ngFor="let classes of teachersData.data.subjectGroup">
-            <p>
-                {{classes.class}}
-            </p>
-            <div *ngFor= "let subjects of classes.subjects">
-                {{classes.class}}
-                <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
-            </div>
-    </div>
+        <div *ngFor="let classes of teachersData.data.subjectGroup">
+                <p>
+                    {{classes.class}}
+                </p>
+                <div *ngFor= "let subjects of classes.subjects">
+                    {{classes.class}}
+                    <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+                </div>
+        </div>
+</div>
+<div>
+    <a [routerLink]="['aboutTeacher']">You</a>
 </div>
     </mat-drawer>
     <mat-drawer-content>

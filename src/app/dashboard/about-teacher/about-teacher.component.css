@@ -1,0 +1,14 @@
+.card {
+    width: 60%;
+    margin: auto;
+    text-align: center
+}
+mat-form-field {
+    width: 70%;
+    margin: 10px;
+}
+mat-card-actions > button {
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+}

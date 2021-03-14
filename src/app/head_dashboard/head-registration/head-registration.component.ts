@@ -13,12 +13,12 @@ export class HeadRegistrationComponent implements OnInit {
   constructor(private fb: FormBuilder, private adminservice: AdminService) { }
 
   ngOnInit(): void {
-    this.headRegistrationForm = this.fb.group({
-      teachers: ['', [Validators.required]],
-      headmasters: ['', [Validators.required]],
-      accounts: ['', [Validators.required]],
-      classGroup: this.fb.array([ this.buildclasses])
-    })
+      this.headRegistrationForm = this.fb.group({
+        teachers: ['', [Validators.required]],
+        headmasters: ['', [Validators.required]],
+        accounts: ['', [Validators.required]],
+        classGroup: this.fb.array([ this.buildclasses])
+      })
   }
 
   get buildclasses(): FormGroup {

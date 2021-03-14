@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { students } from 'src/app/shared/studentsClass';
 import { ClassDetailsService } from '../class-details.service';
@@ -37,7 +37,7 @@ export class AddMarksComponent implements OnInit {
     totalScore: 0
   }
 
-  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, @Inject(MAT_DIALOG_DATA) public data: string) { }
+  constructor(public dialogRef: MatDialogRef<AddMarksComponent>, private route: ActivatedRoute, private classdetails: ClassDetailsService, @Inject(MAT_DIALOG_DATA) public data: string) { }
   // this.route.params.subscribe(subject => {
   //   this.subject = subject.subject
   // })
@@ -71,9 +71,9 @@ export class AddMarksComponent implements OnInit {
   onSubmit(): void {
     this.preSubmit();
     this.classdetails.sendMarks(this.marks).subscribe(
-      res => {console.log(res); console.log(this.subject, 'logiing thtis.subject')}
+      res => {console.log(res); console.log(this.subject, 'logiing thtis.subject'); this.closeDialog()}
     )
-    this.nextStudent()
+    // this.nextStudent()
   }
 
   preSubmit(): void {
@@ -81,5 +81,12 @@ export class AddMarksComponent implements OnInit {
     this.classdetails.class = this.currentClass;
     this.classdetails.id = this.currentStudent._id
     this.marks.totalScore = (+this.marks.classScore) + (+this.marks.examScore) 
+  }
+
+  closeDialog() {
+    
+    this.dialogRef.close({
+      event: 'close', data : {data: this.marks, id: this.currentStudent._id}
+    })
   }
 }

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { account, students } from '../shared/studentsClass';
 import { marks } from '../shared/marksClass';
+import { scan } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class ClassDetailsService {
   subject: string;
   class:string;
   id: string;
+
   constructor(private http: HttpClient) { }
 
   getClassData(data: string): Observable<students[]>{
@@ -21,6 +23,16 @@ export class ClassDetailsService {
 
   addStudent(data, student): Observable<students>{
     return this.http.post<students>(this.url + '?class=' + data, student)
+  }
+
+  deleteStudent(id: string, stdsClass: string): Observable<any>{
+    return this.http.delete<any>(this.url  + '?deletedId=' + id + '&' + 'class=' + stdsClass)
+
+  }
+
+  updateStudent(std: students,  stdsClass: string): Observable<any> {
+       return this.http.patch<students>(this.url + '/update'  + '?updatedId=' + std._id + '&' + 'class=' + stdsClass, std)
+
   }
 
   sendMarks(data: marks): Observable<marks> {

@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: repeat(1fr, 12);
     grid-template-rows: auto minmax(700px, auto) auto;
-
 }
 
 .section1{
@@ -20,11 +19,6 @@
     margin: auto;
     text-align: center
 }
-
-.section3{
-    margin-top: 10px;
-}
-
 mat-form-field {
     width: 70%;
     margin: 10px;
@@ -34,3 +28,8 @@ mat-card-actions > button {
     margin: 10px;
     width: 50%;
 }
+
+.section3{
+    margin-top: 10px;
+}
+

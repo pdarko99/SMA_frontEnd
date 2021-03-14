@@ -9,6 +9,7 @@ import { ClassDetailsService } from '../class-details.service';
 import {MatDialog} from '@angular/material/dialog';
 import { AddMarksComponent } from '../add-marks/add-marks.component';
 import { StudentsMarksEditComponent } from '../students-marks-edit/students-marks-edit.component';
+import { ClassPerformanceComponent } from '../class-performance/class-performance.component';
 
 
 @Component({
@@ -51,12 +52,7 @@ export class SubjectMarksComponent implements OnInit {
   _subject: string;
   _index: number;
 
-  // get index(): number{
-  //   return  this._index
-  // }
-  // set(value: number){
-  //   this._index = value
-  // }
+
 
   dataSource : MatTableDataSource<students>
  columnData: string[];
@@ -70,11 +66,10 @@ export class SubjectMarksComponent implements OnInit {
       this.currentClass = params.class
     })
 
-    // this.columnData.push(this.subject + ' classScore', this.subject + ' examsScore')
    
   }
 
-  openDialog() {
+  enterMarks() {
     const dialogRef = this.dialog.open(AddMarksComponent, {
       width: '60%',
       height: '60%',
@@ -83,8 +78,30 @@ export class SubjectMarksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
+      this.studentsData[index][this.subject] = {}
+      this.studentsData[index][this.subject].classScore = result.data.data.classScore
+      this.studentsData[index][this.subject].examScore = result.data.data.examScore
+
     });
   }
+
+  performance() {
+    const dialogRef = this.dialog.open(ClassPerformanceComponent, {
+      width: '80%',
+      height: '90%',
+      data: {
+        subject: this.subject,
+        data: this.studentsData
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      
+    });
+  }
+
 
   openEditDialog(element: students) {
     const dialogRef = this.dialog.open(StudentsMarksEditComponent, {
@@ -92,12 +109,23 @@ export class SubjectMarksComponent implements OnInit {
       height: '60%',
       data: {
         element,
+        currentClass: this.currentClass,
         subject: this.subject
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if(!result.data.delete){
+        let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
+        this.studentsData[index][this.subject].classScore = result.data.data.classScore
+        this.studentsData[index][this.subject].examScore = result.data.data.examScore
+        return
+      }
+      let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
+      this.studentsData.splice(index, 1);
+      this.dataSource = new MatTableDataSource<students>(this.studentsData)
+
     });
   }
 
