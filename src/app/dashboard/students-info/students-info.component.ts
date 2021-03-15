@@ -93,7 +93,7 @@ export class StudentsInfoComponent implements OnInit {
 AddStudents() {
   const dialogRef = this.dialog.open(AddStudentsComponent, {
     width: '60%',
-    height: '60%'
+    height: '70%'
   });
 
   dialogRef.afterClosed().subscribe(result => {

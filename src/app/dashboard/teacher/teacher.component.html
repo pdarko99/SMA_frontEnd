@@ -1,26 +1,38 @@
 <mat-drawer-container class="example-container">
     <mat-drawer #sidenav class="mat-elevation-z10" [mode]="isScreenSmall ? 'over' : 'side'" [opened] = "!isScreenSmall" >
-        <p *ngIf="teachersData.data">teacher works!</p>
-<div>
-    <h2>class Teacher</h2>
-    <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
-</div>
-
-<div *ngIf="teachersData.data">
-    <h2>Subjects You teach</h2>
-        <div *ngFor="let classes of teachersData.data.subjectGroup">
-                <p>
-                    {{classes.class}}
-                </p>
-                <div *ngFor= "let subjects of classes.subjects">
-                    {{classes.class}}
-                    <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+        <div>
+            <mat-toolbar color="primary">
+    
+                <div class="foot">
+                    <span>DASHBOARD</span>
                 </div>
+                </mat-toolbar>
+   
         </div>
-</div>
-<div>
-    <a [routerLink]="['aboutTeacher']">You</a>
-</div>
+        <div class="sidenav">
+            <div class="sectionA">
+                <h2>class Master</h2>
+                <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
+            </div>
+            
+            <div *ngIf="teachersData.data" class="sectionB">
+                <h3>Subjects You teach</h3>
+                    <div *ngFor="let classes of teachersData.data.subjectGroup">
+                            <p>
+                                {{classes.class}}
+                            </p>
+                            <div *ngFor= "let subjects of classes.subjects">
+                                <!-- {{classes.class}} -->
+                                <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+                            </div>
+                    </div>
+            </div>
+            <div class="sectionC">
+                <h4>Personal Info</h4>
+                <a [routerLink]="['aboutTeacher']">You</a>
+            </div>
+        </div>
+
     </mat-drawer>
     <mat-drawer-content>
         <div class="main">
@@ -30,9 +42,14 @@
                         <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                           
                         </button> -->
-                        <button type="button" mat-button (click) ="sidenav.toggle()" >Open sidenav</button>
-                        <span>My App</span>
+                        <mat-icon (click) ="sidenav.toggle()">menu</mat-icon>
+                        
                         <span class="example-spacer"></span>
+    
+                        <div class="example-button-row">
+                            <span>My App</span>
+                           
+                        </div>
                       
                         </mat-toolbar>
            
@@ -42,12 +59,11 @@
             </div>
             <div class="section3">
                 <mat-toolbar color="primary">
-                    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                      
-                    </button>
-                    <button type="button" mat-button (click) ="sidenav.toggle()" >Open sidenav</button> -->
-                    <span>My App</span>
-                    <span class="example-spacer"></span>
+                
+                    <div class="foot">
+                        <small>&copy; 2021 myapps.com</small>
+                    </div>
+                  
                   
                     </mat-toolbar>
             </div>
@@ -60,28 +76,3 @@
   </mat-drawer-container>
   
 
-<!-- <p *ngIf="teachersData.data">teacher works!</p>
-<div>
-    <h2>class Teacher</h2>
-    <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
-</div>
-
-<div *ngIf="teachersData.data">
-    <h2>Subjects You teach</h2>
-    <div *ngFor="let classes of teachersData.data.subjectGroup">
-            <p>
-                {{classes.class}}
-            </p>
-            <div *ngFor= "let subjects of classes.subjects">
-                {{classes.class}}
-                <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
-            </div>
-    </div>
-</div> -->
-<!-- <div>
-    <router-outlet></router-outlet>
-</div>
-
-<div>
-    hello world
-</div> -->

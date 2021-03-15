@@ -24,8 +24,8 @@ import { MaterialModule } from '../shared/material.module';
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild([
+      { path: 'teacher/registration',  component: TeacherRegistrationComponent},
       { path: 'login', component: LoginComponent},
-      { path: 'user/teacher/registration',  component: TeacherRegistrationComponent},
       { path: 'user/head/registration',  component: HeadRegistrationComponent},
       { path: 'register', component: RegisterComponent}
     ])

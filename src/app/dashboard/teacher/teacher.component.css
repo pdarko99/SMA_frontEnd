@@ -6,6 +6,21 @@
     min-height: 100%;
  
   }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .sidenav{
+      text-align: center;
+      padding: 0.3em;
+  }
+  a{
+      text-decoration: none;
+  }
+
+  .sectionB, .sectionC{
+      margin-top: 2em;
+  }
 
   .main {
     display: grid;
