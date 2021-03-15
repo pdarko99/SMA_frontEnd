@@ -14,7 +14,7 @@ About 90% done
 
 
 ## About Project
-Visit the about.txt file in the same directory for details abot project
+Visit the about.txt file in the same directory for details about project
 
 
 

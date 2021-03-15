@@ -1,0 +1,54 @@
+SCHOOL MANAGEMENT SYSTEM
+
+1.0 Introduction
+    
+    The School management system is a commercial app for basic schools in my community. The app controls and keeps track of student's records
+    throughout their stay in school
+
+    The app when fully implemented enables teachers: 
+
+    * Compute students marks and terminal reports.
+        The app when populated with student's mark for exams and class score automatically generates the student's total mard, grades 
+        and terminal reports
+
+    * Keep track of the individual performance of students and the class as a whole.
+        The app generates the graphical representation to student's performance and the class as a whole
+    
+    * Enables heads keep teack of the performance of individual teachers throughout their stay in school
+
+    For Parents:
+      - The app enables them receive the reports of their wards via email or text
+      - Enables them pay fees of their wards online without neccessarily moving to campus
+
+    For Acoounts Department
+      - Enables them computes the current fees/arrears of individual students in the school
+      - The app enables them generates receipt for a fee paid
+
+
+2.0 Expected list of features
+
+    *Registration Page
+        - headmasters
+        - teachers
+        - acoounts
+
+    * Headmaster's Dashboard
+        - for registering the number of classes in the school
+        - the number and courses offered in each class
+        - tracking the performance of teachers
+
+    * Teacher's Dashboard(if class teacher && subject teacher)
+        - for registering the students in their class
+        - tracking the performance of each student and the class as a whole
+        - generating reports
+
+        (if only subject teacher)
+        - computing the marks of that particular subject
+        - tracking the performance of the class in that subject
+
+    * Accounts Dashboard
+        - computing student's fees and arrears
+        - genrating receipts for students
+        - payment of teachers
+
+    * Log IN and Out Page
