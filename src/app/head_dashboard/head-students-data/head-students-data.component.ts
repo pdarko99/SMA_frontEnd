@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { merge, of } from 'rxjs';
@@ -7,6 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
 import { students } from 'src/app/shared/studentsClass';
 import { AdminService } from '../admin.service';
+import { ClassPerformanceComponent } from '../class-performance/class-performance.component';
 
 @Component({
   selector: 'app-head-students-data',
@@ -15,8 +17,10 @@ import { AdminService } from '../admin.service';
 })
 export class HeadStudentsDataComponent implements OnInit {
 initial_column = of(['FIRSTNAME', 'LASTNAME'])
-
+combinedSubjects$: any;
+  inputValue : string;
   headClass: students[]
+
   private _queryClass: string
   get queryClass(): string {
     return this._queryClass
@@ -27,6 +31,12 @@ initial_column = of(['FIRSTNAME', 'LASTNAME'])
       res => {
         this.headClass = res;
         this.dataSource = new MatTableDataSource<students>(this.headClass)
+        this.combinedSubjects$ = merge(
+          this.initial_column,
+          this.subjects$
+          ).pipe(
+            scan((column, subject) => [...column, ...subject]),
+          )
       },
       err => console.log(err)
     )
@@ -44,21 +54,40 @@ initial_column = of(['FIRSTNAME', 'LASTNAME'])
 
   )
 
-  combinedSubjects$ = merge(
-    this.initial_column,
-    this.subjects$
-    ).pipe(
-      scan((column, subject) => [...column, ...subject]),
-    )
+
 
  dataSource : MatTableDataSource<students>
- constructor(private route: ActivatedRoute, private authservice: AuthService, private adminservice: AdminService,  private classdetails: ClassDetailsService) { }
+ constructor(private route: ActivatedRoute, private authservice: AuthService, public dialog: MatDialog, private adminservice: AdminService,  private classdetails: ClassDetailsService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.queryClass = params.class
-      console.log(this.queryClass)
    })
+  }
+
+  performance() {
+    const dialogRef = this.dialog.open(ClassPerformanceComponent, {
+      width: '80%',
+      height: '90%',
+      data: {
+        clas: this.queryClass,
+        subjects: this.subjects$,
+        data: this.headClass
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      
+    });
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.inputValue = filterValue;
+    // console.log(filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

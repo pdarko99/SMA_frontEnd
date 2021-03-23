@@ -9,6 +9,10 @@ form {
     text-align: center;
 }
 
+.icon{
+    float:right;
+}
+
 form button {
     width: 50%;
     padding: 6px;
@@ -20,6 +24,15 @@ form button {
  .image{
      width:100px;
      height: 100px;
+ }
+
+ .image{
+    width:100px;
+    height: 100px;
+}
+
+ .img{
+     text-align: center;
  }
 
 

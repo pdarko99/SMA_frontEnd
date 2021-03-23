@@ -14,23 +14,6 @@ export class AdminService {
   )
   
 
-
-  
-// .pipe(
-//   tap(([data, individualClass]) => console.log(data[0].classGroup))
-//   map(([data, individualClass]) => data.find(item => item.classGroup.class == individualClass)),
-//   tap(info =>console.log(info))
-//   )
-
-
-// .pipe(
-//    map(([data, individualClass]) => data.map(items => ({
-//       items.find(item => item.class === individualClass)
-//    }) )),
-//    tap(info => console.log(info))
-// )
-
-// data.find(item => item.class === individualClass
  
   constructor(private http: HttpClient) { }
 
@@ -38,9 +21,5 @@ export class AdminService {
     return this.http.post<admin>(this.Url + '/admin', data)
   }
 
-  // selectedClass(individualClass:string): void{
-  //   this.classSubjects.next(individualClass)
-  //   console.log(this.classSubjects.next(individualClass))
-  // }
   
 }

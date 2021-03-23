@@ -46,8 +46,8 @@ export class SubjectMarksComponent implements OnInit {
   }
   set subject(value: string){
     this._subject = value
-    this.columnData = ['firstname', 'lastname'];
-    this.columnData.push(this.subject + ' CLASS_SCORE', this.subject + ' EXAMS_SCORE', 'edit')
+    this.columnData = ['firstname', 'lastname']
+    this.columnData.push(this.subject + ' CLASS', this.subject + ' EXAMS', this.subject + ' TOTAL', ' GRADE', 'edit')
   }
   _subject: string;
   _index: number;
@@ -82,6 +82,7 @@ export class SubjectMarksComponent implements OnInit {
       this.studentsData[index][this.subject] = {}
       this.studentsData[index][this.subject].classScore = result.data.data.classScore
       this.studentsData[index][this.subject].examScore = result.data.data.examScore
+      this.studentsData[index][this.subject].totalScore = +result.data.data.examScore + (+result.data.data.classScore)
 
     });
   }
@@ -120,6 +121,8 @@ export class SubjectMarksComponent implements OnInit {
         let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
         this.studentsData[index][this.subject].classScore = result.data.data.classScore
         this.studentsData[index][this.subject].examScore = result.data.data.examScore
+        this.studentsData[index][this.subject].totalScore = +result.data.data.examScore + (+result.data.data.classScore)
+
         return
       }
       let index: number = this.studentsData.findIndex(student => student._id === result.data.id)

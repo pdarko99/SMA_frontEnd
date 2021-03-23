@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-class-performance',
@@ -31,26 +32,44 @@ export class ClassPerformanceComponent implements OnInit {
     }
   ]
   gradesOfStudents = []
+  rating: number
   constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
-    console.log(this.data.data)
-    console.log(this.data.subject)
     this.stdentsInfo(this.rangeOfGrades)
-    console.log(this.gradesOfStudents, 'from grades of stuf')
 
   }
 
   stdentsInfo(grades): any {
     grades.forEach(element => {
       let count = this.data.data.filter((i) => {
-        return (i[this.data.subject]?.totalScore > element.start &&  i[this.data.subject].totalScore < element.end) 
+        return (i[this.data.subject]?.totalScore >= element.start &&  i[this.data.subject].totalScore <= element.end) 
       })
-      console.log(element.grade, count.length)
       this.gradesOfStudents.push({grade: element.grade, number: count.length})
-      
     });
     return this.gradesOfStudents
   }
+
+
+  // Moved to head dashboard
+  // totalMarks(): number{
+  //   let sum = this.data.data
+  //   let acc = 0
+  //   sum.forEach(element => {
+  //     if(element[this.data.subject])
+  //        acc += element[this.data.subject].totalScore
+  //   });
+
+  //   return acc
+ 
+  // }
+
+  // calcPerformance(): number{
+  //   let accMarks = this.totalMarks()
+  //   let lengthOfClass = this.data.data.length
+  //   let performance = (accMarks / (lengthOfClass * 100)) * 100 
+  //   return performance
+
+  // }
 
 }

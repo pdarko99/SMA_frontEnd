@@ -16,6 +16,7 @@ import { AboutComponent } from './about/about.component';
 import { AboutInfoComponent } from './about-info/about-info.component';
 import { ClassPerformanceComponent } from './class-performance/class-performance.component';
 import { ReportsComponent } from './reports/reports.component';
+import { StudentsPerformanceComponent } from './students-performance/students-performance.component';
 
 
 
@@ -36,7 +37,8 @@ import { ReportsComponent } from './reports/reports.component';
     AboutComponent,
     AboutInfoComponent,
     ClassPerformanceComponent,
-    ReportsComponent
+    ReportsComponent,
+    StudentsPerformanceComponent
   ],
   imports: [
     RouterModule.forChild([

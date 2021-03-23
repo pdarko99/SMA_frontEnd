@@ -29,7 +29,7 @@ export class AuthService {
     return this.http.get<any>(this.url + '/register').pipe(catchError(this.handleError))
   }
 
-  getAllStaff(): Observable<students[]>{
+  getAllStaff(): Observable<register[]>{
     return this.http.get<any>(this.url + '/register' + '/staff').pipe(catchError(this.handleError))
   }
 

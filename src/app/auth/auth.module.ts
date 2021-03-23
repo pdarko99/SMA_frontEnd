@@ -26,7 +26,7 @@ import { MaterialModule } from '../shared/material.module';
     RouterModule.forChild([
       { path: 'teacher/registration',  component: TeacherRegistrationComponent},
       { path: 'login', component: LoginComponent},
-      { path: 'user/head/registration',  component: HeadRegistrationComponent},
+      { path: 'head/registration',  component: HeadRegistrationComponent},
       { path: 'register', component: RegisterComponent}
     ])
   ]

@@ -10,10 +10,10 @@
    
         </div>
         <div class="sidenav">
-            <div class="sectionA">
+            <section class="sectionA">
                 <h2>class Master</h2>
                 <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
-            </div>
+            </section>
             
             <div *ngIf="teachersData.data" class="sectionB">
                 <h3>Subjects You teach</h3>
@@ -21,7 +21,7 @@
                             <p>
                                 {{classes.class}}
                             </p>
-                            <div *ngFor= "let subjects of classes.subjects">
+                            <div *ngFor= "let subjects of classes.subjects" class="classes">
                                 <!-- {{classes.class}} -->
                                 <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
                             </div>
@@ -42,7 +42,7 @@
                         <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                           
                         </button> -->
-                        <mat-icon (click) ="sidenav.toggle()">menu</mat-icon>
+                        <mat-icon class="icon" (click) ="sidenav.toggle()">menu</mat-icon>
                         
                         <span class="example-spacer"></span>
     

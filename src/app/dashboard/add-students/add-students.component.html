@@ -1,9 +1,14 @@
-<div class="main">
-    <button (click) = "closeDialog()">close</button>
-    <div class="imgContainer">
-        <img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
-    </div>
+<div class="icon">
+    <mat-icon (click) = "closeDialog()"> cancel_presentation</mat-icon>
+</div>
 
+<div class="img">
+    <span><img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
+     </span>
+</div>
+
+<div class="main">
+      
     <form #form="ngForm" (ngSubmit)="addStudent()">
         <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">

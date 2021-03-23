@@ -21,5 +21,13 @@ form button {
 .delete{
     margin-top: 10px;
 }
+.image{
+    width:100px;
+    height: 100px;
+}
+
+.img{
+    text-align: center;
+}
 
 

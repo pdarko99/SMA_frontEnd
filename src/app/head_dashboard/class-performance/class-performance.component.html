@@ -1,0 +1,13 @@
+
+<div *ngFor = "let ele of ranges">
+ 
+    <p>the performance of students in {{ele.subject}} is {{ele.acc > 50 ? 'above' : 'below'}} average.</p>
+    <p>they accumulated a percentage of {{ele.acc}}% </p>
+</div>
+
+<div *ngFor = "let ele of teachersWithsubs">
+ 
+    <!-- <p>the performance of students in {{ele.subject}} is {{ele.acc > 50 ? 'above' : 'below'}} average.</p>
+    <p>they accumulated a percentage of {{ele.acc}}% </p> -->
+    <p>{{ele.subject}}: {{ele.firstname | uppercase}} {{ele.lastname | uppercase}}</p>
+</div>

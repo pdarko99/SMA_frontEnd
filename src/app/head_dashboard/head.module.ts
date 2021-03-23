@@ -7,6 +7,7 @@ import { HeadStudentsDataComponent } from './head-students-data/head-students-da
 import { AboutHeadComponent } from './about-head/about-head.component';
 import { SchoolComponent } from './school/school.component';
 import { StaffInfoComponent } from './staff-info/staff-info.component';
+import { ClassPerformanceComponent } from './class-performance/class-performance.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { StaffInfoComponent } from './staff-info/staff-info.component';
     AboutHeadComponent,
     SchoolComponent,
     StaffInfoComponent,
+    ClassPerformanceComponent,
   ],
   imports: [
     RouterModule.forChild([

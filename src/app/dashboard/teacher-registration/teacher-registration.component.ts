@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  combineLatest, EMPTY, Subject } from 'rxjs';
-import { catchError, debounceTime, map, tap } from 'rxjs/operators';
+import { catchError, map, pairwise, startWith, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
-import { subject } from 'src/app/shared/adminClass';
 
 @Component({
   selector: 'app-teacher-registration',
@@ -13,6 +12,24 @@ import { subject } from 'src/app/shared/adminClass';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeacherRegistrationComponent implements OnInit {
+  private _currentClass: string;
+  get currentClass(): string{
+    return this._currentClass
+  }
+
+  subjectss: any
+  _count = 0
+  get count(): number{
+    return this._count
+  }
+
+  set count(value: number){
+    this._count = value
+  }
+
+  set currentClass(value: string){
+    this._currentClass = value
+  }
   teacherRegisterForm :FormGroup
   errMsg: string;
   private classSubjects = new Subject<string>();
@@ -48,12 +65,7 @@ export class TeacherRegistrationComponent implements OnInit {
     this.teacherRegisterForm.get('status').valueChanges.subscribe(
       value => this.setValidation(value)
     )
-    this.teacherRegisterForm.get('subjectGroup').valueChanges.subscribe(res => {
-      let _this = this;
-      setTimeout(function(){
-       _this.setClass(res[0].class)
-      },2500)
-    })
+
   
   }
 
@@ -72,16 +84,23 @@ export class TeacherRegistrationComponent implements OnInit {
       class: ['', [Validators.required]],
       subjects: this.fb.array([ this.buildIndividualSubjects])
     })
-    // group.get('class').valueChanges.subscribe(res => this.setClass(res))
+    group.get('class').valueChanges.subscribe(res => {
+   
+      let _this = this;
+      this.currentClass = res
+      this.subjectss = setInterval(function(){
+         _this.setClass(res)
+      },2500)
+    })
 
     return group
-    // this.buildClasses.get('class').valueChanges.subscribe(res => console.log(res))
   }
 
   get buildIndividualSubjects(): FormGroup{
-    return this.fb.group({
+    const group = this.fb.group({
       subject:  ['', [Validators.required]]
     })
+    return group
   }
   
   setClass(data:string): void{
@@ -92,7 +111,10 @@ addIndividualSubs(subs): void {
   subs.get("subjects").push(this.buildIndividualSubjects)
 }
   addSubjects(): void{
+    clearInterval(this.subjectss)
+    this.setClass('');
     this.subjects.push(this.buildClasses);
+    // this.count +=1
   }
 
   get subjects(): FormArray {
@@ -100,7 +122,8 @@ addIndividualSubs(subs): void {
   }
 
   onSubmit(): void {
-    console.log(this.teacherRegisterForm.value)
+    clearInterval(this.subjectss)
+    console.log(this.teacherRegisterForm.value, 'from thes.value')
     if (this.teacherRegisterForm.valid){
      console.log('logging in a funct', this.teacherRegisterForm.value)
 

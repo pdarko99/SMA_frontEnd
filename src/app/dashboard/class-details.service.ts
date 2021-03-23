@@ -14,6 +14,7 @@ export class ClassDetailsService {
   subject: string;
   class:string;
   id: string;
+  status: string
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +37,7 @@ export class ClassDetailsService {
   }
 
   sendMarks(data: marks): Observable<marks> {
-    return this.http.post<marks>(this.url + '/marks' + '?subject=' + this.subject + '&' + 'class=' + this.class+ '&' + 'id=' + this.id, data)
+    return this.http.post<marks>(this.url + '/marks' + '?subject=' + this.subject + '&' + 'class=' + this.class+ '&' + 'id=' + this.id + '&' + 'status=' + this.status, data)
   }
 
   sendFees(data: account): Observable<any> {

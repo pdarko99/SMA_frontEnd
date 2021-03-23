@@ -1,3 +1,8 @@
+<div class="head">
+    <mat-icon (click) = "onDelete()">delete</mat-icon>
+    <mat-icon (click) = "closeDialog()"> cancel_presentation</mat-icon>
+
+</div>
 <p>{{currentStudent.firstname}}</p>
 <div class="main">
     <form #form="ngForm" (ngSubmit)="onSubmit()">
@@ -6,7 +11,6 @@
         </mat-form-field>
         <div>
             <button mat-button [disabled]="form.invalid">Edit</button>
-            <button mat-button (click)="onDelete()">Delete</button>
         </div>
     </form>
  

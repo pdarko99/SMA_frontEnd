@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { combineLatest, merge, Subject } from 'rxjs';
-import { map, scan, tap } from 'rxjs/operators';
+import {  merge, Subject } from 'rxjs';
+import { scan, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { students } from 'src/app/shared/studentsClass';
 import { AddStudentsComponent } from '../add-students/add-students.component';

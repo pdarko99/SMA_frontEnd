@@ -1,30 +1,40 @@
-<!-- <p>account works!</p>
-
-<div *ngIf="schoolData$ | async as schoolData">
-    <ul *ngFor="let classes of schoolData">
-        <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>
-    </ul>
-</div> -->
-
-
-
-<!-- <router-outlet></router-outlet> -->
 
 
 <mat-drawer-container class="example-container">
     <mat-drawer #sidenav class="mat-elevation-z10" [mode]="isScreenSmall ? 'over' : 'side'" [opened] = "!isScreenSmall" >
-  
-        <p>account works!</p>
-
-        <div *ngIf="schoolData$ | async as schoolData">
-            <ul *ngFor="let classes of schoolData">
-                <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>
-            </ul>
-        </div>
-
         <div>
-            <a [routerLink]="['aboutAccount']">You</a>
+            <mat-toolbar color="primary">
+    
+                <div class="foot">
+                    <span>DASHBOARD</span>
+                </div>
+                </mat-toolbar>
+   
         </div>
+        <div class="sidebar">
+            <section class="sectionA">
+                    <div *ngIf="schoolData$ | async as schoolData">
+                        <h3>CLASSES</h3>
+                        <ul *ngFor="let classes of schoolData">
+                            <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>
+                        </ul>
+                    </div>
+            </section>
+           
+            <section class="sectionB">
+                <div>
+                    <h3>ABOUT</h3>
+                    <ul>
+                        <li>
+                         <a [routerLink]="['aboutAccount']">You</a>
+        
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        
+        </div>
+    
 
 
     </mat-drawer>
@@ -32,12 +42,12 @@
         <div class="main">
             <div class="section1">   
                 <mat-toolbar color="primary">
-                <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                  
-                </button> -->
-                <button type="button" mat-button (click) ="sidenav.toggle()" >Open sidenav</button>
-                <span>My App</span>
+                    <mat-icon class="icon" (click) ="sidenav.toggle()">menu</mat-icon>
                 <span class="example-spacer"></span>
+                <div class="example-button-row">
+                    <span>My App</span>
+                   
+                </div>
               
                 </mat-toolbar>
                 

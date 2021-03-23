@@ -56,7 +56,9 @@
                                 </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">add another subject</button>
+                             <mat-icon  (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">menu</mat-icon>
+
+                            <!-- <button mat-raised-button (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">add another subject</button> -->
                         </div>
                     </div>
                     <mat-card-actions>

@@ -17,23 +17,16 @@ export class AboutTeacherComponent implements OnInit {
   subjectGroup: any;
   data: any;
   prince: any = []
+  currentClass: any
+  availableClass: string;
 
  classWithSubjects: any;
   teacherUpdateForm: FormGroup
 
   constructor(private authservice: AuthService, private fb: FormBuilder, private adminservice: AdminService) { }
+  subjectss: any
 
   ngOnInit(): void {
-//     <div *ngFor="let classes of teachersData.data.subjectGroup">
-//     <p>
-//         {{classes.class}}
-//     </p>
-//     <div *ngFor= "let subjects of classes.subjects">
-//         {{classes.class}}
-//         <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
-//     </div>
-// </div>
-
     this.teacherUpdateForm = this.fb.group({
       status: '',
       classTeacher: '',
@@ -49,14 +42,9 @@ export class AboutTeacherComponent implements OnInit {
         this.data = res
         console.log(this.data, 'from mian data')
         this.subjectGroup = res.subjectGroup
-        this.subjectGroup.forEach(element => {
-          this.prince.push(element.subjects)
-        });
-        console.log(this.prince.length, 'from prince')
-       this.UpdateForm()
-        console.log(this.subjectGroup, 'form info')
-  
-
+        this.UpdateForm();
+        this.teacherUpdateForm.patchValue(this.data)
+        clearInterval(this.subjectss)
 
       }
 
@@ -77,7 +65,8 @@ export class AboutTeacherComponent implements OnInit {
       ])
       .pipe(
           map(([data, individualClass]) => data.map(item => item.classGroup.find(items => items.class === individualClass).subjects)),
-          map(info => info[0]) ,
+          map(info => info[0]),
+          // catchError(err => console.log(err)),
           tap(finalinfo => console.log(finalinfo))
       ).subscribe(
         res => this.classWithSubjects = res
@@ -88,25 +77,20 @@ export class AboutTeacherComponent implements OnInit {
 
   UpdateForm(): void {
     this.clearFormArray()
-    this.subjectGroup.forEach(element => {
+
+    this.subjectGroup.forEach((element, index) => {
       let teacher: FormGroup = this.buildClasses;
       this.subjects.push(teacher)
-      this.setClass(element.class)
-
-
+      // this.setClass(element.class)
+      
        element.subjects.forEach((ele, index) => {
-            (teacher.get('subjects') as FormArray).push(this.buildIndividualSubjects)
-            // this.addIndividualSubs(teacher)
-            console.log(index, 'from index')
-            console.log(ele, 'from elel')
+         (teacher.get('subjects') as FormArray).push(this.buildIndividualSubjects)
 
         });
 
-    
+      });
+      
 
-    });
-
-    this.teacherUpdateForm.patchValue(this.data)
   }
 
   clearFormArray(): void {
@@ -118,9 +102,23 @@ export class AboutTeacherComponent implements OnInit {
       class: '',
       subjects: this.fb.array([ this.buildIndividualSubjects])
     })
+
+    group.get('class').valueChanges.subscribe(res => {
+      let _this = this;
+      this.availableClass = res
+      this.setClass(this.availableClass)
+      // this.subjectss = setInterval(function(){
+      //    _this.setClass(res);
+         
+      // }, 2500)
+
+   
+    })
+
     return group
 
 }
+
 
 
 get buildIndividualSubjects(): FormGroup{
@@ -134,10 +132,14 @@ setClass(data:string): void{
 }
 
 addIndividualSubs(subs): void {
-subs.get("subjects").push(this.buildIndividualSubjects)
+
+  subs.get("subjects").push(this.buildIndividualSubjects)
 }
 addSubjects(): void{
+  clearInterval(this.subjectss)
+  this.setClass('');
   this.subjects.push(this.buildClasses);
+
 }
 
 get subjects(): FormArray {
@@ -145,6 +147,7 @@ get subjects(): FormArray {
 }
 
 onSubmit(): void {
+  clearInterval(this.subjectss)
   console.log('not yet implemented')
 }
 }

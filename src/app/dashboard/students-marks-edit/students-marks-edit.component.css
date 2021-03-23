@@ -4,6 +4,17 @@
     align-items: flex-start;
   }
 
+  .image{
+    width:100px;
+    height: 100px;
+}
+.upper{
+    display:flex;
+    justify-content: flex-end;
+}
+ .img{
+     text-align: center;
+ }
   
 mat-form-field {
     width: 80%;

@@ -1,5 +1,12 @@
+<div class="icon">
+    <mat-icon (click) = "closeDialog()"> cancel_presentation</mat-icon>
+</div>
 <div class="main">
     <div class="heading" *ngIf = "currentStudent">
+        <div class="img">
+            <span><img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
+             </span>
+        </div>
         <div >
             <p>Student's Name</p>
             <p>{{currentStudent.firstname}}</p>
@@ -34,8 +41,8 @@
 
     <!-- </form> -->
     <div class="buttons">
-        <button (click)="nextStudent()">next</button>
-        <button (click)="previousStudent()">previous</button>
+        <mat-icon (click)="previousStudent()">keyboard_arrow_left</mat-icon>
+        <mat-icon (click)="nextStudent()">keyboard_arrow_right</mat-icon>
     </div>
 
 </div>

@@ -54,6 +54,7 @@ export class StudentsMarksEditComponent implements OnInit {
     this.classdetails.subject = this.subject;
     this.classdetails.class = this.currentClass;
     this.classdetails.id = this.currentStudent._id
+    this.classdetails.status = '';
     this.marks.totalScore = (+this.marks.classScore) + (+this.marks.examScore) 
   }
 

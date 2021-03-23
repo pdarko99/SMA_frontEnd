@@ -16,3 +16,13 @@ form button {
     color: #fff;
     margin: 10px;
 }
+
+p{
+    text-align: center;
+    margin-top: 1em;
+}
+
+.head{
+    display:flex;
+    justify-content: space-between;
+}

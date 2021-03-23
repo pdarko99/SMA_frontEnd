@@ -6,4 +6,5 @@ export interface register {
     password:string;
     passwordConfirm: string;
     position: string;
+    data? : any;
 }

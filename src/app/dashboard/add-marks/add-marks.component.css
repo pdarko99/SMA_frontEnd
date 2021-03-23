@@ -17,6 +17,11 @@ mat-form-field {
     margin: auto;
 }
 
+
+.icon{
+    float:left;
+}
+
 form {
     width:80%;
     margin: auto;
@@ -29,9 +34,20 @@ form button {
     color: #fff;
     margin: 10px;
 }
+.image{
+    width:100px;
+    height: 100px;
+}
 
+ .img{
+     text-align: center;
+ }
 
 .heading > div {
     display: flex;
     justify-content: space-evenly;
+}
+
+.buttons{
+    margin-top:1em;
 }

@@ -80,6 +80,7 @@ export class AddMarksComponent implements OnInit {
     this.classdetails.subject = this.subject;
     this.classdetails.class = this.currentClass;
     this.classdetails.id = this.currentStudent._id
+    this.classdetails.status = 'add'
     this.marks.totalScore = (+this.marks.classScore) + (+this.marks.examScore) 
   }
 
