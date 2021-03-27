@@ -10,31 +10,39 @@
     flex: 1 1 auto;
   }
 
+  
+
   .sidenav{
-      /* text-align: center; */
       padding: 1em;
   }
   a{
       text-decoration: none;
-  }
+       /* padding:0 */
 
-  .sectionB, .sectionC{
-      margin-top: 2em;
   }
+ ul{
+   padding: 0;
+ }
 
-  .sectionA > div{
-      display: flex;
-      justify-content: space-around;
-  }
-  .classes > a{
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-  }
+ .nav-text{
+   font-weight: 600;
+ }
 
-  div > p{
-      padding-top: 1em;
-      padding-bottom: 1em;
-  }
+
+
+ul li{
+  text-transform: uppercase;
+  list-style-type: none;
+  padding: 10px
+}
+
+
+    
+
+  
+
+    
+
 
   .main {
     display: grid;

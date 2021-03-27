@@ -3,21 +3,28 @@ table {
   
 }
 .example-container {
-  height: 600px;
+  /* height: 600px; */
   width: 100%;
   max-width: 100%;
   overflow: auto;
   margin:0 auto
 }
 
+.upper{
+  display:flex;
+  justify-content: space-between;
+}
+.upper > div{
+  margin-top: 10px;
+}
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 80%;
 }
 
 @media only screen and (max-width: 800px) {
   .example-container {
-    height: 600px;
+    /* height: 600px; */
     width: 350px;
     max-width: 100%;
     overflow: auto;

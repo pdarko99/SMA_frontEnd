@@ -8,13 +8,24 @@ table {
   }
 
   .example-container {
-    height: 600px;
+    /* height: 600px; */
     width: 1100px;
     max-width: 100%;
     overflow: auto;
     margin:0 auto
   }
+.perf{
+  text-align: center;
+  margin-top: 10px;
+}
 
+button {
+  
+  background-color:#4285F4;
+  color: #fff;            
+  padding: 4px;
+  width: 100px;
+}
   ul li{
     list-style-type: none;
     padding:0.2em;
@@ -29,32 +40,32 @@ table {
     padding: 1em;
 }
 
-  @media only screen and (max-width: 800px) {
-    .example-container {
-      height: 600px;
-      width: 350px;
-      max-width: 100%;
-      overflow: auto;
-    }
-    
-    .table {
-      width: 100%;
-    }
- 
-    
-    th.mat-column-position, td.mat-column-position {
-      padding-left: 8px;
-    }
-    
-    .mat-table-sticky-border-elem-right {
-      border-left: 1px solid #e0e0e0;
-    }
-    
-    .mat-table-sticky-border-elem-left {
-      border-right: 1px solid #e0e0e0;
-    }
+    @media only screen and (max-width: 800px) {
+      .example-container {
+        /* height: 600px; */
+        width: 350px;
+        max-width: 100%;
+        overflow: auto;
+      }
+      
+      .table {
+        width: 100%;
+      }
+  
+      
+      th.mat-column-position, td.mat-column-position {
+        padding-left: 8px;
+      }
+      
+      .mat-table-sticky-border-elem-right {
+        border-left: 1px solid #e0e0e0;
+      }
+      
+      .mat-table-sticky-border-elem-left {
+        border-right: 1px solid #e0e0e0;
+      }
 
- 
-    
-    
-  }
+  
+      
+      
+    }

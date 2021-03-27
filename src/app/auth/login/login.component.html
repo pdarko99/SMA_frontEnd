@@ -21,9 +21,9 @@
          
             <mat-card-content>
                 <form #form="ngForm" (ngSubmit)="onSubmit()">
-                    <!-- <input type="email" placeholder="email" required name="email" #usernameField='ngModel' [(ngModel)]="loginData.email"> -->
-                    
-                    <!-- <mat-label>Enter your email</mat-label> -->
+                    <div *ngIf = "errorMessage">
+                        <p>{{errorMessage}}</p>
+                    </div>
                     <div>
                         <input matInput placeholder="pat@example.com" [(ngModel)]="loginData.email" required name="email" #usernameField='ngModel' type="email">
                         <small [hidden] = "usernameField.valid || usernameField.untouched">username is required</small>
@@ -32,9 +32,6 @@
                         <input matInput type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="loginData.password">
                         <small [hidden] = "passwordField.valid || passwordField.untouched">password is required</small>
                     </div>
-                   
-        
-                    <!-- <button [disabled]="form.invalid">submit</button> -->
                     <mat-card-actions>
                         <button   [disabled]="form.invalid">submit</button>
                     </mat-card-actions>

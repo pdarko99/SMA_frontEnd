@@ -52,9 +52,10 @@ export class AuthService {
       message = `an error occured: ${err.error.message}`
     }
     else{
-      message =  `backend error message is: ${err.message}`
+      message =  `${err.message}`
     }
-    console.log(message);
+
+    console.log(message)
     return throwError(message)
 
 

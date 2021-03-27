@@ -14,9 +14,9 @@ export class AddStudentsComponent implements OnInit {
   studentsData: students = {
     firstname: '',
     lastname: '',
-    age: 0,
+    age: null,
     gender: '',
-    guardians_tel:0
+    guardians_tel:null
   }
   constructor(public dialogRef: MatDialogRef<AddStudentsComponent>, private authservice: AuthService, private classdetails: ClassDetailsService) { }
 
@@ -24,6 +24,8 @@ export class AddStudentsComponent implements OnInit {
   }
 
   addStudent(): void{
+    let firstname = this.studentsData.firstname.toUpperCase()
+    this.studentsData.firstname = firstname
     this.classdetails.addStudent(this.teachersData.data.classTeacher, this.studentsData).subscribe(
       res =>this.closeDialog()
     )

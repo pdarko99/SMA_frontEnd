@@ -1,10 +1,19 @@
 <div class="main">
+
+    <div class="upper">
+        <div>
+            <mat-icon (click) = "delete()">delete</mat-icon>
+        </div>
+        <div>
+            <mat-icon (click) = "closeDialog()"> cancel_presentation</mat-icon>
+        </div>
+
+    </div>
     <div class="img">
         <span><img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
          </span>
     </div>
     
- <mat-icon (click) = "delete()">delete</mat-icon>
   
 
     <form #form="ngForm" (ngSubmit)="editStudent()">
@@ -36,10 +45,6 @@
             
         </div>
 
-        <div class="delete">
-            <button (click)="delete()" >delete</button>
-        </div>
-      
     
     </form>
 </div>

@@ -62,17 +62,24 @@
               </div>
           </div>
   
-          <div>
-            
-              <label for="teacher">
+          <div class="radios">
+              <div>
+                <label for="teacher">
                   <input type="radio" id="teacher" name="position" value="teacher" formControlName="position"> Teacher
-              </label>
-              <label for="head">
+                </label>
+              </div>
+              <div>
+                <label for="head">
                   <input type="radio" id="head" name="position" value="head" formControlName="position">Headmaster
-              </label>
+                </label>
+              </div>
+             <div>
               <label for="account">
-                  <input type="radio" id="account" name="position" value="account" formControlName="position">Account
-              </label>
+                <input type="radio" id="account" name="position" value="account" formControlName="position">Account
+            </label>
+             </div>
+            
+           
               <span *ngIf="registerForm.get('position').errors?.required && registerForm.get('position').touched">required</span>
           </div>
          

@@ -3,16 +3,33 @@ table {
     
   }
   .example-container {
-    height: 600px;
+    /* height: 600px; */
     width: 100%;
     max-width: 100%;
     overflow: auto;
     margin:0 auto
   }
 
+  .upper{
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .upper > div{
+    margin-top: 10px;
+  }
+
+  button {
+  
+    background-color:#4285F4;
+    color: #fff;            
+    padding: 4px;
+    width: 100px;
+  }
+
   .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    width: 70%;
   }
   ul li{
     list-style-type: none;
@@ -30,8 +47,15 @@ table {
 
 
   @media only screen and (max-width: 800px) {
+    .upper{
+      margin-top: 1em;
+    }
+
+    .upper > div{
+      margin-top: 10px;
+    }
     .example-container {
-      height: 600px;
+      /* height: 600px; */
       width: 350px;
       max-width: 100%;
       overflow: auto;

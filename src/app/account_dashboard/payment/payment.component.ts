@@ -15,7 +15,7 @@ export class PaymentComponent implements OnInit {
   currentClass: string;
 
   amount: account = {
-    paid: 0
+    paid: null
   }
   
   count = 0;

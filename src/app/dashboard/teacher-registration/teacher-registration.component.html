@@ -18,20 +18,28 @@
                             <mat-select  name="state" formControlName="status" id="">
                             <mat-option value="" disabled selected hidden> select status
                             </mat-option>
-                            <mat-option  value="Sbjeuct Teacher only" > Subject Teacher only</mat-option >
+                            <mat-option  value="Subject Teacher only" > Subject Teacher only</mat-option >
                             <mat-option  value="Class Teacher and subject teacher"> Class Teacher and subject teacher</mat-option >
                             </mat-select>
+                         
                         </mat-form-field>
+                        <div>
+                            <small *ngIf="teacherRegisterForm.get('status').errors?.required && teacherRegisterForm.get('status').touched">status is required</small>
+                        </div>
                     </div>
                     <div>
                         <mat-form-field appearance="fill">
                      
-                            <mat-select  name="classTeacher" formControlName="classTeacher" id="" *ngIf="teachersData$ | async as teacherData">
-                                <mat-option value="" disabled selected hidden>select Class</mat-option>
+                            <mat-select  name="classTeacher" formControlName="classTeacher" id="" >
+                                <mat-option value="" disabled selected hidden>Class Master</mat-option>
                                 <mat-option  *ngFor="let item of teacherData" [value]="item.class">{{item.class}}</mat-option>
-                                <!-- <option value="JHS 2" > JHS 2</option> -->
                             </mat-select >
+
                         </mat-form-field>
+                        <div>
+                            <small *ngIf="teacherRegisterForm.get('classTeacher').errors?.required && teacherRegisterForm.get('classTeacher').touched">class Master is required</small>
+                            <small *ngIf="takenClass">{{takenClass}}</small>      
+                        </div>
                     </div>
             
             
@@ -39,7 +47,7 @@
                         <div [formGroupName] = "i" >
                             <mat-form-field appearance="fill">
                         
-                            <mat-select name="class" formControlName="class" id="" *ngIf="teachersData$ | async as teacherData">
+                            <mat-select name="class" formControlName="class" id="" >
                                 <mat-option value="" disabled selected hidden>select Class you lecture</mat-option> 
                                 <mat-option *ngFor="let item of teacherData" [value]="item.class"> {{item.class}}</mat-option>
                             </mat-select >
@@ -54,18 +62,21 @@
                                         <mat-option *ngFor="let subjects of classWithSubjects" [value]="subjects.subject" > {{subjects.subject }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
+                            
                                 </div>
                             </div>
+                         
                              <mat-icon  (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">menu</mat-icon>
-
-                            <!-- <button mat-raised-button (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">add another subject</button> -->
                         </div>
+                    </div>
+                    <div>
+                        <small *ngIf="takenSub">{{takenSub}}</small>      
                     </div>
                     <mat-card-actions>
                         <button mat-raised-button (click)="addSubjects()">add another class you lecture</button>
                     </mat-card-actions>
                     <mat-card-actions>
-                        <button mat-raised-button  [disabled]="teacherRegisterForm.invalid">submit</button>
+                        <button mat-raised-button  [disabled]="teacherRegisterForm.invalid && takenClass && takenSub">submit</button>
                     </mat-card-actions>
  
                 </form>

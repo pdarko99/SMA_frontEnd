@@ -39,7 +39,7 @@ export class SubjectMarksComponent implements OnInit {
   }
   _currentClass: string;
    
-
+  inputValue: string;
 
   get subject(): string {
     return this._subject
@@ -130,6 +130,16 @@ export class SubjectMarksComponent implements OnInit {
       this.dataSource = new MatTableDataSource<students>(this.studentsData)
 
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.inputValue = filterValue;
+  
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  
+  
   }
 
 

@@ -9,29 +9,99 @@
                 </mat-toolbar>
    
         </div>
-        <div class="sidenav">
-            <section class="sectionA">
-                <h2>class Master</h2>
-                <a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a>
+        <nav  class="sidenav">
+            <section >
+                <ul>
+                    <li>                                   
+                        <a >
+                        
+                        <span class="nav-text">class Master</span>
+                        </a>
+                        </li> 
+                </ul>
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <span ><a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a></span>
+                        </a>
+                        </li> 
+                </ul>
             </section>
             
-            <div *ngIf="teachersData.data" class="sectionB">
-                <h3>Subjects You teach</h3>
+            
+            <div *ngIf="teachersData.data" >
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <!-- <mat-icon class="fa">check_circle</mat-icon> -->
+                        <span class="nav-text">
+                            Subjects You teach
+
+                        </span>
+                        </a>
+                        </li> 
+                </ul>
                     <div *ngFor="let classes of teachersData.data.subjectGroup">
-                            <p>
+                         <ul>
+                            <li >                                   
+                                <a >
+                                
+                                <span class="nav-text">
                                 {{classes.class}}
-                            </p>
-                            <div *ngFor= "let subjects of classes.subjects" class="classes">
+
+                                </span>
+                                </a>
+                                </li> 
+                        </ul>
+                          
+                            <div *ngFor= "let subjects of classes.subjects" >
                                 <!-- {{classes.class}} -->
+                                <ul>
+                                    <li >                                   
+                                        <a >
+                                        
+                                        <span >
+                                            <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+        
+                                        </span>
+                                        </a>
+                                        </li> 
+                                </ul>
+                                <!-- <p>
                                 <a [routerLink]="['subjectDetails', subjects.subject]" [queryParams]="{class:classes.class}">{{subjects.subject}}</a>
+
+                                </p> -->
                             </div>
                     </div>
             </div>
-            <div class="sectionC">
-                <h4>Personal Info</h4>
-                <a [routerLink]="['aboutTeacher']">You</a>
+            <div >
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <span class="nav-text">
+                            Personal Info
+
+                        </span>
+                        </a>
+                        </li> 
+                </ul>
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <span >
+                            <a [routerLink]="['aboutTeacher']">You</a>
+
+
+                        </span>
+                        </a>
+                        </li> 
+                </ul>
             </div>
-        </div>
+        </nav>
 
     </mat-drawer>
     <mat-drawer-content>

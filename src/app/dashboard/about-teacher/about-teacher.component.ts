@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { combineLatest, EMPTY, Subject } from 'rxjs';
+import { combineLatest, EMPTY, Subject, Subscription } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
@@ -16,9 +16,10 @@ export class AboutTeacherComponent implements OnInit {
   teachersData: any;
   subjectGroup: any;
   data: any;
-  prince: any = []
   currentClass: any
   availableClass: string;
+  subscription: Subscription
+
 
  classWithSubjects: any;
   teacherUpdateForm: FormGroup
@@ -76,17 +77,21 @@ export class AboutTeacherComponent implements OnInit {
 
 
   UpdateForm(): void {
+    // this.subscription.unsubscribe()
+
     this.clearFormArray()
 
     this.subjectGroup.forEach((element, index) => {
       let teacher: FormGroup = this.buildClasses;
       this.subjects.push(teacher)
       // this.setClass(element.class)
+      // this.setClass('hello')
       
        element.subjects.forEach((ele, index) => {
          (teacher.get('subjects') as FormArray).push(this.buildIndividualSubjects)
 
         });
+        // this.buildClasses.get('class')
 
       });
       
@@ -98,17 +103,21 @@ export class AboutTeacherComponent implements OnInit {
   }
 
   get buildClasses():FormGroup{
+
     const group = this.fb.group({
       class: '',
       subjects: this.fb.array([ this.buildIndividualSubjects])
     })
 
-    group.get('class').valueChanges.subscribe(res => {
+group.get('class').valueChanges.subscribe(res => {
       let _this = this;
       this.availableClass = res
-      this.setClass(this.availableClass)
+      //  this.setClass(this.availableClass)
+      //  console.log(this.availableClass, 'from thsi.availabel');
+      //  console.log(res, 'from tes')
       // this.subjectss = setInterval(function(){
       //    _this.setClass(res);
+      //    console.log(res, 'from res')
          
       // }, 2500)
 
@@ -132,7 +141,6 @@ setClass(data:string): void{
 }
 
 addIndividualSubs(subs): void {
-
   subs.get("subjects").push(this.buildIndividualSubjects)
 }
 addSubjects(): void{

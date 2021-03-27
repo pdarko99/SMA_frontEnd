@@ -9,6 +9,11 @@ form {
     text-align: center;
 }
 
+.upper{
+    display: flex;
+    justify-content: space-between;
+}
+
 form button {
     width: 50%;
     padding: 6px;

@@ -20,6 +20,9 @@ const SMALL_WIDTH_BREAKPOINT = 720;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudentsDataComponent implements OnInit {
+  private searchedStd = new Subject<string>();
+  insertedSearchedStd$ = this.searchedStd.asObservable()
+  inputValue: string;
   isScreenSmall: boolean
   initial_column = of(['FIRSTNAME', 'LASTNAME'])
   private searchedItem = new Subject<string>();
@@ -32,6 +35,17 @@ export class StudentsDataComponent implements OnInit {
     }))
   )
 
+  classDataWithSearch$ =  combineLatest([
+    this.classData$,
+    this.insertedSearchedStd$.pipe(
+      startWith('')
+    )
+
+  ])
+  .pipe(
+    map(([stds, std]) => stds.filter(sts => std ?  sts.firstname === std.trim().toUpperCase() : true) )
+  
+  )
 
 
 
@@ -78,7 +92,7 @@ export class StudentsDataComponent implements OnInit {
       const dialogRef = this.dialog.open(ReportsComponent, {
         width: '70%',
         height: '95%',
-        data: {data: element, index}
+        data: {data: element, index},
       });
   
       dialogRef.afterClosed().subscribe(result => {
@@ -107,6 +121,15 @@ export class StudentsDataComponent implements OnInit {
   
     
   
+    
+    }
+
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.inputValue = filterValue;
+    
+      this.searchedStd.next(filterValue)
+    
     
     }
 

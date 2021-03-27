@@ -1,17 +1,27 @@
+<div class="close">
+    <mat-icon (click) = "closeDialog()"> cancel_presentation</mat-icon>
+</div>
+
+<div class="img">
+    <span><img class="image" mat-card-image src="https://www.pinclipart.com/picdir/middle/157-1578186_user-profile-default-image-png-clipart.png" alt="User Profile">
+     </span>
+</div>
 <p>{{currentStudent.firstname}}</p>
 <div class="main">
     <form #form="ngForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
             <input matInput  type="number" placeholder="enter amount paid" required name="paid" #amountPaidField='ngModel' [(ngModel)]="amount.paid">
         </mat-form-field>
-        <div>
+
+        <div class="buttons">
+            <mat-icon (click)="previousStudent()">keyboard_arrow_left</mat-icon>
+            <mat-icon (click)="nextStudent()">keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="submit">
             <button mat-button [disabled]="form.invalid">submit</button>
         </div>
     </form>
   
-    <div class="buttons">
-        <mat-icon (click)="previousStudent()">keyboard_arrow_left</mat-icon>
-        <mat-icon (click)="nextStudent()">keyboard_arrow_right</mat-icon>
-    </div>
+ 
 </div>
 

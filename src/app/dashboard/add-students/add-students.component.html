@@ -12,15 +12,19 @@
     <form #form="ngForm" (ngSubmit)="addStudent()">
         <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="firstname" required name="firstname" #firstnameField='ngModel' [(ngModel)]="studentsData.firstname">
+            <small [hidden] = "firstnameField.valid || firstnameField.untouched">firstname is required</small>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput type="text" placeholder="lastname" required name="lastname" #lastnameField='ngModel' [(ngModel)]="studentsData.lastname">   
+            <small [hidden] = "lastnameField.valid || lastnameField.untouched">lastname is required</small>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput type="number" placeholder="age" required name="age" #ageField='ngModel' [(ngModel)]="studentsData.age">
+            <small [hidden] = "ageField.valid || ageField.untouched">age is required</small>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <input matInput type="number" placeholder="tel number" required name="guardians_tel" #guardians_telField='ngModel' [(ngModel)]="studentsData.guardians_tel">
+            <small [hidden] = "guardians_telField.valid || guardians_telField.untouched">tel is required</small>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-select name="gender"  genderField='ngModel' [(ngModel)]="studentsData.gender">
@@ -30,9 +34,7 @@
             </mat-select>
         </mat-form-field>
        
-        <!-- <span [hidden] = "usernameField.valid || usernameField.untouched">username is required</span> -->
-        <!-- <input type="password" placeholder="password" required name="password" #passwordField = 'ngModel' [(ngModel)]="studentsData.password"> -->
-        <!-- <span [hidden] = "passwordField.valid || passwordField.untouched">password is required</span> -->
+  
         <div>
             <button [disabled]="form.invalid">submit</button>
         </div>

@@ -27,14 +27,21 @@
 a{
   text-decoration: none;
 }
-ul li{
-  list-style-type: none;
-  padding:10px;
-}
 ul{
-  padding:0
+  padding: 0;
 }
 
+.nav-text{
+  font-weight: 600;
+}
+
+
+
+ul li{
+ text-transform: uppercase;
+ list-style-type: none;
+ padding: 10px
+}
 .sidebar{
   padding: 1em;
 }

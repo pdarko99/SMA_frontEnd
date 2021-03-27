@@ -9,12 +9,28 @@ form {
     text-align: center;
 }
 
+.close{
+    text-align: end;
+}
+
 form button {
     width: 50%;
     padding: 6px;
     background-color: #4285F4;
     color: #fff;
     margin: 10px;
+}
+
+.submit{
+    margin-top: 2em;
+}
+.image{
+    width:100px;
+    height: 100px;
+}
+
+.img{
+    text-align: center;
 }
 
 p{

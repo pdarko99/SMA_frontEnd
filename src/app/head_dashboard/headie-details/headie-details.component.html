@@ -13,29 +13,64 @@
             </div>
             <div class="sidebar">
             <section class="sectionA">
-                <h3>CLASSES</h3>
+                <ul>
+                    <li>                                   
+                        <a >
+                        
+                        <span class="nav-text">classes</span>
+                        </a>
+                        </li> 
+                </ul>
                 <div *ngIf="schoolData$ | async as schoolData">
-                    <ul *ngFor="let classes of schoolData">
-                            <li><a [routerLink]="['class']" [queryParams]="{class:classes.class}" >{{classes.class}}</a></li>           
-                    </ul>
+                    <div  *ngFor="let classes of schoolData">
+                        <ul>
+                            <li>                                   
+                                <a [routerLink]="['class']" [queryParams]="{class:classes.class}">
+                                
+                                <span class="nav-text">{{classes.class}}</span>
+                                </a>
+                                </li> 
+                        </ul>
+                    </div>
+               
                 </div>
             </section>
        
             <section class="sectionB">
-                <h3>ABOUT</h3>
+                <ul>
+                    <li>                                   
+                        <a >
+                        
+                        <span class="nav-text">about</span>
+                        </a>
+                        </li> 
+                </ul>
                 <div>
                     <ul>
-                        <li>
-                                <a [routerLink]="['aboutHead']">You</a>
-                        </li>
-                        <li>
-                             <a [routerLink]="['school']">School</a>
-                        </li>
-                        <li>
-                    <a [routerLink]="['staffInfo']">Staff Info</a>
+                        <li>                                   
+                            <a [routerLink]="['aboutHead']">
                             
-                        </li>
+                            <span class="nav-text">You</span>
+                            </a>
+                            </li> 
                     </ul>
+                    <ul>
+                        <li>                                   
+                            <a [routerLink]="['school']">
+                            
+                            <span class="nav-text">School</span>
+                            </a>
+                            </li> 
+                    </ul>
+                    <ul>
+                        <li>                                   
+                            <a  [routerLink]="['staffInfo']">
+                            
+                            <span class="nav-text">Staff Info</span>
+                            </a>
+                            </li> 
+                    </ul>
+              
                 </div>
         
             </section>

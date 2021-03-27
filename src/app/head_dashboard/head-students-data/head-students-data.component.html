@@ -1,4 +1,4 @@
-<div>
+<div class="perf">
     <button (click) = 'performance()'>Performance</button>
 </div>
 
@@ -31,7 +31,7 @@
               </ul></th>
               <td mat-cell *matCellDef="let element"> <ul>
                 <li>{{element[sub]?.totalScore}}</li>
-                <li>{{element[sub]?.totalScore | convertToGrades}}</li>
+                <li *ngIf ="element[sub]?.totalScore">{{element[sub]?.totalScore | convertToGrades}}</li>
               </ul></td>
       
           </ng-container>

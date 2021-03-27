@@ -17,6 +17,16 @@ form button {
     margin: 10px;
 }
 
+.image{
+    width:100px;
+    height: 100px;
+}
+
+.img{
+    margin-top: 1.5em;
+    text-align: center;
+}
+
 p{
     text-align: center;
     margin-top: 1em;

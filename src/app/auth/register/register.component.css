@@ -10,7 +10,12 @@
     
     /* grid-auto-rows: min-content; */
   }
-
+.radios {
+  /* text-align:justify */
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-evenly;
+}
     button {
   
       background-color: #3f51b5;
@@ -21,7 +26,7 @@
 
   .section2{
     width: 80%;
-    height: 80%;
+    height: 85%;
     margin: auto
   }
 
@@ -29,7 +34,7 @@
   .card {
     margin : auto;
     width: 80%;
-    /* height: 50%; */
+    /* height: 100%; */
     text-align: center
   }
 

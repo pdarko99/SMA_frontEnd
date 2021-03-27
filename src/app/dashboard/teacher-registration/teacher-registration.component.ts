@@ -4,6 +4,7 @@ import {  combineLatest, EMPTY, Subject } from 'rxjs';
 import { catchError, map, pairwise, startWith, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
+import { register } from 'src/app/shared/registerClass';
 
 @Component({
   selector: 'app-teacher-registration',
@@ -26,12 +27,14 @@ export class TeacherRegistrationComponent implements OnInit {
   set count(value: number){
     this._count = value
   }
-
+  takenClass:string 
+  takenSub: string
   set currentClass(value: string){
     this._currentClass = value
   }
   teacherRegisterForm :FormGroup
   errMsg: string;
+  staff: register[]
   private classSubjects = new Subject<string>();
   insertedSubjects$ = this.classSubjects.asObservable();
 
@@ -42,6 +45,8 @@ export class TeacherRegistrationComponent implements OnInit {
       return EMPTY
     })
  )
+
+ 
 
   classWithSubjects$ = combineLatest([
     this.adminservice.schoolData$,
@@ -66,15 +71,37 @@ export class TeacherRegistrationComponent implements OnInit {
       value => this.setValidation(value)
     )
 
+    this.teacherRegisterForm.get('classTeacher').valueChanges.subscribe(
+        value => {
+          const classTeacher = this.teacherRegisterForm.get('classTeacher');
+          for (let staff of this.staff){
+            if(staff.data?.classTeacher ===value){
+              this.takenClass = `${value} has been taken please select another`
+              break;
+            }else{
+              this.takenClass = ''
+            }
+
+          }
+        }
+    )
+
+    this.authservice.getAllStaff().subscribe(
+      res => {this.staff = res; }
+    )
+
+
   
   }
+  
 
   setValidation(value: string): void{
     const classTeacher = this.teacherRegisterForm.get('classTeacher');
-    if(value === 'subject teacher only'){
-      //how to disabled a text field to be googled
-      classTeacher.disabled;
+    if(value === 'Subject Teacher only'){
+      classTeacher.disable()
       classTeacher.clearValidators
+    }else{
+      classTeacher.enable()
     }
     classTeacher.updateValueAndValidity()
   }
@@ -100,6 +127,15 @@ export class TeacherRegistrationComponent implements OnInit {
     const group = this.fb.group({
       subject:  ['', [Validators.required]]
     })
+    group.get('subject').valueChanges.subscribe(value => {
+      let foundSub = this.staff.filter(y => y.data?.subjectGroup.find(x => x.class === this.currentClass)).filter(x => x.data.subjectGroup.find(x => x.subjects.find(y => y.subject === value)))
+      if(foundSub.length){
+        return this.takenSub = `${value}  has already been taken please select another subject`
+      }
+      return this.takenSub = ''
+        
+    })
+
     return group
   }
   
@@ -123,12 +159,10 @@ addIndividualSubs(subs): void {
 
   onSubmit(): void {
     clearInterval(this.subjectss)
-    console.log(this.teacherRegisterForm.value, 'from thes.value')
     if (this.teacherRegisterForm.valid){
-     console.log('logging in a funct', this.teacherRegisterForm.value)
-
-      this.authservice.updateRegisterService(this.teacherRegisterForm.value).subscribe(res => console.log(res))
+      this.authservice.updateRegisterService(this.teacherRegisterForm.value).subscribe(res => this.teacherRegisterForm.reset(this.teacherRegisterForm.value))
     }
+    
   }
 
 }

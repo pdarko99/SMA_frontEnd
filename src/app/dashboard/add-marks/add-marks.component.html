@@ -23,7 +23,11 @@
             <input matInput  type="number" placeholder="enter exam score" required name="exam_score" #class_scoreField='ngModel' [(ngModel)]="marks.examScore">
         </mat-form-field>
 
-        <div>
+        <div class="buttons">
+            <mat-icon (click)="previousStudent()">keyboard_arrow_left</mat-icon>
+            <mat-icon (click)="nextStudent()">keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="submit">
             <button mat-button [disabled]="form.invalid">submit</button>
         </div>
     </form>
@@ -40,10 +44,7 @@
         <!-- <button [disabled]="form.invalid">submit</button> -->
 
     <!-- </form> -->
-    <div class="buttons">
-        <mat-icon (click)="previousStudent()">keyboard_arrow_left</mat-icon>
-        <mat-icon (click)="nextStudent()">keyboard_arrow_right</mat-icon>
-    </div>
+ 
 
 </div>
 

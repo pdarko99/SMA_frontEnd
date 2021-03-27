@@ -21,14 +21,11 @@ export class StudentsInfoEditComponent implements OnInit {
     guardians_tel:this.data.guardians_tel,
   }
   ngOnInit(): void {
-    console.log(this.data._id, 'from data');
   }
 
   delete(): void {
     this.deleteOrUpdate = ' '
-    // this.deleteOrUpdate = this.data._id
     this.delOrUpdate = this.data._id
-    console.log(this.deleteOrUpdate, 'from this.update or delete')
     this.closeDialog()
   }
 
@@ -44,7 +41,6 @@ export class StudentsInfoEditComponent implements OnInit {
     this.dialogRef.close({
       event: 'close', data : this.delOrUpdate
     }) 
-    console.log(this.deleteOrUpdate, 'from button')
   }
 
 

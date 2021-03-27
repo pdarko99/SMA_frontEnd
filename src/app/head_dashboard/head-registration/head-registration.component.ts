@@ -17,7 +17,8 @@ export class HeadRegistrationComponent implements OnInit {
         teachers: ['', [Validators.required]],
         headmasters: ['', [Validators.required]],
         accounts: ['', [Validators.required]],
-        classGroup: this.fb.array([ this.buildclasses])
+        classGroup: this.fb.array([ this.buildclasses]),
+        completed: false,
       })
   }
 
@@ -50,7 +51,7 @@ export class HeadRegistrationComponent implements OnInit {
     // console.log(this.headRegistrationForm.value)
     if(this.headRegistrationForm.valid){
       this.adminservice.submitData(this.headRegistrationForm.value).subscribe(
-        res => console.log(res),
+        res => this.headRegistrationForm.reset(this.headRegistrationForm.value),
         err => console.log(err)
       )
     }

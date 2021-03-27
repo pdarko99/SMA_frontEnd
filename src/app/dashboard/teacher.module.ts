@@ -58,6 +58,9 @@ import { StudentsPerformanceComponent } from './students-performance/students-pe
       // { path: 'user/teacher',  component: TeacherComponent, children:[
         {
           path: 'classDetails', component: ClassDetailsComponent, children: [
+            { 
+              path: '', redirectTo: 'studentsInfo', pathMatch:'full'
+            },
             {path: 'studentsData', component: StudentsDataComponent},
             {path: 'studentsInfo', component: StudentsInfoComponent},
             // {path: 'addStudents', component: StudentsDataComponent}

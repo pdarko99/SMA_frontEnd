@@ -14,7 +14,8 @@ import { PaymentComponent } from '../payment/payment.component';
 })
 export class AccountDetailsComponent implements OnInit {
 students: students[]
-private _queryClass: string
+inputValue: string
+private _queryClass: string;
 get queryClass(): string {
   return this._queryClass
 }
@@ -44,8 +45,9 @@ dataSource : MatTableDataSource<students>
   openDialog() {
     const dialogRef = this.dialog.open(PaymentComponent, {
       width: '50%',
-      height: '40%',
-      data: this.students
+      height: '60%',
+      data: this.students,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -53,7 +55,6 @@ dataSource : MatTableDataSource<students>
       let index: number = this.students.findIndex(student => student._id === result.data.id)
       this.students[index].fees = {}
       this.students[index].fees.paid = result.data.data.paid
-      console.log(this.students[index].fees, 'from .fees')
       // this.students[index].fees = result.data.data.paid
       
     });
@@ -62,8 +63,9 @@ dataSource : MatTableDataSource<students>
   openEditDialog(element: students) {
     const dialogRef = this.dialog.open(AccountDetailsEditComponent, {
       width: '50%',
-      height: '40%',
-      data: element
+      height: '60%',
+      data: element,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -81,6 +83,13 @@ dataSource : MatTableDataSource<students>
 
       
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.inputValue = filterValue;
+    // console.log(filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
