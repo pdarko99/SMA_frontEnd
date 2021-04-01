@@ -28,13 +28,16 @@ export class TeacherRegistrationComponent implements OnInit {
     this._count = value
   }
   takenClass:string 
+  personalClass: string
   takenSub: string
   set currentClass(value: string){
     this._currentClass = value
   }
   teacherRegisterForm :FormGroup
   errMsg: string;
-  staff: register[]
+  staff: register[];
+  selectedClasses: string[] = []
+  selectedSubs: string[] = []
   private classSubjects = new Subject<string>();
   insertedSubjects$ = this.classSubjects.asObservable();
 
@@ -54,8 +57,8 @@ export class TeacherRegistrationComponent implements OnInit {
 ])
 .pipe(
       map(([data, individualClass]) => data.map(item => item.classGroup.find(items => items.class === individualClass).subjects)),
-      map(info => info[0]) ,
-      tap(finalinfo => console.log(finalinfo))
+      map(info => info[0])
+     
 )
 
   constructor(private fb: FormBuilder, private adminservice: AdminService, private authservice: AuthService) { }
@@ -112,12 +115,18 @@ export class TeacherRegistrationComponent implements OnInit {
       subjects: this.fb.array([ this.buildIndividualSubjects])
     })
     group.get('class').valueChanges.subscribe(res => {
-   
-      let _this = this;
       this.currentClass = res
-      this.subjectss = setInterval(function(){
-         _this.setClass(res)
-      },2500)
+
+     
+      if(this.checkClass(this.selectedClasses, res, false))
+        return
+
+        let _this = this;
+        this.subjectss = setInterval(function(){
+           _this.setClass(_this.currentClass)
+        },100)
+    
+
     })
 
     return group
@@ -128,7 +137,15 @@ export class TeacherRegistrationComponent implements OnInit {
       subject:  ['', [Validators.required]]
     })
     group.get('subject').valueChanges.subscribe(value => {
-      let foundSub = this.staff.filter(y => y.data?.subjectGroup.find(x => x.class === this.currentClass)).filter(x => x.data.subjectGroup.find(x => x.subjects.find(y => y.subject === value)))
+      if(this.checkClass(this.selectedSubs, value, true))
+      return
+
+      let foundSub = this.staff.filter(y => y.data?.subjectGroup.find(x =>
+         x.class === this.currentClass)).filter(x => 
+          x.data.subjectGroup.find(x => 
+            x.subjects.find(y =>
+               y.subject === value)))
+
       if(foundSub.length){
         return this.takenSub = `${value}  has already been taken please select another subject`
       }
@@ -147,6 +164,7 @@ addIndividualSubs(subs): void {
   subs.get("subjects").push(this.buildIndividualSubjects)
 }
   addSubjects(): void{
+    this.selectedSubs = []
     clearInterval(this.subjectss)
     this.setClass('');
     this.subjects.push(this.buildClasses);
@@ -156,6 +174,45 @@ addIndividualSubs(subs): void {
   get subjects(): FormArray {
     return <FormArray>this.teacherRegisterForm.get('subjectGroup');
   }
+
+  removeAtIndex(index): FormArray{
+    return this.subjects.at(index).get('subjects') as FormArray
+  }
+
+  removeClass(index){
+    this.subjects.removeAt(index)
+  }
+
+  removeSubject(clas, subject){
+    this.removeAtIndex(clas).removeAt(subject)
+  }
+
+  checkClass(arr, value, flag): string{
+    if(arr.length){
+      arr.forEach(element => {
+        if(element === value){
+          if (flag){
+            this.takenSub = `it seems you previously selected ${value}`
+          }else{
+            this.personalClass =   `it seems you previously selected ${value}`
+          }
+        }else{
+          arr.push(value);
+          if(flag){
+            this.takenSub = ''
+          }else{
+            this.personalClass =   ''
+          }
+        }
+      });
+    }else{
+      arr.push(value)
+    }
+
+    return this.personalClass || this.takenSub
+
+  }
+
 
   onSubmit(): void {
     clearInterval(this.subjectss)

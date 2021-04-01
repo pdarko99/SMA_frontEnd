@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { retry } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-class-performance',
@@ -31,13 +31,27 @@ export class ClassPerformanceComponent implements OnInit {
       grade: 'F'
     }
   ]
-  gradesOfStudents = []
+  gradesOfStudents = [
+
+  ]
   rating: number
+  view = [700, 400]
+  //options
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true
+  isDoughnut: boolean = false;
+  legendPosition = 'below';
+  colorScheme = {
+    domain: [
+      '#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'
+    ]
+  }
   constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
     this.stdentsInfo(this.rangeOfGrades)
-
+    console.log(this.gradesOfStudents, 'from grade of stda')
   }
 
   stdentsInfo(grades): any {
@@ -45,7 +59,7 @@ export class ClassPerformanceComponent implements OnInit {
       let count = this.data.data.filter((i) => {
         return (i[this.data.subject]?.totalScore >= element.start &&  i[this.data.subject].totalScore <= element.end) 
       })
-      this.gradesOfStudents.push({grade: element.grade, number: count.length})
+      this.gradesOfStudents.push({name: element.grade, value: count.length})
     });
     return this.gradesOfStudents
   }

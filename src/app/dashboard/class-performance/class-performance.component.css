@@ -1,3 +1,17 @@
-.intro{
+.main{
+    width: 80%;
+    margin: 0 auto;
     text-align: center;
+}
+
+.section1{
+    text-align: center;
+}
+
+.pie{
+    margin-top: 2em;
+}
+
+.pie > strong{
+    text-align:left
 }

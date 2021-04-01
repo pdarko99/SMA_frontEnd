@@ -1,7 +1,7 @@
 .main {
     display: grid;
     grid-template-columns: repeat(1fr, 12);
-    grid-template-rows: auto minmax(700px, auto) auto;
+    grid-template-rows: auto minmax(550px, auto) auto;
 }
 .example-spacer {
     flex: 1 1 auto;
@@ -23,12 +23,37 @@
     text-align: center
 }
 
+.add{
+    text-align: right;
+}
 
+.special_field{
+    width: 57%;
+    margin-right: 2em;
+}
 
+/* .add > div{
+    width: 100%;
+} */
 mat-form-field {
-    width: 70%;
+    width: 60%;
     margin: 10px;
 }
+.classes{
+    margin-left: 1.8em;
+    display: flex;
+    justify-content: center
+}
+/* .classes > mat-form-field{
+    width: 50%
+} */
+
+.delete{
+    /* text-align: center; */
+    margin-top: 1.8em;
+    margin-left: 1.5em
+}
+
 mat-card-actions > button {
     padding: 10px;
     margin: 10px;
@@ -55,3 +80,13 @@ button {
     margin-top: 10px;
 }
 
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .main{
+        grid-template-rows: auto minmax(695px, auto) auto;
+    
+    }
+}

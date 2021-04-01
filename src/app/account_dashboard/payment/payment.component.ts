@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
@@ -10,6 +11,12 @@ import { account, students } from 'src/app/shared/studentsClass';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
+  @ViewChild(NgForm) editForm: NgForm
+
+  get isDirty(): boolean {
+    return this.editForm.dirty ? true : false
+  }
   studentsData: students[]
   currentStudent: students
   currentClass: string;
@@ -62,7 +69,7 @@ export class PaymentComponent implements OnInit {
   closeDialog() {
     
     this.dialogRef.close({
-      event: 'close', data : {data: this.amount, id: this.currentStudent._id}
+      event: 'close', data : {data: this.amount, id: this.currentStudent._id, dirty: this.isDirty}
     })
   }
 

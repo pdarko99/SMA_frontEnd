@@ -1,4 +1,3 @@
-<!-- <p *ngIf='classDatawithAdds$ | async'>students-info works!</p> -->
 <div>
 
     <section class="upper">
@@ -47,7 +46,7 @@
       
           
       
-        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
       
         <!-- Row shown when there is no matching data. -->

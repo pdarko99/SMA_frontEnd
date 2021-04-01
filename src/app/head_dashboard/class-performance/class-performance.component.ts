@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { filter, map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
-import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-class-performance',
@@ -11,21 +10,26 @@ import { AdminService } from '../admin.service';
 })
 export class ClassPerformanceComponent implements OnInit {
  subjects: string[]
- ranges: any[] = [];
+ ranges: any[] = [
+ ]
+ range: any [] = []
+
  teachersWithsubs : any[] = []
   
  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private authservice: AuthService) { }
 
   ngOnInit(): void {
     this.calcPerf(this.data.subjects)
-
+    // console.log(this.ranges, 'from ranges')
+   
     this.teachersWithSubjects(this.data.subjects)
   }
 
+  onclick(){
+    console.log(this.ranges, 'from ranges')
+  }
 
-
-
-  calcPerf(subjects): void {
+  calcPerf(subjects): any {
     subjects.forEach((element) => {
       element.forEach(ele => {
         let acc = 0
@@ -34,11 +38,14 @@ export class ClassPerformanceComponent implements OnInit {
              acc += stu[ele].totalScore
             });
             let totalScore = this.calcPerformance(acc)
-            this.ranges.push({subject: ele, acc: totalScore})
-        
-      });
+            this.ranges.push({name: ele,  value: totalScore})
+            console.log(this.ranges, 'from within loop')
+            
+          });
    
     });
+    // return this.ranges
+    // console.log(this.ranges)
   }
 
   teachersWithSubjects(subjects): void {

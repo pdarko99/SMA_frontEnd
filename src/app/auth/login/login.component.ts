@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         // }
         this.router.navigate([`user/${res.position}`])
       },
-        err => this.errorMessage = err)
+        err => this.errorMessage = 'invalid email or password')
   }
 
   ngOnInit(): void {

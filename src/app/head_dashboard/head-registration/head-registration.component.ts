@@ -17,6 +17,7 @@ export class HeadRegistrationComponent implements OnInit {
         teachers: ['', [Validators.required]],
         headmasters: ['', [Validators.required]],
         accounts: ['', [Validators.required]],
+        approvedFees: [0.00, [Validators.required]],
         classGroup: this.fb.array([ this.buildclasses]),
         completed: false,
       })

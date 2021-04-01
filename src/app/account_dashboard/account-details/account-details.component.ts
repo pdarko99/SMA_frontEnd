@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { ClassDetailsService } from 'src/app/dashboard/class-details.service';
+import { AdminService } from 'src/app/head_dashboard/admin.service';
 import { students } from 'src/app/shared/studentsClass';
 import { AccountDetailsEditComponent } from '../account-details-edit/account-details-edit.component';
 import { PaymentComponent } from '../payment/payment.component';
@@ -15,6 +17,11 @@ import { PaymentComponent } from '../payment/payment.component';
 export class AccountDetailsComponent implements OnInit {
 students: students[]
 inputValue: string
+// approvedFees = this.adminservice.schoolData$.pipe(
+//   map(data => data.map(data => data.approvedFees))
+// ) 
+
+approvedFees = 1000.00
 private _queryClass: string;
 get queryClass(): string {
   return this._queryClass
@@ -34,7 +41,7 @@ set queryClass(value: string){
 displayColumns = ['firstname', 'lastname', 'paid', 'arrears', 'edit']
 dataSource : MatTableDataSource<students>
 
-  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute, private classdetails: ClassDetailsService, public dialog: MatDialog, private adminservice: AdminService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -52,9 +59,12 @@ dataSource : MatTableDataSource<students>
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      let index: number = this.students.findIndex(student => student._id === result.data.id)
-      this.students[index].fees = {}
-      this.students[index].fees.paid = result.data.data.paid
+      if (result.data.dirty){
+        let index: number = this.students.findIndex(student => student._id === result.data.id)
+        this.students[index].fees = {}
+        this.students[index].fees.paid = result.data.data.paid
+      }
+
       // this.students[index].fees = result.data.data.paid
       
     });
@@ -75,9 +85,7 @@ dataSource : MatTableDataSource<students>
         this.students[index].fees.paid = result.data.data.paid
         return
       }
-      let index: number = this.students.findIndex(student => student._id === result.data.id)
-      this.students.splice(index, 1)
-      this.dataSource = new MatTableDataSource<students>(this.students)
+
 
 
 

@@ -1,13 +1,30 @@
+<div  class="main">
+    <h2>CLASS PERFORMANCE</h2>
+    <section *ngFor = "let ele of ranges" class="section1">
+        <p>The performance of students in <strong>{{ele.name}}</strong>  is <strong>{{ele.value > 50 ? 'above' : 'below'}}</strong> average.
+            they accumulated a percentage of <strong>{{ele.value}}%</strong>  </p>
+    </section>
 
-<div *ngFor = "let ele of ranges">
- 
-    <p>the performance of students in {{ele.subject}} is {{ele.acc > 50 ? 'above' : 'below'}} average.</p>
-    <p>they accumulated a percentage of {{ele.acc}}% </p>
+
+    <section class="section2" *ngIf ="ranges && ranges.length">
+        <ngx-charts-bar-vertical  [view] = "[1000, 400]" [results] = "ranges" 
+            [yAxisLabel] = "'percentage'" 
+           [showXAxisLabel] = 'true' [showYAxisLabel] = 'true' [xAxis] = 'true' [yAxis] = 'true' [gradient] = "true">
+        </ngx-charts-bar-vertical>
+    </section>
+
+    <div class="title">
+        <strong>teachers</strong>
+    </div>
+    <section class="section3">
+        <span *ngFor = "let ele of teachersWithsubs">{{ele.subject}}:<strong>{{ele.firstname | uppercase}}</strong> <strong>{{ele.lastname | uppercase}}</strong>  </span>
+    </section>
+
 </div>
 
-<div *ngFor = "let ele of teachersWithsubs">
- 
-    <!-- <p>the performance of students in {{ele.subject}} is {{ele.acc > 50 ? 'above' : 'below'}} average.</p>
-    <p>they accumulated a percentage of {{ele.acc}}% </p> -->
-    <p>{{ele.subject}}: {{ele.firstname | uppercase}} {{ele.lastname | uppercase}}</p>
-</div>
+
+
+
+
+
+

@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+
 import { RouterModule } from '@angular/router';
 import { TeacherComponent } from './teacher/teacher.component';
 import { ClassDetailsComponent } from './class-details/class-details.component';
@@ -41,6 +43,8 @@ import { StudentsPerformanceComponent } from './students-performance/students-pe
     StudentsPerformanceComponent
   ],
   imports: [
+    NgxChartsModule,
+
     RouterModule.forChild([
       {
         path: 'aboutTeacher', component: AboutComponent, children: [

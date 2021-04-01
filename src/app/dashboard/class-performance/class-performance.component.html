@@ -1,9 +1,23 @@
-<div *ngFor = "let stds of gradesOfStudents" class="intro">
-    <p>A total number of {{stds.number}} student(s) had a grade of {{stds.grade}} representing a percentage of {{stds.number/data.data.length * 100}}%</p>
-</div>
+<section class="section1">
+    <h2>CLASS PERFORMANCE</h2>
+    <h3>The total number of students in the class are <strong>{{data.data.length}}</strong>  below are the stats for the class</h3>
+</section>
+<section class="main">
+    <div *ngFor = "let stds of gradesOfStudents">
+        <p>A total number of <strong>{{stds.value}}</strong> student(s) had a grade of <strong>{{stds.name}}</strong> representing a percentage of <strong> {{stds.value/data.data.length * 100}}%</strong></p>
+    </div>
+    
+    <div class="pie">
+        <strong>here is for the pie chart baby nothing special</strong>
+        <ngx-charts-pie-chart [view] = "view" [scheme] ="colorScheme" [results] ="gradesOfStudents"
+        [gradient] ="gradient"  [legend] ="true" [legendTitle] = "'GRADES'"
+         [labels] ="showLabels"[legendPosition] ="legendPosition" [doughnut] ="isDoughnut">
+       </ngx-charts-pie-chart>
+    </div>
+    
+    
 
-<div>
-    <p>here is for the pie chart baby nothing special bro</p>
-</div>
+</section>
+
 
 

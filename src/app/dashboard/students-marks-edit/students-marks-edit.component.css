@@ -5,15 +5,20 @@
   }
 
   .image{
-    width:100px;
+    /* width:100px; */
     height: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-.upper{
-    display:flex;
-    justify-content: flex-end;
-}
+
  .img{
      text-align: center;
+ }
+ .upper{
+     display: flex;
+     justify-content: space-between;
+
+     /* justify-content: space-between; */
  }
   
 mat-form-field {

@@ -3,6 +3,8 @@
     justify-content: center;
 }
 
+
+
 .about{
     text-align: center;
 }
@@ -13,14 +15,62 @@
     justify-content: space-around
 }
 
+.print{
+    text-align: center;
+}
+
+button{
+    width: 30%;
+    padding: 6px;
+    background-color: #4285F4;
+    color: #fff;
+    margin: 10px;
+  }
+  .example-container{
+      width: 80%;
+      margin: 0 auto;
+  }
+
+  
+
 
 
 table {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
   }
   
   .mat-form-field {
     font-size: 14px;
     width: 100%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .example-container {
+      /* height: 600px; */
+      width: 350px;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    
+    .table {
+      width: 100%;
+    }
+ 
+    
+    th.mat-column-position, td.mat-column-position {
+      padding-left: 8px;
+    }
+    th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+
+      padding: 1em;
+  }
+    
+    .mat-table-sticky-border-elem-right {
+      border-left: 1px solid #e0e0e0;
+    }
+    
+    .mat-table-sticky-border-elem-left {
+      border-right: 1px solid #e0e0e0;
+    }
+    
   }

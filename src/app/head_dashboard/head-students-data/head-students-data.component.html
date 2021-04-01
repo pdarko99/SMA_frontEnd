@@ -1,14 +1,18 @@
-<div class="perf">
+<div class="perf" *ngIf="headClass && headClass.length">
     <button (click) = 'performance()'>Performance</button>
 </div>
 
-<div>
+<div *ngIf="!headClass.length" class="nodata">
+   <h3>Oops nothing to show here....Please wait until the class master populates the class with data</h3>
+</div>
+
+<div *ngIf="headClass && headClass.length">
     <mat-form-field  *ngIf = "combinedSubjects$ | async" >
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 
     </mat-form-field>
-    <div class="example-container mat-elevation-z8">
+    <div class="example-container mat-elevation-z8" *ngIf="headClass && headClass.length">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf = "combinedSubjects$ | async as p;">
       
       
@@ -39,7 +43,7 @@
       
           
       
-        <tr mat-header-row *matHeaderRowDef="p"></tr>
+        <tr mat-header-row *matHeaderRowDef="p; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: p;"></tr>
       
         <!-- Row shown when there is no matching data. -->

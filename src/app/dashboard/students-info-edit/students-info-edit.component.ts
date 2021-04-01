@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { students } from 'src/app/shared/studentsClass';
 
@@ -8,9 +9,13 @@ import { students } from 'src/app/shared/studentsClass';
   styleUrls: ['./students-info-edit.component.css']
 })
 export class StudentsInfoEditComponent implements OnInit {
+  @ViewChild(NgForm) editForm: NgForm
 
-  constructor(public dialogRef: MatDialogRef<StudentsInfoEditComponent>, @Inject(MAT_DIALOG_DATA) public data: students) { }
-  deleteOrUpdate: students | string = '';
+  get isDirty(): boolean {
+    return this.editForm.dirty ? true : false
+  }
+
+    deleteOrUpdate: students | string = '';
   delOrUpdate: students | string;
   studentsData: students = {
     _id: this.data._id,
@@ -20,6 +25,8 @@ export class StudentsInfoEditComponent implements OnInit {
     gender: this.data.gender,
     guardians_tel:this.data.guardians_tel,
   }
+  constructor(public dialogRef: MatDialogRef<StudentsInfoEditComponent>, @Inject(MAT_DIALOG_DATA) public data: students) { }
+
   ngOnInit(): void {
   }
 
@@ -39,7 +46,7 @@ export class StudentsInfoEditComponent implements OnInit {
   closeDialog() {
     console.log(this.delOrUpdate)
     this.dialogRef.close({
-      event: 'close', data : this.delOrUpdate
+      event: 'close', data : this.delOrUpdate, dirty: this.isDirty
     }) 
   }
 

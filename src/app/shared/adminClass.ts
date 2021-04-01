@@ -1,5 +1,6 @@
 export interface admin {
     teachers: number;
+    approvedFees? : number;
     headmasters: number;
     accounts: number;
     classGroup: classes[]

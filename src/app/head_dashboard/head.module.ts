@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { NgxChartsModule } from "@swimlane/ngx-charts"
+
 import { RouterModule } from '@angular/router';
 import { HeadieDetailsComponent } from './headie-details/headie-details.component';
 import { HeadmasterComponent } from '../headmaster/headmaster.component';
@@ -21,6 +23,7 @@ import { ClassPerformanceComponent } from './class-performance/class-performance
     ClassPerformanceComponent,
   ],
   imports: [
+    NgxChartsModule,
     RouterModule.forChild([
       // { path: 'user/head', component: HeadieDetailsComponent, children: [
         {

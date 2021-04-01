@@ -3,21 +3,22 @@ table {
     
   }
   .example-container {
-    /* height: 600px; */
-    width: 100%;
+    height: 600px;
+     width:1140px;
     max-width: 100%;
     overflow: auto;
     margin:0 auto
   }
 
-  .upper{
-    display:flex;
-    justify-content: space-between;
+  .search{
+    margin: 0 auto;
+    width: 93%
+
   }
 
-  .upper > div{
-    margin-top: 10px;
-  }
+
+
+
 
   button {
   
@@ -29,7 +30,7 @@ table {
 
   .mat-form-field {
     font-size: 14px;
-    width: 70%;
+    width: 100%;
   }
   ul li{
     list-style-type: none;

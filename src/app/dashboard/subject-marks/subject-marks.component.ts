@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
-import { marks } from 'src/app/shared/marksClass';
 import { students } from 'src/app/shared/studentsClass';
-import { subjectMarks } from 'src/app/shared/subjectMarks';
 import { ClassDetailsService } from '../class-details.service';
 import {MatDialog} from '@angular/material/dialog';
 import { AddMarksComponent } from '../add-marks/add-marks.component';
@@ -77,12 +74,14 @@ export class SubjectMarksComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
-      this.studentsData[index][this.subject] = {}
-      this.studentsData[index][this.subject].classScore = result.data.data.classScore
-      this.studentsData[index][this.subject].examScore = result.data.data.examScore
-      this.studentsData[index][this.subject].totalScore = +result.data.data.examScore + (+result.data.data.classScore)
+      if(result.data.dirty){
+        let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
+        this.studentsData[index][this.subject] = {}
+        this.studentsData[index][this.subject].classScore = result.data.data.classScore
+        this.studentsData[index][this.subject].examScore = result.data.data.examScore
+        this.studentsData[index][this.subject].totalScore = +result.data.data.examScore + (+result.data.data.classScore)
+      }
+    
 
     });
   }
@@ -125,9 +124,6 @@ export class SubjectMarksComponent implements OnInit {
 
         return
       }
-      let index: number = this.studentsData.findIndex(student => student._id === result.data.id)
-      this.studentsData.splice(index, 1);
-      this.dataSource = new MatTableDataSource<students>(this.studentsData)
 
     });
   }

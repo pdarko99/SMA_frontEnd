@@ -10,6 +10,12 @@ table {
   .button{
       text-align: center;
   }
+  button{
+    padding: 6px;
+    background-color: #4285F4;
+    color: #fff;
+    margin: 10px;
+  }
 
   th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 

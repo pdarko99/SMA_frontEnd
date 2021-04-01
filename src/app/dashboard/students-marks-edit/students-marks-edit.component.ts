@@ -38,10 +38,10 @@ export class StudentsMarksEditComponent implements OnInit {
     this.closeDialog()
   }
 
-  onDelete(): void {
-    this.delete = true;
-    this.closeDialog();
-  }
+  // onDelete(): void {
+  //   this.delete = true;
+  //   this.closeDialog();
+  // }
 
   closeDialog() {
     

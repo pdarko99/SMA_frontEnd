@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { students } from 'src/app/shared/studentsClass';
@@ -10,6 +11,12 @@ import { ClassDetailsService } from '../class-details.service';
   styleUrls: ['./add-marks.component.css']
 })
 export class AddMarksComponent implements OnInit {
+
+  @ViewChild(NgForm) editForm: NgForm
+
+  get isDirty(): boolean {
+    return this.editForm.dirty ? true : false
+  }
   studentsData: students[];
   currentStudent: students;
   get currentClass(): string{
@@ -87,7 +94,7 @@ export class AddMarksComponent implements OnInit {
   closeDialog() {
     
     this.dialogRef.close({
-      event: 'close', data : {data: this.marks, id: this.currentStudent._id}
+      event: 'close', data : {data: this.marks, id: this.currentStudent._id, dirty: this.isDirty}
     })
   }
 }

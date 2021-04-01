@@ -109,7 +109,8 @@ export class StudentsInfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.insertedStudent.next(result.data)
+      if (result.dirty || (result.data !== '' && result.data !== undefined))
+        return this.insertedStudent.next(result.data)
     });
 
 }
@@ -124,9 +125,12 @@ AddStudents() {
 
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
-    this.addedStudent = result.data
-    this.updateStu = false
-    this.insertedStudent.next(this.addedStudent)
+    if (result.dirty){
+      this.addedStudent = result.data
+      this.updateStu = false
+      this.insertedStudent.next(this.addedStudent)
+    }
+ 
 
   });
 

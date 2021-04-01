@@ -11,6 +11,10 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .nodata{
+    text-align: center;
+  }
   
 button {
   
