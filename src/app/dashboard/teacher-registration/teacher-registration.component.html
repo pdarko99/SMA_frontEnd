@@ -55,7 +55,7 @@
                                    
                             </mat-form-field>
                             <div class="delete">
-                                <mat-icon (click) ="removeClass(ii)">menu</mat-icon>
+                                <mat-icon (click) ="removeClass(ii)">delete</mat-icon>
                             </div>
                          </div>
 
@@ -73,7 +73,7 @@
                                             </mat-select>
                                         </mat-form-field>
                                         <div class="delete">
-                                            <mat-icon (click) = "removeSubject(ii, i)">menu</mat-icon>
+                                            <mat-icon (click) = "removeSubject(ii, i)">delete</mat-icon>
                                         </div>
                                     </div>
                                 
@@ -81,8 +81,7 @@
                                 </div>
                           
                                 <div class="add">
-
-                                    <mat-icon  (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">menu</mat-icon>
+                                    <mat-icon  (click)="addIndividualSubs(classes)"  *ngIf="classWithSubjects$ | async as classWithSubjects">add</mat-icon>
                                 </div>
                         </div>
                     </div>
