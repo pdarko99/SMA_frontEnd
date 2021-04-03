@@ -15,3 +15,8 @@ interface classes {
 export interface subject {
     subject: string
 }
+
+export interface feedback{
+    username: string;
+    text: string;
+}

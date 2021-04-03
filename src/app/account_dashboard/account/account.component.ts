@@ -1,5 +1,6 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
@@ -23,7 +24,8 @@ export class AccountComponent implements OnInit {
     })
  )
 
-  constructor(private adminservice: AdminService, private breakpointObserver: BreakpointObserver) { }
+   
+    constructor(private adminservice: AdminService, private breakpointObserver: BreakpointObserver, private router: Router) { }
 
   ngOnInit(): void {
     this.breakpointObserver.observe([
@@ -33,6 +35,12 @@ export class AccountComponent implements OnInit {
         this.isScreenSmall = state.matches
       }
     )
+  }
+
+  logout(): void{
+    localStorage.clear()
+    this.router.navigate(['login'])
+
   }
 
 

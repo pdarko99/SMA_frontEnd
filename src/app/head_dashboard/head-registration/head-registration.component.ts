@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AdminService } from '../admin.service';
 export class HeadRegistrationComponent implements OnInit {
 
   headRegistrationForm: FormGroup
-  constructor(private fb: FormBuilder, private adminservice: AdminService) { }
+  constructor(private fb: FormBuilder, private adminservice: AdminService, private router: Router) { }
 
   ngOnInit(): void {
       this.headRegistrationForm = this.fb.group({
@@ -52,7 +53,10 @@ export class HeadRegistrationComponent implements OnInit {
     // console.log(this.headRegistrationForm.value)
     if(this.headRegistrationForm.valid){
       this.adminservice.submitData(this.headRegistrationForm.value).subscribe(
-        res => this.headRegistrationForm.reset(this.headRegistrationForm.value),
+        res => {
+          this.headRegistrationForm.reset(this.headRegistrationForm.value)
+          return  this.router.navigate(['user/teacher'])
+        },
         err => console.log(err)
       )
     }

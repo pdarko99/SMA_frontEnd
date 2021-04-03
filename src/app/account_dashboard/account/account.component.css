@@ -13,6 +13,13 @@
     grid-template-rows: auto minmax(700px, auto) auto;
 
 }
+
+button {
+  width:70%;
+  background-color:#4285F4;
+  color: #fff;            
+  padding: 7px;
+}
 .example-spacer {
     flex: 1 1 auto;
   }

@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="example-container"  *ngIf="teachersData.data">
     <mat-drawer #sidenav class="mat-elevation-z10" [mode]="isScreenSmall ? 'over' : 'side'" [opened] = "!isScreenSmall" >
         <div>
             <mat-toolbar color="primary">
@@ -11,19 +11,19 @@
         </div>
         <nav  class="sidenav">
             <section >
-                <ul>
+                <ul *ngIf="teachersData.data?.classTeacher">
                     <li>                                   
                         <a >
                         
-                        <span class="nav-text">class Master</span>
+                        <span class="nav-text" >class Master</span>
                         </a>
                         </li> 
                 </ul>
-                <ul>
+                <ul *ngIf="teachersData.data?.classTeacher">
                     <li >                                   
                         <a >
                         
-                        <span ><a [routerLink]="['classDetails']">{{teachersData.data.classTeacher}}</a></span>
+                        <span ><a [routerLink]="['classDetails']" >{{teachersData.data?.classTeacher}}</a></span>
                         </a>
                         </li> 
                 </ul>
@@ -100,8 +100,31 @@
                         </a>
                         </li> 
                 </ul>
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <span >
+                            <a (click) ="openFeedback()">feedback</a>
+
+
+                        </span>
+                        </a>
+                        </li> 
+                </ul>
+                <ul>
+                    <li >                                   
+                        <a >
+                        
+                        <span>
+                            <button mat-button (click) ="logout()">logout</button>
+                        </span>
+                        </a>
+                        </li> 
+                </ul>
             </div>
         </nav>
+        
 
     </mat-drawer>
     <mat-drawer-content>

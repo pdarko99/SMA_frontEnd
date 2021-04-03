@@ -10,6 +10,7 @@ import { AboutHeadComponent } from './about-head/about-head.component';
 import { SchoolComponent } from './school/school.component';
 import { StaffInfoComponent } from './staff-info/staff-info.component';
 import { ClassPerformanceComponent } from './class-performance/class-performance.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ClassPerformanceComponent } from './class-performance/class-performance
     SchoolComponent,
     StaffInfoComponent,
     ClassPerformanceComponent,
+    FeedbackComponent,
   ],
   imports: [
     NgxChartsModule,

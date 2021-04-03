@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { AdminService } from 'src/app/head_dashboard/admin.service';
+import { admin } from 'src/app/shared/adminClass';
 import { User } from 'src/app/shared/userClass';
 import { AuthService } from '../auth.service';
 
+
 function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
+  
   const passwordControl = c.get('password');
   const confirmPassword = c.get('confirmPassword');
 
@@ -23,9 +28,10 @@ function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  teachersData: admin[]
   UserObject: User = null
   registerForm: FormGroup
-  constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private adminservice: AdminService) { }
 
   ngOnInit(): void {
     this.registerForm =  this.fb.group({
@@ -39,7 +45,13 @@ export class RegisterComponent implements OnInit {
       position:''
       
     })
+
+   this.adminservice.schoolData$.subscribe(
+     res => this.teachersData = res
+   )
   }
+  
+
 
   onSubmit(): void{
     if(this.registerForm.valid){
@@ -47,11 +59,21 @@ export class RegisterComponent implements OnInit {
             .subscribe(res => {
               this.UserObject = res;
               this.authservice.UserObject = res;
-              console.log(res)
-              // this.router.navigate([`user/ ${res.position}`])
-              this.router.navigate([`user/${res.position}`])
+              localStorage.setItem('userInfo', JSON.stringify(res))
+              if (res.position === 'teacher'){
+                if(res.data){
+                  return  this.router.navigate([`user/${res.position}`])
+                }
+                return this.router.navigate(['teacher/registration'])
+              }
+              if(res.position === 'head'){
+                  if(this.teachersData && this.teachersData.length){
+                    return this.router.navigate([`user/${res.position}`])
+                  }
+                 return this.router.navigate(['head/registration'])
 
-              // console.log(this.UserObject.auth)
+              }
+              this.router.navigate([`user/${res.position}`])
             },
             err => console.log(err))
     }

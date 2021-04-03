@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {  combineLatest, EMPTY, Subject } from 'rxjs';
 import { catchError, map, pairwise, startWith, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -61,7 +62,7 @@ export class TeacherRegistrationComponent implements OnInit {
      
 )
 
-  constructor(private fb: FormBuilder, private adminservice: AdminService, private authservice: AuthService) { }
+  constructor(private fb: FormBuilder, private adminservice: AdminService, private authservice: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.teacherRegisterForm = this.fb.group({
@@ -216,8 +217,23 @@ addIndividualSubs(subs): void {
 
   onSubmit(): void {
     clearInterval(this.subjectss)
+    if((this.takenClass || this.takenSub)){
+      this.takenSub = 'sorry theres a problem with the form' 
+      return
+    }
     if (this.teacherRegisterForm.valid){
-      this.authservice.updateRegisterService(this.teacherRegisterForm.value).subscribe(res => this.teacherRegisterForm.reset(this.teacherRegisterForm.value))
+      let userinfo = JSON.parse(localStorage.getItem('userInfo'))
+      userinfo.data = this.teacherRegisterForm.value
+      localStorage.setItem('userInfo', JSON.stringify(userinfo))
+
+      this.authservice.updateRegisterService(this.teacherRegisterForm.value).subscribe(res => 
+        {
+          this.teacherRegisterForm.reset(this.teacherRegisterForm.value)
+          this.authservice.UserObject =  JSON.parse(localStorage.getItem('userInfo'))
+          return  this.router.navigate(['user/teacher'])
+        }
+        
+        )
     }
     
   }

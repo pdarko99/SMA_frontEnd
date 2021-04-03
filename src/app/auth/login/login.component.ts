@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AdminService } from 'src/app/head_dashboard/admin.service';
+import { admin } from 'src/app/shared/adminClass';
 import { User } from 'src/app/shared/userClass';
 import {login} from '../../shared/loginClass'
 
@@ -10,6 +12,7 @@ import {login} from '../../shared/loginClass'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  teachersData: admin[]
   errorMessage: string;
   loginData:login = {
     email: '',
@@ -17,7 +20,7 @@ export class LoginComponent implements OnInit {
   };
   UserObject: User = new User;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService) { }
 
 
   onSubmit(): void{
@@ -31,17 +34,22 @@ export class LoginComponent implements OnInit {
           }
           return this.router.navigate(['teacher/registration'])
         }
-        // if(res.position === 'head'){
-        //   //get the admin data and check for completed
-        //   //if completed navigate to position
-        //   //else navigate to head registraion component
-        // }
+        if(res.position === 'head'){
+          if(this.teachersData && this.teachersData.length){
+            return this.router.navigate([`user/${res.position}`])
+          }
+         return this.router.navigate(['head/registration'])
+
+      }
         this.router.navigate([`user/${res.position}`])
       },
         err => this.errorMessage = 'invalid email or password')
   }
 
   ngOnInit(): void {
+    this.adminservice.schoolData$.subscribe(
+     res => this.teachersData = res
+   )
   }
 
   

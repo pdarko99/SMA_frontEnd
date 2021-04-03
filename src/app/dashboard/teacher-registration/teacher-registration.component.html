@@ -96,7 +96,7 @@
                         <button mat-raised-button (click)="addSubjects()">add another class</button>
                     </mat-card-actions>
                     <mat-card-actions>
-                        <button mat-raised-button  [disabled]="teacherRegisterForm.invalid && takenClass && takenSub">submit</button>
+                        <button mat-raised-button  [disabled]="teacherRegisterForm.invalid && (takenClass || takenSub)">submit</button>
                     </mat-card-actions>
  
                 </form>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { admin } from '../shared/adminClass';
+import { feedback } from '../shared/adminClass';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class AdminService {
 
   submitData(data: admin): Observable<any>{
     return this.http.post<admin>(this.Url + '/admin', data)
+  }
+
+  sendFeedback(data: feedback): Observable<any>{
+    return this.http.post<feedback>(this.Url + '/feedback', data)
   }
 
   

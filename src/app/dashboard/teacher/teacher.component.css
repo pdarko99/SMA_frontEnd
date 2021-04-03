@@ -10,7 +10,12 @@
     flex: 1 1 auto;
   }
 
-  
+  button {
+    width: 50%;
+    background-color:#4285F4;
+    color: #fff;            
+    padding: 7px;
+  }
 
   .sidenav{
       padding: 1em;
