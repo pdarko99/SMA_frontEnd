@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { FeedbackComponent } from 'src/app/feedback/feedback/feedback.component';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
 import { admin } from 'src/app/shared/adminClass';
 import { User } from 'src/app/shared/userClass';
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
   };
   UserObject: User = new User;
 
-  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService) { }
+  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService,public dialog: MatDialog) { }
 
 
   onSubmit(): void{
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
           return this.router.navigate(['teacher/registration'])
         }
         if(res.position === 'head'){
-          if(this.teachersData && this.teachersData.length){
+          if(this.teachersData[0] !== null){
             return this.router.navigate([`user/${res.position}`])
           }
          return this.router.navigate(['head/registration'])
@@ -43,13 +45,27 @@ export class LoginComponent implements OnInit {
       }
         this.router.navigate([`user/${res.position}`])
       },
-        err => this.errorMessage = 'invalid email or password')
+        err => this.errorMessage = 'Invalid email or password')
   }
 
   ngOnInit(): void {
     this.adminservice.schoolData$.subscribe(
      res => this.teachersData = res
    )
+  }
+
+
+  openFeedback(): void{
+    const dialogRef = this.dialog.open(FeedbackComponent, {
+      width: '40%',
+      height: '60%'
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      
+    });
   }
 
   

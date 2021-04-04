@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
                 return this.router.navigate(['teacher/registration'])
               }
               if(res.position === 'head'){
-                  if(this.teachersData && this.teachersData.length){
+                  if(this.teachersData[0] !== null){
                     return this.router.navigate([`user/${res.position}`])
                   }
                  return this.router.navigate(['head/registration'])

@@ -19,7 +19,6 @@ import { AboutInfoComponent } from './about-info/about-info.component';
 import { ClassPerformanceComponent } from './class-performance/class-performance.component';
 import { ReportsComponent } from './reports/reports.component';
 import { StudentsPerformanceComponent } from './students-performance/students-performance.component';
-import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
@@ -41,8 +40,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     AboutInfoComponent,
     ClassPerformanceComponent,
     ReportsComponent,
-    StudentsPerformanceComponent,
-    FeedbackComponent
+    StudentsPerformanceComponent
   ],
   imports: [
     NgxChartsModule,
@@ -55,10 +53,10 @@ import { FeedbackComponent } from './feedback/feedback.component';
           },
           {
             path: 'info', component: AboutInfoComponent
-          },
-          {
-            path: 'class', component: AboutTeacherComponent
           }
+          // {
+          //   path: 'class', component: AboutTeacherComponent
+          // }
         ]
       },
       // { path: 'user/teacher',  component: TeacherComponent, children:[

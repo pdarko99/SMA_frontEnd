@@ -19,8 +19,8 @@ export class HeadRegistrationComponent implements OnInit {
         headmasters: ['', [Validators.required]],
         accounts: ['', [Validators.required]],
         approvedFees: [0.00, [Validators.required]],
-        classGroup: this.fb.array([ this.buildclasses]),
-        completed: false,
+        classGroup: this.fb.array([ this.buildclasses])
+       
       })
   }
 
@@ -55,7 +55,7 @@ export class HeadRegistrationComponent implements OnInit {
       this.adminservice.submitData(this.headRegistrationForm.value).subscribe(
         res => {
           this.headRegistrationForm.reset(this.headRegistrationForm.value)
-          return  this.router.navigate(['user/teacher'])
+          return  this.router.navigate(['user/head'])
         },
         err => console.log(err)
       )

@@ -1,5 +1,5 @@
 
-<div class="main" >
+<div class="main" *ngIf ="classDataWithSearch$ | async" >
 
   <div class="search">
     <mat-form-field  *ngIf = "combinedSubjects$ | async" >

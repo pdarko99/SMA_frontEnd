@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AdminService } from 'src/app/head_dashboard/admin.service';
+import { AdminService } from '../../head_dashboard/admin.service';
 
 @Component({
   selector: 'app-feedback',
@@ -8,12 +8,13 @@ import { AdminService } from 'src/app/head_dashboard/admin.service';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  message = "Hello, glad to hear from you"
+  message = 'Hello, glad to hear from you'
   feedback = {
     username: '',
     text: ''
   };
-  constructor(private adminservice: AdminService ,public dialogRef: MatDialogRef<FeedbackComponent>) { }
+  
+    constructor(private adminservice: AdminService,public dialogRef: MatDialogRef<FeedbackComponent> ) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +33,4 @@ export class FeedbackComponent implements OnInit {
       event: 'close'
     })
   }
-
 }

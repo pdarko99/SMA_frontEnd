@@ -19,6 +19,13 @@
     margin: auto;
 }
 
+button {
+    padding: 10px;
+    margin: 10px;
+    width: 40%;
+    background-color: #4285F4;
+  }
+
 
 
 .section3{
