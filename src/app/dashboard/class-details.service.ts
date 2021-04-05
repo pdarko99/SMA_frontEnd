@@ -10,7 +10,7 @@ import { scan } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ClassDetailsService {
-  url = 'http://localhost:3000/students'
+  url = 'sm-a.herokuapp.com/students'
   subject: string;
   class:string;
   id: string;

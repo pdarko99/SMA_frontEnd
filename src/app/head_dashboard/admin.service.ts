@@ -9,7 +9,7 @@ import { feedback } from '../shared/adminClass';
   providedIn: 'root'
 })
 export class AdminService {
-  Url  = 'http://localhost:3000'
+  Url  = 'sm-a.herokuapp.com'
   schoolData$ = this.http.get<admin[]>(this.Url + '/admin').pipe(
     tap(data => console.log(data))
   )

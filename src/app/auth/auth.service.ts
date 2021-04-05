@@ -14,7 +14,7 @@ import { students } from '../shared/studentsClass';
 
 export class AuthService {
   UserObject: User = JSON.parse(localStorage.getItem('userInfo'))
-  url = "http://localhost:3000"
+  url = "sm-a.herokuapp.com"
   constructor(private http: HttpClient) { }
 
 
