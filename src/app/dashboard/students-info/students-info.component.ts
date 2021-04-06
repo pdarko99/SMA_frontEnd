@@ -73,7 +73,6 @@ export class StudentsInfoComponent implements OnInit {
   modifyProducts(stds: students[], std: students | string): students[]{
     if (typeof(std) === 'object'){
       if(!this.updateStu){
-          this.updateStu = true;
            return [...stds, std]
       }
 
@@ -109,7 +108,9 @@ export class StudentsInfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+
       if (result.dirty || (result.data !== '' && result.data !== undefined))
+        this.updateStu = true;
         return this.insertedStudent.next(result.data)
     });
 

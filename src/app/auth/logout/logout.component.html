@@ -1,0 +1,42 @@
+<div class="main">
+    <section class="section1">
+        <mat-toolbar color="primary">
+      
+        <span>My App</span>
+        <span class="example-spacer"></span>
+
+        <div class="example-button-row">
+            <button mat-raised-button [routerLink]="['/register']">REGISTER</button>
+        
+        </div>
+        </mat-toolbar>
+    </section>
+    
+    <section class="section2">
+    
+        <div>
+            <h2>Youve been logged out successfully... click <a  [routerLink]="['/login']"> here</a>  to log in</h2>
+        </div>
+
+        
+        <div *ngIf = "feedback">
+            <h3>thanks for the feedback ...</h3>
+        </div>
+          
+    </section>
+
+    <section class="section3">
+        <mat-toolbar color="primary">
+           <div class="foot">
+               <small>&copy; 2021 myapps.com</small>
+           </div>
+  
+        </mat-toolbar>
+
+    </section>
+ 
+</div>
+  
+
+
+

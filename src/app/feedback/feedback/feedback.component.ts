@@ -8,7 +8,7 @@ import { AdminService } from '../../head_dashboard/admin.service';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  message = 'Hello, when done, please step back here for feedback...'
+  message = 'Hey, how about a feedback... :)'
   feedback = {
     username: '',
     text: ''

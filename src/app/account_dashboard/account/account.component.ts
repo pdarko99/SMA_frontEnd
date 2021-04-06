@@ -39,7 +39,8 @@ export class AccountComponent implements OnInit {
 
   logout(): void{
     localStorage.clear()
-    this.router.navigate(['login'])
+    this.router.navigate(['logout'])
+
 
   }
 

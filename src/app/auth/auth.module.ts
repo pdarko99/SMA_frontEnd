@@ -7,6 +7,7 @@ import { HeadRegistrationComponent } from '../head_dashboard/head-registration/h
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '../shared/material.module';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -16,7 +17,8 @@ import { MaterialModule } from '../shared/material.module';
     LoginComponent,
     TeacherRegistrationComponent,
     HeadRegistrationComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,8 @@ import { MaterialModule } from '../shared/material.module';
       { path: 'teacher/registration',  component: TeacherRegistrationComponent},
       { path: 'head/registration',  component: HeadRegistrationComponent},
       { path: 'register', component: RegisterComponent},
+      { path: 'logout', component: LogoutComponent}
+
    
 
     ])
