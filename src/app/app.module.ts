@@ -22,8 +22,8 @@ import { FeedbackModule } from './feedback/feedback/feedback.module';
     BrowserAnimationsModule,
     HttpInterceptorModule,
     AppRoutingModuleModule,
-    AccountModule,
     AuthModule,
+    AccountModule,
     HeadModule,
     TeacherModule,
     FeedbackModule

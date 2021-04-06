@@ -4,13 +4,15 @@ import { combineLatest, Observable, of, Subject } from 'rxjs';
 import { account, students } from '../shared/studentsClass';
 import { marks } from '../shared/marksClass';
 import { scan } from 'rxjs/operators';
+import {environment} from "../../environments/environment.prod"
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassDetailsService {
-  url = 'sm-a.herokuapp.com/students'
+  url = environment.url + '/students'
   subject: string;
   class:string;
   id: string;

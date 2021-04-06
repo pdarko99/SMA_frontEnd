@@ -7,6 +7,7 @@ import { User } from '../shared/userClass';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { students } from '../shared/studentsClass';
+import {environment} from "../../environments/environment.prod"
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { students } from '../shared/studentsClass';
 
 export class AuthService {
   UserObject: User = JSON.parse(localStorage.getItem('userInfo'))
-  url = "sm-a.herokuapp.com"
+  url = environment.url
   constructor(private http: HttpClient) { }
 
 

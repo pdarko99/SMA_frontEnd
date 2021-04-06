@@ -4,12 +4,14 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { admin } from '../shared/adminClass';
 import { feedback } from '../shared/adminClass';
+import {environment} from "../../environments/environment.prod"
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  Url  = 'sm-a.herokuapp.com'
+  Url  = environment.url
   schoolData$ = this.http.get<admin[]>(this.Url + '/admin').pipe(
     tap(data => console.log(data))
   )

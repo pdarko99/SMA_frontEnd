@@ -15,7 +15,6 @@ export class TeacherComponent implements OnInit {
   constructor(private authservice:AuthService, private breakpointObserver: BreakpointObserver, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.teachersData);
     this.breakpointObserver.observe([
       `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`
     ]).subscribe(
@@ -23,7 +22,6 @@ export class TeacherComponent implements OnInit {
         this.isScreenSmall = state.matches
       }
     )
-    console.log(localStorage.getItem('userInfo') )
   }
 
   onSelected(data: string){

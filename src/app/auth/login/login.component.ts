@@ -1,3 +1,4 @@
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -8,12 +9,16 @@ import { admin } from 'src/app/shared/adminClass';
 import { User } from 'src/app/shared/userClass';
 import {login} from '../../shared/loginClass'
 
+
+const SMALL_WIDTH_BREAKPOINT = 720;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isScreenSmall: boolean
   teachersData: admin[]
   errorMessage: string;
   loginData:login = {
@@ -22,7 +27,7 @@ export class LoginComponent implements OnInit {
   };
   UserObject: User = new User;
 
-  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService,public dialog: MatDialog) { }
+  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService,public dialog: MatDialog, private breakpointObserver: BreakpointObserver) { }
 
 
   onSubmit(): void{
@@ -52,12 +57,20 @@ export class LoginComponent implements OnInit {
     this.adminservice.schoolData$.subscribe(
      res => this.teachersData = res
    )
+   this.breakpointObserver.observe([
+    `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`
+  ]).subscribe(
+    (state: BreakpointState) =>  {
+      this.isScreenSmall = state.matches
+    }
+  )
   }
 
 
   openFeedback(): void{
     const dialogRef = this.dialog.open(FeedbackComponent, {
-      width: '40%',
+      // width: '70%',
+      width: this.isScreenSmall ? '70%' : '40%',
       height: '60%'
      
     });
@@ -68,6 +81,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
 
 }

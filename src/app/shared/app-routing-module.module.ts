@@ -15,6 +15,7 @@ import { TeacherComponent } from '../dashboard/teacher/teacher.component';
   imports: [
     CommonModule,
     RouterModule.forRoot([
+
       {
         path: 'user/account', canLoad: [AuthGuard], component: AccountComponent, data: { claimType: 'account'},
           loadChildren: () => 
