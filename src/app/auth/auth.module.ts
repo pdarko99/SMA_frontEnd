@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '../shared/material.module';
 import { LogoutComponent } from './logout/logout.component';
 import { CredentialsComponent } from './credentials/credentials.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
@@ -21,6 +22,7 @@ import { CredentialsComponent } from './credentials/credentials.component';
     RegisterComponent,
     LogoutComponent,
     CredentialsComponent,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,

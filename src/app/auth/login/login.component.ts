@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     const dialogRef = this.dialog.open(CredentialsComponent, {
       // width: '70%',
       width: this.isScreenSmall ? '70%' : '40%',
-      height: '60%'
+      height: this.isScreenSmall ? '70%' : '50%',
      
     });
 

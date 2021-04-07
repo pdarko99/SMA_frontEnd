@@ -9,7 +9,6 @@ import { HeadModule } from './head_dashboard/head.module';
 import { TeacherModule } from './dashboard/teacher.module';
 import { AppRoutingModuleModule } from './shared/app-routing-module.module';
 import { AppComponent } from './app.component';
-import { FeedbackModule } from './feedback/feedback/feedback.module';
 
 
 @NgModule({
@@ -26,7 +25,6 @@ import { FeedbackModule } from './feedback/feedback/feedback.module';
     AccountModule,
     HeadModule,
     TeacherModule,
-    FeedbackModule
 
   ],
   providers: [],

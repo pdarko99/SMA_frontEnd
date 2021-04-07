@@ -1,7 +1,7 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FeedbackComponent } from 'src/app/feedback/feedback/feedback.component';
+import { FeedbackComponent } from 'src/app/auth/feedback/feedback.component';
 
 
 const SMALL_WIDTH_BREAKPOINT = 720;
