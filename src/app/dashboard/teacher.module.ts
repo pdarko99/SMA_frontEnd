@@ -18,7 +18,6 @@ import { AboutComponent } from './about/about.component';
 import { AboutInfoComponent } from './about-info/about-info.component';
 import { ClassPerformanceComponent } from './class-performance/class-performance.component';
 import { ReportsComponent } from './reports/reports.component';
-import { StudentsPerformanceComponent } from './students-performance/students-performance.component';
 
 
 
@@ -40,7 +39,6 @@ import { StudentsPerformanceComponent } from './students-performance/students-pe
     AboutInfoComponent,
     ClassPerformanceComponent,
     ReportsComponent,
-    StudentsPerformanceComponent
   ],
   imports: [
     NgxChartsModule,

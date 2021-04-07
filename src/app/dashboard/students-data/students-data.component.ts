@@ -10,7 +10,6 @@ import {combineLatest, merge, of, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportsComponent } from '../reports/reports.component';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { StudentsPerformanceComponent } from '../students-performance/students-performance.component';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 @Component({
@@ -104,25 +103,7 @@ export class StudentsDataComponent implements OnInit {
     
     }
 
-    openPerformance() {
-      const dialogRef = this.dialog.open(StudentsPerformanceComponent, {
-        width: '70%',
-        height: '95%',
-        data: {
-          data: this.classData$,
-          subjects : this.subjects$
-        }
-        // data: {data: element, index}
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-      });
-  
-    
-  
-    
-    }
+
 
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;

@@ -23,7 +23,6 @@
           <input type="text" matInput placeholder="firstname" name="firstname" formControlName="firstname">
             <div>
               <span *ngIf="registerForm.get('firstname').errors?.required && registerForm.get('firstname').touched">firstname is required</span>
-              <span *ngIf="registerForm.get('firstname').errors?.minlength && registerForm.get('firstname').touched">firstname must be more than three characters</span>
             </div>
         </div>
   
@@ -31,7 +30,6 @@
               <input type="text"matInput placeholder="lastname" name="lastname" formControlName="lastname">
               <div>
                 <span *ngIf="registerForm.get('lastname').errors?.required && registerForm.get('lastname').touched">lastname is required</span>
-                <span *ngIf="registerForm.get('lastname').errors?.minlength && registerForm.get('lastname').touched">lastname must be more than three characters</span>
               </div>
           </div>
           <div>

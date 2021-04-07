@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '../shared/material.module';
 import { LogoutComponent } from './logout/logout.component';
+import { CredentialsComponent } from './credentials/credentials.component';
 
 
 
@@ -18,7 +19,8 @@ import { LogoutComponent } from './logout/logout.component';
     TeacherRegistrationComponent,
     HeadRegistrationComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    CredentialsComponent,
   ],
   imports: [
     CommonModule,

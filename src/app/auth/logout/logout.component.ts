@@ -25,7 +25,6 @@ export class LogoutComponent implements OnInit {
         this.isScreenSmall = state.matches
       }
     )
-    this.openFeedback()
   }
 
   openFeedback(): void{

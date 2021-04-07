@@ -3,12 +3,7 @@
         <mat-toolbar color="primary">
       
         <span>My App</span>
-        <span class="example-spacer"></span>
-
-        <div class="example-button-row">
-            <button mat-raised-button [routerLink]="['/register']">REGISTER</button>
-        
-        </div>
+     
         </mat-toolbar>
     </section>
     
@@ -19,8 +14,8 @@
         </div>
 
         
-        <div *ngIf = "feedback">
-            <h3>thanks for the feedback ...</h3>
+        <div>
+            <button (click) = "openFeedback()">feedback</button>
         </div>
           
     </section>

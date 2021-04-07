@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { FeedbackComponent } from 'src/app/feedback/feedback/feedback.component';
 import { AdminService } from 'src/app/head_dashboard/admin.service';
 import { admin } from 'src/app/shared/adminClass';
 import { User } from 'src/app/shared/userClass';
 import {login} from '../../shared/loginClass'
+import { CredentialsComponent } from '../credentials/credentials.component';
 
 
+const SMALL_WIDTH_BREAKPOINT = 720;
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ import {login} from '../../shared/loginClass'
 })
 export class LoginComponent implements OnInit {
   teachersData: admin[]
+  isScreenSmall: boolean
+
   errorMessage: string;
   loginData:login = {
     email: '',
@@ -25,7 +28,7 @@ export class LoginComponent implements OnInit {
   };
   UserObject: User = new User;
 
-  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService) { }
+  constructor(private authService: AuthService, private router: Router, private adminservice: AdminService, public dialog: MatDialog, private breakpointObserver: BreakpointObserver) { }
 
 
   onSubmit(): void{
@@ -55,7 +58,30 @@ export class LoginComponent implements OnInit {
     this.adminservice.schoolData$.subscribe(
      res => this.teachersData = res
    )
+   this.breakpointObserver.observe([
+    `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`
+  ]).subscribe(
+    (state: BreakpointState) =>  {
+      this.isScreenSmall = state.matches
+    }
+  )
 
+  this.openFeedback()
+
+  }
+
+  openFeedback(): void{
+    const dialogRef = this.dialog.open(CredentialsComponent, {
+      // width: '70%',
+      width: this.isScreenSmall ? '70%' : '40%',
+      height: '60%'
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      
+    });
   }
 
 
