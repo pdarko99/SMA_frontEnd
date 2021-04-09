@@ -10,6 +10,11 @@ div > input{
     padding: 10px;
     margin: 10px;
 }
+
+.mat-input-element {
+  caret-color: #3f51b5;
+  border: 0.2px solid;
+}
 mat-card-actions > button {
     width: 60%;
     padding: 10px;
