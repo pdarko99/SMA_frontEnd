@@ -34,7 +34,7 @@ export class ClassDetailsService {
   }
 
   updateStudent(std: students,  stdsClass: string): Observable<any> {
-       return this.http.patch<students>(this.url + '/update'  + '?updatedId=' + std._id + '&' + 'class=' + stdsClass, std)
+       return this.http.post<students>(this.url + '/update'  + '?updatedId=' + std._id + '&' + 'class=' + stdsClass, std)
 
   }
 

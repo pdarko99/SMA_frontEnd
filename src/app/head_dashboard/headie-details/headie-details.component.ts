@@ -45,7 +45,7 @@ export class HeadieDetailsComponent implements OnInit {
 
   logout(): void{
     localStorage.clear()
-    this.router.navigate(['logout'])
+    this.router.navigate(['/logout'])
 
     
 
